@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.10 2004/01/12 12:30:22 erik Exp $
+ * $Id: gui.c,v 1.11 2004/01/16 19:41:42 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -209,6 +209,7 @@ textfield_add (gchar * message, int colortype)
 {
     GtkAdjustment *adj = GTK_TEXT_VIEW (mud->text)->vadjustment;
     GtkTextIter iter, end;
+    GtkTextMark mark;
     GtkTextBuffer *buffer;
     int scrolled_up = FALSE;
     int x, numbytes = strlen (message);
@@ -266,6 +267,8 @@ textfield_add (gchar * message, int colortype)
     else if (adj->value < adj->upper - (adj->page_size))
 	gtk_adjustment_set_value (adj, adj->upper - adj->page_size);
 */
+gtk_text_buffer_get_end_mark (buffer, &mark);
+gtk_text_view_scroll_to_mark    (GTK_TEXT_VIEW (mud->text), &mark, 0, 1, 0, 1);
     gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
     return;
 }
