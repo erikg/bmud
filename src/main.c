@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.10 2004/01/04 19:33:03 erik Exp $
+ * $Id: main.c,v 1.11 2004/01/04 19:36:11 erik Exp $
  */
 
 /* houses the main function. */
@@ -100,6 +100,7 @@ main (int argc, char **argv)
   mud->curr_color = color[7][1];
 
   gtk_widget_show (mud->window);
+  gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
 
 /*  
   gdk_window_set_background (GTK_TEXT (mud->text)->text_area, &color[0][0]);
