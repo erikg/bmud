@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.h,v 1.7 2004/01/19 18:21:49 erik Exp $
+ * $Id: color.h,v 1.8 2004/01/20 13:02:44 erik Exp $
  */
 
 typedef struct color_tag_s {
@@ -34,10 +34,10 @@ extern GdkColor *foreground;
 extern GdkColor color[9][2];
 extern gchar *cn[9][2];		/* names of colors */
 
-extern void show_colorm (void);
-extern void init_colors ();
-extern void disp_ansi (char *dst, char *src, color_tag_t ** tags);
-extern int color_load ();
-extern int color_default ();
-extern int color_dump ();
-extern int color_save ();
+void show_colorm (void);
+void init_colors ();
+color_tag_t *disp_ansi (char *dst, char *src, int offset);
+int color_load ();
+int color_default ();
+int color_dump ();
+int color_save ();

@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.27 2004/01/19 18:21:49 erik Exp $
+ * $Id: gui.c,v 1.28 2004/01/20 13:02:44 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -268,7 +268,7 @@ textfield_add (gchar * message, int colortype)
     int scrolled_up = FALSE;
     int y, height;
 
-    if (message[0] == NULL)
+    if (!message||!*message)
 	return;
 
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->text));
@@ -302,7 +302,9 @@ textfield_add (gchar * message, int colortype)
 	break;
     case MESSAGE_ANSI:
 	{
-	    int x = 0, numbytes = strlen (message);
+	    int x = 0, numbytes = strlen (message), offset = 0;
+	    char *text = malloc (numbytes);
+	    color_tag_t *tags;
 
 	    /*
 	     * break the ansi into 2 parts, and do 'em 
@@ -310,8 +312,6 @@ textfield_add (gchar * message, int colortype)
 	    if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	    {
 		GtkTextIter statiter;
-		char *text = malloc (strlen (message));
-		color_tag_t **tags;
 
 		clear (0, mud->stat);
 		while (message[x] != '\n')
@@ -321,20 +321,17 @@ textfield_add (gchar * message, int colortype)
 		disp_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud-> stat)), (gchar *) & message[x + 1], &statiter,
 		    numbytes - x);
 */
-		disp_ansi (text, message, tags);
+		tags = disp_ansi (text, message, offset);
 		textfield_add_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW
-			(mud->stat)), text, &iter, *tags);
+			(mud->stat)), text, &iter, tags);
 
 		x--;
 		message[x] = 0;
 		mud->curr_color = color[7][1];
 	    } else
 	    {
-		char *text = malloc (strlen (message));
-		color_tag_t **tags;
-
-		disp_ansi (text, message, tags);
-		textfield_add_ansi (buffer, text, &iter, *tags);
+		tags = disp_ansi (text, message, offset);
+		textfield_add_ansi (buffer, text, &iter, tags);
 	    }
 	    break;
 	}
