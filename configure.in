@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.10 2004/01/04 15:33:18 erik Exp $
+# $Id: configure.in,v 1.11 2004/01/04 15:52:04 erik Exp $
 
 AC_INIT(src/bmud.h)
 AM_CONFIG_HEADER(conf.h)
@@ -38,4 +38,4 @@ if test x$perl = xyes; then
 	AC_MSG_RESULT(yes)
 fi
 
-AC_OUTPUT(Makefile data/Makefile src/Makefile bmud.spec bmud.lsm)
+AC_OUTPUT(Makefile data/Makefile doc/Makefile src/Makefile bmud.spec bmud.lsm)

@@ -1,6 +1,6 @@
-# $Id: Makefile.am,v 1.4 2004/01/04 15:23:46 erik Exp $
+# $Id: Makefile.am,v 1.5 2004/01/04 15:52:04 erik Exp $
 
-SUBDIRS = data src 
+SUBDIRS = data doc src
 
 .PHONY: rpm deb packages lint indent
 rpm: dist
