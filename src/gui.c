@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.26 2004/01/19 17:24:36 erik Exp $
+ * $Id: gui.c,v 1.27 2004/01/19 18:21:49 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -237,6 +237,23 @@ clear_backbuffer ()
 */
 }
 
+void
+textfield_add_ansi (GtkTextBuffer * buffer, char *text, GtkTextIter * iter,
+    color_tag_t * tags)
+{
+    gtk_text_buffer_insert (buffer, iter, text, -1);
+    while (tags)
+    {
+	color_tag_t *tmp;
+
+	gtk_text_buffer_apply_tag (buffer, &tags->tag, &tags->start,
+	    &tags->end);
+	tmp = tags;
+	tags = tags->next;
+	free (tags);
+    }
+}
+
 	/*
 	 * stick words in the boxes 
 	 */
@@ -305,7 +322,8 @@ textfield_add (gchar * message, int colortype)
 		    numbytes - x);
 */
 		disp_ansi (text, message, tags);
-		gtk_text_buffer_insert (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud-> stat)), &iter, text, -1);
+		textfield_add_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW
+			(mud->stat)), text, &iter, *tags);
 
 		x--;
 		message[x] = 0;
@@ -316,11 +334,7 @@ textfield_add (gchar * message, int colortype)
 		color_tag_t **tags;
 
 		disp_ansi (text, message, tags);
-		gtk_text_buffer_insert (buffer, &iter, text, -1);
-/*
-		disp_ansi (buffer, message, &iter, -1);
-*/
-
+		textfield_add_ansi (buffer, text, &iter, *tags);
 	    }
 	    break;
 	}
