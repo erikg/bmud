@@ -20,14 +20,14 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.h,v 1.3 2003/12/25 16:36:08 erik Exp $
+ * $Id: gui.h,v 1.4 2004/01/05 00:11:29 erik Exp $
  */
 
 extern GtkWidget *spawn_gui (void);
 extern void textfield_add (gchar *, int);
 extern void cbox (void);
 extern void clist (void);
-extern void clear (int, GtkTextView *);
+extern void clear (int, GtkWidget *);
 extern void cleartail ();
 extern void init (int, char **);
 extern void do_menu (GtkWidget *);
