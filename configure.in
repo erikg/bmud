@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.13 2004/01/04 18:49:47 erik Exp $
+# $Id: configure.in,v 1.14 2004/01/04 21:15:21 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
@@ -27,8 +27,8 @@ if test x$guile = xyes; then
 	AC_DEFINE(USE_GUILE,,[Guile for scripting])
 	GUILE_CFLAGS=`guile-config compile`
 	GUILE_LIBS=`guile-config link`
-	CFLAGS="$CFLAGS $GUILE_CFLAGS"
-	LIBS="$LIBS $GUILE_LIBS"
+	AC_SUBST(GUILE_CFLAGS)
+	AC_SUBST(GUILE_LIBS)
 	AC_MSG_RESULT(yes)
 fi
 
@@ -40,8 +40,8 @@ if test x$perl = xyes; then
 	AC_DEFINE(USE_PERL,,[perl for scripting])
 	PERL_CFLAGS=`perl -MExtUtils::Embed -e ccopts`
 	PERL_LIBS=`perl -MExtUtils::Embed -e ldopts`
-	CFLAGS="$CFLAGS $PERL_CFLAGS"
-	LIBS="$LIBS $PERL_LIBS"
+	AC_SUBST(PERL_CFLAGS)
+	AC_SUBST(PERL_LIBS)
 	AC_MSG_RESULT(yes)
 fi
 
