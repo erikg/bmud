@@ -4,9 +4,9 @@ Version: @VERSION@
 Release: 1
 Copyright: GPL
 Vendor: Erik Greenwald
-Url: http://math.smsu.edu/~br0ke/@PACKAGE@.html
+Url: http://math.smsu.edu/~erik/@PACKAGE@.html
 Group: Applications/Text
-Source0: http://math.smsu.edu/~br0ke/files/@PACKAGE@-@VERSION@.tar.gz
+Source0: http://math.smsu.edu/~erik/files/@PACKAGE@-@VERSION@.tar.gz
 Buildroot: /var/tmp/@PACKAGE@
 
 %description
