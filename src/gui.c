@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.8 2004/01/12 10:40:45 erik Exp $
+ * $Id: gui.c,v 1.9 2004/01/12 10:52:44 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -57,10 +57,10 @@ do_con ()
 
     memset (port, 0, 10);
     memset (host, 0, 1000);
-
+/* TODO type warning
     host = gtk_entry_get_text (GTK_ENTRY (mud->hostentry));
     port = gtk_entry_get_text (GTK_ENTRY (mud->portentry));
-
+*/
     make_connection (host, port);
     destructify ();
     return;
@@ -98,7 +98,8 @@ cbox ()
 
     button = gtk_button_new_with_label ("Connect");
 
-/*	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);	
+/* TODO
+	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);	
 	gtk_widget_grab_default (GTK_WIDGET(button));
 */
     gtk_signal_connect (GTK_OBJECT (button), "clicked",
@@ -155,7 +156,9 @@ spawn_gui ()
 
     hbox = gtk_hbox_new (0, 0);
 
+/* TODO type error
     mud->stat = gtk_text_new (0, 0);
+*/
     gtk_widget_set_usize (mud->stat, mud->statsize, 20);
     gtk_text_set_word_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
     gtk_text_set_line_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
@@ -181,8 +184,8 @@ spawn_gui ()
 
 	/*
 	 * this is busted. when it's used, and it hits that magic spot where
-	 * * it starts culling, it does a slow scroll up to the top after every
-	 * * textfield_add(), then snaps to the bottom. 
+	 * it starts culling, it does a slow scroll up to the top after every
+	 * textfield_add(), then snaps to the bottom. 
 	 */
 void
 clear_backbuffer ()
@@ -216,7 +219,7 @@ textfield_add (gchar * message, int colortype)
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->text));
     gtk_text_buffer_get_end_iter (buffer, &iter);
 
-/*
+/* TODO
   if (adj->value < adj->upper - adj->page_size)
     {
       scrolled_up = TRUE;
@@ -230,6 +233,7 @@ textfield_add (gchar * message, int colortype)
 	gtk_text_buffer_insert (buffer, &iter, message, -1);
 	break;
     case MESSAGE_ERR:
+	/* TODO make this red */
 	gtk_text_buffer_insert (buffer, &iter, message, -1);
 	//gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL, message, -1);
 	break;
@@ -238,6 +242,7 @@ textfield_add (gchar * message, int colortype)
 	 * break the ansi into 2 parts, and do 'em 
 	 */
 	x = numbytes;
+/* TODO type issues, don't do stat box
 	if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	{
 	    clear (0, GTK_TEXT_VIEW (mud->stat));
@@ -248,14 +253,14 @@ textfield_add (gchar * message, int colortype)
 	    message[x] = 0;
 	    mud->curr_color = color[7][1];
 	} else
+*/
 	    disp_ansi (x, message, mud->text);
 	break;
-    default:
     }
 
-/*  clear_backbuffer ();	*/
+/*  TODO clear_backbuffer ();	*/
 
-/*
+/* TODO
     if (scrolled_up)
 	gtk_text_thaw (GTK_TEXT_VIEW (mud->text));
     else if (adj->value < adj->upper - (adj->page_size))

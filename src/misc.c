@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.c,v 1.5 2004/01/04 19:33:03 erik Exp $
+ * $Id: misc.c,v 1.6 2004/01/12 10:52:44 erik Exp $
  */
 
 /* stuff that doesn't go elsewhere. conf dir handling and history */
@@ -199,12 +199,10 @@ hist_evt (GtkWidget * w, GdkEventKey * event, gpointer data)
 void
 check_my_dir ()
 {
-    char *homedir;
+    const char *homedir;
 
     if (bmud_conf_dir)
 	return;
-    homedir = (char *)g_malloc (256);
-    memset (homedir, 0, 256);
 
     if (bmud_conf_dir)
 	g_free (bmud_conf_dir);
@@ -214,8 +212,6 @@ check_my_dir ()
 
     if (homedir == NULL || homedir[0] == 0)
     {
-	if (homedir)
-	    g_free (homedir);
 	homedir = (char *)getenv ("HOME");
     }
 
@@ -233,14 +229,9 @@ check_my_dir ()
 	    closedir (x);
 	}
 
-	if (homedir)
-	    g_free (homedir);
 	return;
     } else
-    {
-	g_free (homedir);
 	bmud_conf_dir = NULL;
-    }
 
     textfield_add ("Could not find your home dir", MESSAGE_ERR);
     printf ("Could not find your home dir");
