@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.14 2004/01/04 21:15:21 erik Exp $
+# $Id: configure.in,v 1.15 2004/01/20 15:29:13 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
@@ -23,7 +23,6 @@ AC_ARG_ENABLE(guile,
 	, guile=yes)
 if test x$guile = xyes; then
 	AC_MSG_CHECKING(for Guile)
-
 	AC_DEFINE(USE_GUILE,,[Guile for scripting])
 	GUILE_CFLAGS=`guile-config compile`
 	GUILE_LIBS=`guile-config link`
