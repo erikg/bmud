@@ -1,4 +1,5 @@
 AC_INIT(src/bmud.h)
+AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(bmud, 0.6)
 
 AC_PROG_CC
@@ -7,7 +8,7 @@ AC_PROG_INSTALL
 ALL_LINGUAS="en_US"
 AM_GNU_GETTEXT
 
-AC_DEFINE_UNQUOTED(LOCALEDIR, "$prefix/share/locale")
+AC_DEFINE_UNQUOTED(LOCALEDIR, "$prefix/share/locale", [Where the locale files are])
 
 AM_PATH_GTK(1.2.0,
 	[
@@ -32,7 +33,7 @@ if test "x$use_gnome" = xyes; then
 	AC_PATH_PROG(GNOME_CONFIG,gnome-config)
 	AC_MSG_CHECKING(for GNOME)
 	if $GNOME_CONFIG --libs-only-l gnome >/dev/null 2>&1; then
-		AC_DEFINE(USE_GNOME)
+		AC_DEFINE(USE_GNOME,,[Use GNOME Framework])
 		GNOME_CFLAGS=`gnome-config --cflags gnomeui`
 		GNOME_LIBS=`gnome-config --libs gnomeui`
 		CFLAGS="$CFLAGS $GNOME_CFLAGS"
@@ -50,7 +51,7 @@ AC_ARG_ENABLE(zvt-term,
 	zvt=yes , zvt=no)
 if test x$zvt = xyes; then
 	AC_MSG_CHECKING(for ZVT)
-	AC_DEFINE(USE_ZVT)
+	AC_DEFINE(USE_ZVT,,[ZVT for rendering])
 	LIBS="$LIBS $ZVT_LIBS"
 	AC_MSG_RESULT(yes)
 fi
@@ -61,7 +62,7 @@ AC_ARG_ENABLE(guile,
 if test x$guile = xyes; then
 	AC_MSG_CHECKING(for Guile)
 
-	AC_DEFINE(USE_GUILE)
+	AC_DEFINE(USE_GUILE,,[Guile for scripting])
 	GUILE_CFLAGS=`guile-config compile`
 	GUILE_LIBS=`guile-config link`
 	CFLAGS="$CFLAGS $GUILE_CFLAGS"
@@ -74,7 +75,7 @@ AC_ARG_ENABLE(perl,
 	, perl=yes)
 if test x$perl = xyes; then
 	AC_MSG_CHECKING(for PERL)
-	AC_DEFINE(USE_PERL)
+	AC_DEFINE(USE_PERL,,[perl for scripting])
 	PERL_CFLAGS=`perl -MExtUtils::Embed -e ccopts`
 	PERL_LIBS=`perl -MExtUtils::Embed -e ldopts`
 	CFLAGS="$CFLAGS $PERL_CFLAGS"
