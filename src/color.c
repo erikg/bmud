@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.14 2004/01/20 13:10:46 erik Exp $
+ * $Id: color.c,v 1.15 2004/01/20 15:22:09 erik Exp $
  */
 
 #include <stdio.h>
@@ -201,27 +201,23 @@ getcol (char *tmp, int bleh)
 color_tag_t *
 disp_ansi (char *dst, char *src, int offset)
 {
-
-    GdkColor col = color[7][0];
-    int n = 0, x = 0;		/* in[n], x is sizeof ansi code */
-
-    strcpy (dst, src);
-
-#if 0
+    //GdkColor col = color[7][0];
+    int n = 0, x = 0, j = 0, size;
+    size = strlen(src);
 
     while (n < size)
     {
 	/*
 	 * strip CR from CRLF or LFCR as per rfc 854 :/ 
 	 */
-	if (in[n] == 13)
+	if (src[n] == 13)
 	    ++n;
 
 	/*
-	 * remembers how many lines we have in 
+	 * remembers how many lines we have src 
 	 */
 	/*
-	 * else if(in[n]=='\n')
+	 * else if(src[n]=='\n')
 	 * {
 	 * mud->lines++;
 	 * if(mud->lines>200)
@@ -231,42 +227,38 @@ disp_ansi (char *dst, char *src, int offset)
 	/*
 	 * this is for the password block 
 	 */
-	if (in[n] == -1 && in[n + 2] == 1)
+	if (src[n] == -1 && src[n + 2] == 1)
 	{
-	    if (in[n + 1] == -5)
+	    if (src[n + 1] == -5)
 		GTK_ENTRY (mud->ent)->visible = 0;
-	    if (in[n + 1] == -4)
+	    if (src[n + 1] == -4)
 		GTK_ENTRY (mud->ent)->visible = 1;
 	    n += 3;
 	}
 
 	/*
-	 * if it's not a 'special' code, print 
+	 * if it's not a 'special' code, prsrct 
 	 */
-	else if (in[n] != 27)
-	    gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW
-		    (target)), &in[n], 1);
+	else if (src[n] != 27)
+		dst[j++] = src[n];
 
-/*
-	gtk_text_insert (GTK_TEXT_VIEW (target), mud->disp_font, &col, NULL,
-			 &in[n], 1);
-*/
 	/*
 	 * this is an ansi code, stripping time 
 	 */
 	else
 	{
-	    while (!isalpha (in[x + n]))
+	    while (!isalpha (src[x + n]))
 		++x;
+		/*
 	    if (x < 9)
-		col = getcol (&in[n + 1], x);
+		col = getcol (&src[n + 1], x);
+		*/
 	    n += x;
 	    x = 0;
 	}
 	++n;
     }
 
-#endif
     return NULL;
 }
 
