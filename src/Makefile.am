@@ -1,3 +1,5 @@
+# $Id: Makefile.am,v 1.4 2004/01/04 15:23:53 erik Exp $
+
 bin_PROGRAMS = bmud 
 
 bmud_SOURCES = \
