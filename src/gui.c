@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.13 2004/01/18 15:43:15 erik Exp $
+ * $Id: gui.c,v 1.14 2004/01/18 15:51:04 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -273,12 +273,8 @@ textfield_add (gchar * message, int colortype)
 /*  TODO clear_backbuffer ();	*/
 
     if (!scrolled_up)
-    {
 	gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (mud->text), mark, 0, TRUE,
 	    0.0, 1.0);
-	printf ("Zapping to end\n");
-	fflush (stdout);
-    }
     gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
     return;
 }
