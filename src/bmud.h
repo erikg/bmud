@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: bmud.h,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: bmud.h,v 1.3 2003/12/25 16:36:08 erik Exp $
  */
 
 #ifndef BMUD_H
@@ -45,10 +45,6 @@
 #define MESSAGE_NORMAL  1
 #define MESSAGE_ANSI    2
 #define MESSAGE_NONE    3
-
-#ifndef bool
-#define bool char
-#endif
 
 #define SERVERFILE "mudservers"
 

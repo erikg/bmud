@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.c,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: misc.c,v 1.3 2003/12/25 16:36:08 erik Exp $
  */
 
 /* stuff that doesn't go elsewhere. conf dir handling and history */
@@ -150,15 +150,19 @@ hist_evt (GtkWidget * w, GdkEventKey * event, gpointer data)
       }
     case GDK_Page_Up:
       {
+/*
 	GtkAdjustment *adj = GTK_TEXT (mud->text)->vadj;
 	gtk_adjustment_set_value (adj, adj->value - adj->page_size);
+*/
 	break;
       }
     case GDK_Page_Down:
       {
+/*
 	GtkAdjustment *adj = GTK_TEXT (mud->text)->vadj;
 	if (adj->value < adj->upper - adj->page_size)
 	  gtk_adjustment_set_value (adj, adj->value + adj->page_size);
+*/
 	break;
       }
     default:

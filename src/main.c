@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.4 2003/11/19 20:12:52 erik Exp $
+ * $Id: main.c,v 1.5 2003/12/25 16:36:08 erik Exp $
  */
 
 /* houses the main function. */
@@ -104,9 +104,10 @@ main (int argc, char **argv)
 
 #ifndef USE_ZVT  
   {
-  
+/*  
   gdk_window_set_background (GTK_TEXT (mud->text)->text_area, &color[0][0]);
   gdk_window_set_background (GTK_TEXT (mud->stat)->text_area, &color[0][0]);
+*/
   }
 #endif
 

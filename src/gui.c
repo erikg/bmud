@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: gui.c,v 1.3 2003/12/25 16:36:08 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -136,13 +136,15 @@ spawn_gui ()
   mud->text = zvt_term_new();
 #else
   mud->text = gtk_text_new (0, 0);
-  gtk_text_set_word_wrap (GTK_TEXT (mud->text), TRUE);	/* wordwrap */
+  gtk_text_set_word_wrap (GTK_TEXT_VIEW (mud->text), TRUE);	/* wordwrap */
 #endif
 
   gtk_widget_show (mud->text);
 
   gtk_box_pack_start (GTK_BOX (hbox), mud->text, TRUE, TRUE, 0);
-  vscrollbar = gtk_vscrollbar_new (GTK_TEXT (mud->text)->vadj);
+/*
+  vscrollbar = gtk_vscrollbar_new (GTK_TEXT_VIEW (mud->text)->vadj);
+*/
   gtk_box_pack_start (GTK_BOX (hbox), vscrollbar, FALSE, FALSE, 0);
   gtk_widget_show (vscrollbar);
 
@@ -153,8 +155,8 @@ spawn_gui ()
 
   mud->stat = gtk_text_new (0, 0);
   gtk_widget_set_usize (mud->stat, mud->statsize, 20);
-  gtk_text_set_word_wrap (GTK_TEXT (mud->stat), FALSE);
-  gtk_text_set_line_wrap (GTK_TEXT (mud->stat), FALSE);
+  gtk_text_set_word_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
+  gtk_text_set_line_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
   gtk_widget_show (mud->stat);
   gtk_box_pack_start (GTK_BOX (hbox), mud->stat, FALSE, TRUE, 0);
 
@@ -186,22 +188,22 @@ spawn_gui ()
 void
 clear_backbuffer ()
 {
-  int n = gtk_text_get_length (GTK_TEXT (mud->text));
+  int n = gtk_text_get_length (GTK_TEXT_VIEW (mud->text));
 
   if (mud->maxlines <= 0 || n < mud->maxlines)
     return;
-  gtk_text_freeze (GTK_TEXT (mud->text));
-  gtk_text_set_point (GTK_TEXT (mud->text), n - mud->maxlines);
-  gtk_text_backward_delete (GTK_TEXT (mud->text), n - mud->maxlines);
-  gtk_text_set_point (GTK_TEXT (mud->text), mud->maxlines);
-  gtk_text_thaw (GTK_TEXT (mud->text));
+  gtk_text_freeze (GTK_TEXT_VIEW (mud->text));
+  gtk_text_set_point (GTK_TEXT_VIEW (mud->text), n - mud->maxlines);
+  gtk_text_backward_delete (GTK_TEXT_VIEW (mud->text), n - mud->maxlines);
+  gtk_text_set_point (GTK_TEXT_VIEW (mud->text), mud->maxlines);
+  gtk_text_thaw (GTK_TEXT_VIEW (mud->text));
 }
 
 	/* stick words in the boxes */
 void
 textfield_add (gchar * message, int colortype)
 {
-  GtkAdjustment *adj = GTK_TEXT (mud->text)->vadj;
+  GtkAdjustment *adj = GTK_TEXT_VIEW (mud->text)->vadjustment;
   int scrolled_up = FALSE;
   int x, numbytes = strlen (message);
 
@@ -212,14 +214,14 @@ textfield_add (gchar * message, int colortype)
   if (adj->value < adj->upper - adj->page_size)
     {
       scrolled_up = TRUE;
-      gtk_text_freeze (GTK_TEXT (mud->text));
+      gtk_text_freeze (GTK_TEXT_VIEW (mud->text));
     }
 
   if (colortype == MESSAGE_NONE || colortype == MESSAGE_NORMAL)
-    gtk_text_insert (GTK_TEXT (mud->text), mud->disp_font, &color[7][1], NULL,
+    gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[7][1], NULL,
 		     message, -1);
   if (colortype == MESSAGE_ERR)
-    gtk_text_insert (GTK_TEXT (mud->text), mud->disp_font, &color[1][0], NULL,
+    gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL,
 		     message, -1);
 #endif  
   if (colortype == MESSAGE_ANSI)
@@ -230,7 +232,7 @@ textfield_add (gchar * message, int colortype)
       if (mud->statsize != 0)
 	if (message[numbytes - 2] == '>')
 	  {
-	    clear (0, GTK_TEXT (mud->stat));
+	    clear (0, GTK_TEXT_VIEW (mud->stat));
 	    while (message[x] != '\n')
 	      x--;
 	    disp_ansi (numbytes - x, (gchar *) & message[x + 1], mud->stat);
@@ -246,7 +248,7 @@ textfield_add (gchar * message, int colortype)
 
 #ifndef USE_ZVT
   if (scrolled_up)
-    gtk_text_thaw (GTK_TEXT (mud->text));
+    gtk_text_thaw (GTK_TEXT_VIEW (mud->text));
   else if (adj->value < adj->upper - (adj->page_size))
     gtk_adjustment_set_value (adj, adj->upper - adj->page_size);
 #endif
@@ -258,16 +260,20 @@ textfield_add (gchar * message, int colortype)
 
 	/* n is the number of lines to NOT delete, if it's 0, delete 'em all */
 void
-clear (int n, GtkText * target)
+clear (int n, GtkTextView * target)
 {
 	n=0;
+/*
   gtk_text_freeze (target);
   gtk_text_backward_delete (target, gtk_text_get_length (target));
   gtk_text_thaw (target);
+*/
 }
 
 void
 cleartail ()
 {
-  g_print ("%d\n", g_list_length (GTK_TEXT (mud->text)->current_line));
+/*
+  g_print ("%d\n", g_list_length (GTK_TEXT_VIEW (mud->text)->current_line));
+*/
 }

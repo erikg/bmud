@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias.c,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: alias.c,v 1.3 2003/12/25 16:36:08 erik Exp $
  */
 
 /* this is where the ircII style aliasing goes I thnk */
@@ -214,7 +214,7 @@ do_alias (char *blah)
   else if (!strncmp (blah, "disconnect", 3))
     disconnect ();
   else if (!strncmp (blah, "clear", 2))
-    clear (0, GTK_TEXT (mud->text));
+    clear (0, GTK_TEXT_VIEW (mud->text));
   else if (!strncmp (blah, "help", 4))
     fake_help_thingy ();
   else if (!strncmp (blah, "qui", 3))

@@ -20,12 +20,13 @@
  *****************************************************************************/
 
 /*
- * $Id: config.c,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: config.c,v 1.3 2003/12/25 16:36:08 erik Exp $
  */
 
 /* this is the gui for the config box */
 
 #include <stdlib.h>
+#include <gtk/gtktreeview.h>
 #include "bmud.h"
 #include "main.h"
 #include "color.h"
@@ -47,10 +48,6 @@ apply_cb (GtkWidget * crap, gpointer * nothing)
   int x;
   if (this_panel_cb)
     this_panel_cb ();
-
-  crap = NULL;			/* pointless waste of cycles to shut the */
-  nothing = NULL;		/* warning stuff up. Hopefully this will
-				   be optimized into oblivion. */
 
   /* pack the new font */
   if (fntname != NULL)
@@ -80,8 +77,6 @@ apply_cb (GtkWidget * crap, gpointer * nothing)
 void
 cancel_cb (GtkWidget * crap, gpointer * nothing)
 {
-	crap = NULL;
-	nothing = NULL;
   gtk_widget_destroy (config_win);
   return;
 }
@@ -115,8 +110,6 @@ confinit ()
 void
 defaults_cb (GtkWidget * crap, gpointer * nothing)
 {
-	crap = NULL;
-	nothing = NULL;
   color_default ();
 	/*** TODO: set the config pane to use the default ***/
   return;
@@ -126,8 +119,6 @@ defaults_cb (GtkWidget * crap, gpointer * nothing)
 void
 help_cb (GtkWidget * crap, gpointer * nothing)
 {
-	crap = NULL;
-	nothing = NULL;
   return;
 }
 
@@ -140,7 +131,6 @@ update_color (GtkWidget * crap)
   gdouble c[3] = { 0, 0, 0 };
   GdkColor *confcol;
   confcol = current;
-  crap = NULL;
 
   gtk_color_selection_get_color (GTK_COLOR_SELECTION (blah), c);
 
@@ -172,9 +162,11 @@ confcolor (GtkWidget * placeholder, GdkColor * confcol)
   blah = gtk_color_selection_new ();
   gtk_color_selection_set_color (GTK_COLOR_SELECTION (blah), c);
 
+/*
   for (x = 0; x < 8; ++x)
     GTK_COLOR_SELECTION (blah)->old_values[x] =
       GTK_COLOR_SELECTION (blah)->values[x];
+*/
 
   gtk_widget_show (blah);
   gtk_box_pack_start (GTK_BOX (placeholder), blah, 0, 0, 2);
@@ -192,7 +184,6 @@ confcolor (GtkWidget * placeholder, GdkColor * confcol)
 void
 update_font (GtkWidget * crap)
 {
-	crap = NULL;
   if (fntname)
     g_free (fntname);
   fntname =
@@ -232,7 +223,6 @@ update_hist (GtkWidget * crap)
 
   for (x = 0; x < mud->hist->max; x++)
     mud->hist->list[x] = NULL;
-  crap = NULL;
   return;
 }
 
@@ -274,7 +264,6 @@ confhist ()
 void
 update_misc (GtkWidget * crap)
 {
-	crap = NULL;
   mud->statsize =
     gtk_spin_button_get_value_as_int ((GtkSpinButton *) misc_statsize);
   if (mud->statsize == 0)
@@ -322,10 +311,10 @@ show_config ()
   GtkWidget *ok, *apply, *cancel, *defaults, *help;
   GtkWidget *vbox, *hbox2;
   GtkWidget *tree, *treeitem, *subtree, *scrollbox;
-
+#if 0
   confinit ();
 
-  config_win = gtk_window_new (GTK_WINDOW_DIALOG);
+  config_win = gtk_dialog_new ();
   gtk_widget_realize (config_win);
   gtk_widget_set_usize (config_win, 670, 440);
   blah = gtk_label_new (_("BMUD!"));
@@ -364,32 +353,32 @@ show_config ()
     for (y = 0; y < 2; ++y)
       {
 	treeitem = gtk_tree_item_new_with_label (cn[x][y]);
-	gtk_tree_append (GTK_TREE (subtree), treeitem);
+	gtk_tree_append (GTK_TREE_VIEW (subtree), treeitem);
 	gtk_signal_connect (GTK_OBJECT (treeitem), "select",
 			    GTK_SIGNAL_FUNC (confcolor), &ccol[x][y]);
 	gtk_widget_show (treeitem);
       }
 
   treeitem = gtk_tree_item_new_with_label (_("Colors"));
-  gtk_tree_append (GTK_TREE (tree), treeitem);
+  gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
 
   gtk_tree_item_set_subtree (GTK_TREE_ITEM (treeitem), subtree);
   gtk_widget_show (treeitem);
 
   treeitem = gtk_tree_item_new_with_label (_("Font"));
-  gtk_tree_append (GTK_TREE (tree), treeitem);
+  gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
   gtk_signal_connect (GTK_OBJECT (treeitem), "select",
 		      GTK_SIGNAL_FUNC (conffont), NULL);
   gtk_widget_show (treeitem);
 
   treeitem = gtk_tree_item_new_with_label (_("History"));
-  gtk_tree_append (GTK_TREE (tree), treeitem);
+  gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
   gtk_signal_connect (GTK_OBJECT (treeitem), "select",
 		      GTK_SIGNAL_FUNC (confhist), NULL);
   gtk_widget_show (treeitem);
 
   treeitem = gtk_tree_item_new_with_label (_("Misc"));
-  gtk_tree_append (GTK_TREE (tree), treeitem);
+  gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
   gtk_signal_connect (GTK_OBJECT (treeitem), "select",
 		      GTK_SIGNAL_FUNC (confmisc), NULL);
   gtk_widget_show (treeitem);
@@ -426,7 +415,7 @@ show_config ()
   gtk_container_add (GTK_CONTAINER (config_win), vbox);
 
   gtk_widget_show (config_win);
-
+#endif
   this_panel_cb = NULL;
   return;
 }
