@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.24 2004/01/19 16:34:59 erik Exp $
+ * $Id: gui.c,v 1.25 2004/01/19 16:44:09 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -127,9 +127,7 @@ resize (GtkContainer * window, gpointer * crud)
 {
     gtk_widget_get_size_request (GTK_WIDGET (window), &mud->width,
 	&mud->height);
-    /*
-     * TODO save hot prefs here 
-     */
+    session_save ();
 }
 
 	/*
