@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.23 2004/01/19 16:34:50 erik Exp $
+ * $Id: gui.c,v 1.24 2004/01/19 16:34:59 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -223,6 +223,7 @@ spawn_gui ()
 void
 clear_backbuffer ()
 {
+
 /*
     int n = gtk_text_get_length (GTK_TEXT_VIEW (mud->text));
 
@@ -292,10 +293,13 @@ textfield_add (gchar * message, int colortype)
 	    if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	    {
 		GtkTextIter statiter;
+
 		clear (0, mud->stat);
 		while (message[x] != '\n')
 		    x--;
-		disp_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->stat)), (gchar *) & message[x + 1], &statiter, numbytes - x);
+		disp_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->
+			    stat)), (gchar *) & message[x + 1], &statiter,
+		    numbytes - x);
 		x--;
 		message[x] = 0;
 		mud->curr_color = color[7][1];
