@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.9 2004/01/12 10:52:44 erik Exp $
+ * $Id: gui.c,v 1.10 2004/01/12 12:30:22 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -158,13 +158,13 @@ spawn_gui ()
 
 /* TODO type error
     mud->stat = gtk_text_new (0, 0);
-*/
+
     gtk_widget_set_usize (mud->stat, mud->statsize, 20);
     gtk_text_set_word_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
     gtk_text_set_line_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
     gtk_widget_show (mud->stat);
     gtk_box_pack_start (GTK_BOX (hbox), mud->stat, FALSE, TRUE, 0);
-
+*/
     mud->ent = gtk_entry_new ();
     gtk_signal_connect_object (GTK_OBJECT (mud->ent), "activate",
 	GTK_SIGNAL_FUNC (send_to_connection), NULL);
