@@ -5,11 +5,13 @@ Release: 1
 Copyright: GPL
 Vendor: Erik Greenwald
 Url: http://math.smsu.edu/~erik/@PACKAGE@.html
-Group: Applications/Text
+Group: Amusements/Games
 Source0: http://math.smsu.edu/~erik/files/@PACKAGE@-@VERSION@.tar.gz
 Buildroot: /var/tmp/@PACKAGE@
 
 %description
+Bmud is a MUD (Multi-User Dungeon or Dimension) client for GNOME and the X
+Window System. Bmud is based on the GTK+ widget set.
 
 %prep
 %setup -q
