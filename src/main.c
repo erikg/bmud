@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.6 2004/01/04 15:55:15 erik Exp $
+ * $Id: main.c,v 1.7 2004/01/04 16:00:06 erik Exp $
  */
 
 /* houses the main function. */
@@ -32,7 +32,6 @@
 
 #include "alias.h"
 #include "bmud.h"
-#include "config.h"
 #include "color.h"
 #include "gui.h"
 #include "main.h"

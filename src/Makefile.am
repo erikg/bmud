@@ -1,11 +1,12 @@
-# $Id: Makefile.am,v 1.4 2004/01/04 15:23:53 erik Exp $
+# $Id: Makefile.am,v 1.5 2004/01/04 16:00:06 erik Exp $
 
 bin_PROGRAMS = bmud 
 
 bmud_SOURCES = \
 	alias.c\
 	alias_utils.c\
-	color.c config.c\
+	color.c\
+	conf.c\
 	cwiz.c\
 	gui.c\
 	main.c\
@@ -18,7 +19,7 @@ noinst_HEADERS = \
 	alias.h\
 	bmud.h\
 	color.h\
-	config.h\
+	conf.h\
 	gnome-compat.h\
 	gtk-compat.h\
 	gui.h\
