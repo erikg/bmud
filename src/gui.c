@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.3 2003/12/25 16:36:08 erik Exp $
+ * $Id: gui.c,v 1.4 2004/01/04 15:23:08 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -72,7 +72,7 @@ cbox ()
   hbox = gtk_hbox_new (0, 5);
   vbox = gtk_vbox_new (0, 5);
 
-  label = gtk_label_new (_("Host"));
+  label = gtk_label_new ("Host");
   mud->hostentry = gtk_entry_new ();
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), mud->hostentry, FALSE, FALSE, 0);
@@ -82,7 +82,7 @@ cbox ()
   gtk_widget_show (hbox);
   hbox = gtk_hbox_new (0, 0);
 
-  label = gtk_label_new (_("Port"));
+  label = gtk_label_new ("Port");
   mud->portentry = gtk_entry_new ();
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), mud->portentry, FALSE, FALSE, 0);
@@ -92,7 +92,7 @@ cbox ()
   gtk_widget_show (hbox);
   hbox = gtk_hbox_new (TRUE, 0);
 
-  button = gtk_button_new_with_label (_("Connect"));
+  button = gtk_button_new_with_label ("Connect");
 /*	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);	
 	gtk_widget_grab_default (GTK_WIDGET(button));
 */
@@ -101,7 +101,7 @@ cbox ()
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
   gtk_widget_show (button);
 
-  button = gtk_button_new_with_label (_("Cancel"));
+  button = gtk_button_new_with_label ("Cancel");
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		      GTK_SIGNAL_FUNC (destructify), NULL);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);

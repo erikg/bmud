@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.4 2003/12/25 16:36:08 erik Exp $
+ * $Id: color.c,v 1.5 2004/01/04 15:23:08 erik Exp $
  */
 
 #include <stdio.h>
@@ -28,6 +28,7 @@
 #include <fcntl.h>
 #include <ctype.h>
 #include <string.h>
+
 #include "bmud.h"
 #include "color.h"
 #include "gui.h"
@@ -47,23 +48,23 @@ GdkColormap *cmap;
 GdkColor color[9][2];
 
 gchar *cn[9][2] = {
-  {N_("Black"), N_("Grey")}
+  {"Black", "Grey"}
   ,
-  {N_("Red"), N_("Pink")}
+  {"Red", "Pink"}
   ,
-  {N_("Green"), N_("Light_Green")}
+  {"Green", "Light_Green"}
   ,
-  {N_("Orange"), N_("Yellow")}
+  {"Orange", "Yellow"}
   ,
-  {N_("Blue"), N_("Light_Blue")}
+  {"Blue", "Light_Blue"}
   ,
-  {N_("Maroon"), N_("Purple")}
+  {"Maroon", "Purple"}
   ,
-  {N_("Cyan"), N_("Light_Cyan")}
+  {"Cyan", "Light_Cyan"}
   ,
-  {N_("Silver"), N_("White")}
+  {"Silver", "White"}
   ,
-  {N_("MESSAGE"), N_("ERROR")}
+  {"MESSAGE", "ERROR"}
   ,
 };
 
@@ -258,7 +259,7 @@ set_color (GdkColor * colorx, int r, int g, int b)
   colorx->green = (g * 256) % 65535;
   colorx->blue = (b * 256) % 65535;
   if (!gdk_color_alloc (cmap, colorx))
-    g_error (_("Color allocation failed\n"));
+    g_error ("Color allocation failed\n");
   return;
 }
 
@@ -271,7 +272,7 @@ color_scan ()
     return;			/* wasn't real */
   for (x = 0; x < 9; x++)
     for (y = 0; y < 2; y++)
-      if (!strcmp (colorx, _(cn[x][y])))
+      if (!strcmp (colorx, cn[x][y]))
 	set_color (&color[x][y], atoi (r), atoi (g), atoi (b));
   return;
 }
@@ -305,9 +306,9 @@ color_save ()
    */
   if (!(fp = fopen (show_conf_dir ("colors"), "w")))
     {
-      textfield_add (_("Unabled to open color file for writing\n"),
+      textfield_add ("Unabled to open color file for writing\n",
 		     MESSAGE_ERR);
-      printf (_("Unabled to open color file for writing\n"));
+      printf ("Unabled to open color file for writing\n");
       printf ("%s\n", show_conf_dir ("colors"));
       return -1;
     }
@@ -323,10 +324,10 @@ int
 color_default ()
 {
 /*
-  textfield_add (_("Couldn't open color file, using defaults\n"),
+  textfield_add ("Couldn't open color file, using defaults\n",
 		 MESSAGE_ERR);
 */
-  printf (_("Couldn't open color file, using defaults\n"));
+  printf ("Couldn't open color file, using defaults\n");
 
   set_color (&color[0][0], 0, 0, 0);
   set_color (&color[0][1], 190, 190, 190);

@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: net.c,v 1.3 2003/11/19 20:12:52 erik Exp $
+ * $Id: net.c,v 1.4 2004/01/04 15:23:08 erik Exp $
  */
 
 /* 
@@ -102,14 +102,14 @@ make_connection (char *host, char *port)
 
   if (strcmp (host, "\0") == 0)
     {
-      sprintf (buf, _("\n*** Can't connect - you didn't specify a host\n"));
+      sprintf (buf, "\n*** Can't connect - you didn't specify a host\n");
       textfield_add (buf, MESSAGE_ERR);
       return;
     }
 
   if (strcmp (port, "\0") == 0)
     {
-      sprintf (buf, _("\n*** No port specified - assuming port 23\n"));
+      sprintf (buf, "\n*** No port specified - assuming port 23\n");
       textfield_add (buf, MESSAGE_NORMAL);
 
       /* 
@@ -121,7 +121,7 @@ make_connection (char *host, char *port)
       port = "23";
     }
 
-  sprintf (buf, _("\n*** Making connection to %s, port %s\n"), host, port);
+  sprintf (buf, "\n*** Making connection to %s, port %s\n", host, port);
   textfield_add (buf, MESSAGE_NORMAL);
 
   open_connection (host, port);
@@ -133,7 +133,7 @@ disconnect (void)
   close (global.sockfd);
   if (global.input_monitor)	/* else a gdk assert fails -Br0kE jul03-1999 */
     gdk_input_remove (global.input_monitor);
-  textfield_add (_("\n*** Connection closed.\n"), MESSAGE_NORMAL);
+  textfield_add ("\n*** Connection closed.\n", MESSAGE_NORMAL);
   global.connected = FALSE;
 }
 
@@ -149,7 +149,7 @@ open_connection (const char *host, const char *port)
 
   if (he == NULL)
     {
-      textfield_add (_("\n*** gethostbyname() failed! ***\n"), MESSAGE_ERR);
+      textfield_add ("\n*** gethostbyname() failed! ***\n", MESSAGE_ERR);
       return;
     }
 
@@ -177,7 +177,7 @@ open_connection (const char *host, const char *port)
       return;
     }
 
-  textfield_add (_("\n*** Connection established.\n"), MESSAGE_NORMAL);
+  textfield_add ("\n*** Connection established.\n", MESSAGE_NORMAL);
 
   global.input_monitor =
     gdk_input_add (global.sockfd, GDK_INPUT_READ, read_from_connection, NULL);
@@ -242,7 +242,7 @@ read_from_connection (gpointer data, gint source, GdkInputCondition condition)
    */
   if (numbytes == 0)
     {
-      textfield_add (_("\n*** 0 byte packet received\n"), MESSAGE_ERR);
+      textfield_add ("\n*** 0 byte packet received\n", MESSAGE_ERR);
       disconnect ();
       return;
     }

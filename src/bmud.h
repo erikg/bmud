@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: bmud.h,v 1.3 2003/12/25 16:36:08 erik Exp $
+ * $Id: bmud.h,v 1.4 2004/01/04 15:23:08 erik Exp $
  */
 
 #ifndef BMUD_H
@@ -32,14 +32,7 @@
 #endif
 #else
 #include <gtk/gtk.h>
-#include <libintl.h>
-#define _(String) gettext(String)
-#define N_(String) (String)
 #endif
-
-/*#include <libintl.h>	GNU gettext, for i18n */
-/*#define _(String) gettext (String)  already in?*/
-
 
 #define MESSAGE_ERR     0
 #define MESSAGE_NORMAL  1

@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias_utils.c,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: alias_utils.c,v 1.3 2004/01/04 15:23:08 erik Exp $
  */
 
 /*
@@ -38,6 +38,7 @@
 #include <stdio.h>		/* BUFSIZ and other oopses */
 #include <string.h>
 #include <glib.h>
+
 #include "bmud.h"
 #include "alias.h"
 #include "gui.h"
@@ -50,7 +51,8 @@ alias_new ()
 }
 
 /* make this a fn.
-// #define alias_insert(table, key, value) g_hash_table_insert(table, key, value)*/
+#define alias_insert(table, key, value) g_hash_table_insert(table, key, value)
+*/
 
 #define alias_size(table) g_hash_table_size(table)
 
@@ -158,7 +160,7 @@ alias_dump (gchar * filename, GHashTable * table)
 
   if (fp == NULL)
     {
-      g_warning (_("Could not open file \"%s\" to save aliases!\n"),
+      g_warning ("Could not open file \"%s\" to save aliases!\n",
 		 filename);
       return;
     }
@@ -167,7 +169,7 @@ alias_dump (gchar * filename, GHashTable * table)
 
   fclose (fp);
 
-  g_message (_("Aliases successfully saved to file \"%s\"."), filename);
+  g_message ("Aliases successfully saved to file \"%s\".", filename);
 }
 
 /* Note: GHashTable MUST be allocated already!*/
@@ -179,7 +181,7 @@ alias_load (gchar * filename, GHashTable * table)
 
   if (fp == NULL)
     {
-      g_warning (_("Could not open \"%s\" for read!!"), filename);
+      g_warning ("Could not open \"%s\" for read!!", filename);
       return;
     }
 
@@ -250,12 +252,12 @@ alias_process (GHashTable * table, gchar * blah)
   akey = blah_array[0];
   avalue = alias_lookup (table, akey);
 
-  g_message (_("alias_process(): akey: %s"), akey);
-  g_message (_("alias_process(): avalue: %s"), avalue);
+  g_message ("alias_process(): akey: %s", akey);
+  g_message ("alias_process(): avalue: %s", avalue);
 
   if (avalue == NULL)
     {
-      textfield_add (_("Undefined Alias.\n"), MESSAGE_NONE);
+      textfield_add ("Undefined Alias.\n", MESSAGE_NONE);
       return;
     }
 

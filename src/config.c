@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: config.c,v 1.3 2003/12/25 16:36:08 erik Exp $
+ * $Id: config.c,v 1.4 2004/01/04 15:23:08 erik Exp $
  */
 
 /* this is the gui for the config box */
@@ -317,17 +317,17 @@ show_config ()
   config_win = gtk_dialog_new ();
   gtk_widget_realize (config_win);
   gtk_widget_set_usize (config_win, 670, 440);
-  blah = gtk_label_new (_("BMUD!"));
+  blah = gtk_label_new ("BMUD!");
 
   vbox = gtk_vbox_new (FALSE, 5);
   hbox = gtk_hbox_new (FALSE, 5);
   hbox2 = gtk_hbox_new (TRUE, 5);
 
-  ok = gtk_button_new_with_label (_("Ok"));
-  apply = gtk_button_new_with_label (_("Apply"));
-  cancel = gtk_button_new_with_label (_("Cancel"));
-  defaults = gtk_button_new_with_label (_("Defaults"));
-  help = gtk_button_new_with_label (_("Help"));
+  ok = gtk_button_new_with_label ("Ok");
+  apply = gtk_button_new_with_label ("Apply");
+  cancel = gtk_button_new_with_label ("Cancel");
+  defaults = gtk_button_new_with_label ("Defaults");
+  help = gtk_button_new_with_label ("Help");
 
   gtk_signal_connect (GTK_OBJECT (ok), "clicked", GTK_SIGNAL_FUNC (ok_cb),
 		      NULL);
@@ -359,25 +359,25 @@ show_config ()
 	gtk_widget_show (treeitem);
       }
 
-  treeitem = gtk_tree_item_new_with_label (_("Colors"));
+  treeitem = gtk_tree_item_new_with_label ("Colors");
   gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
 
   gtk_tree_item_set_subtree (GTK_TREE_ITEM (treeitem), subtree);
   gtk_widget_show (treeitem);
 
-  treeitem = gtk_tree_item_new_with_label (_("Font"));
+  treeitem = gtk_tree_item_new_with_label ("Font");
   gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
   gtk_signal_connect (GTK_OBJECT (treeitem), "select",
 		      GTK_SIGNAL_FUNC (conffont), NULL);
   gtk_widget_show (treeitem);
 
-  treeitem = gtk_tree_item_new_with_label (_("History"));
+  treeitem = gtk_tree_item_new_with_label ("History");
   gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
   gtk_signal_connect (GTK_OBJECT (treeitem), "select",
 		      GTK_SIGNAL_FUNC (confhist), NULL);
   gtk_widget_show (treeitem);
 
-  treeitem = gtk_tree_item_new_with_label (_("Misc"));
+  treeitem = gtk_tree_item_new_with_label ("Misc");
   gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
   gtk_signal_connect (GTK_OBJECT (treeitem), "select",
 		      GTK_SIGNAL_FUNC (confmisc), NULL);

@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: cwiz.c,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: cwiz.c,v 1.3 2004/01/04 15:23:08 erik Exp $
  */
 
 /* this file came from Erik Thyren, I moved it out of gui.c because it's
@@ -76,7 +76,7 @@ clist ()
   gtk_container_border_width (GTK_CONTAINER (win), 10);
   vbox = gtk_vbox_new (0, 5);
 
-  label = gtk_label_new (_("BMUD Serverlist"));
+  label = gtk_label_new ("BMUD Serverlist");
   separator = gtk_hseparator_new ();
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, FALSE, 0);
@@ -104,7 +104,7 @@ clist ()
 
       last = this;
 
-      button = gtk_button_new_with_label (_("Cancel"));
+      button = gtk_button_new_with_label ("Cancel");
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
 			  GTK_SIGNAL_FUNC (destructify), NULL);
       gtk_box_pack_start (GTK_BOX (vbox), button, TRUE, FALSE, 0);
@@ -112,7 +112,7 @@ clist ()
     }
   else
     {
-      label = gtk_label_new (_("Sorry, Couldn't open serverlist"));
+      label = gtk_label_new ("Sorry, Couldn't open serverlist");
       button = gtk_button_new_with_label ("Ok");
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
 			  GTK_SIGNAL_FUNC (destructify), NULL);

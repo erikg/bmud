@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: prefs.c,v 1.3 2003/11/19 20:12:52 erik Exp $
+ * $Id: prefs.c,v 1.4 2004/01/04 15:23:08 erik Exp $
  */
 
 /* handles ~/.bmud/prefs */
@@ -101,10 +101,10 @@ session_default ()
 {
   int x;
 /*
-  textfield_add (_("Could not open prefs file, using defaults\n"),
+  textfield_add ("Could not open prefs file, using defaults\n",
 		 MESSAGE_ERR);
 */
-  printf (_("Could not open prefs file, using defaults\n"));
+  printf ("Could not open prefs file, using defaults\n");
 
   mud->hist->max = 20;
   mud->hist->cyclic = 0;
@@ -123,8 +123,8 @@ session_default ()
 int
 session_save ()
 {
-  textfield_add (_("Saving session\n"), MESSAGE_ERR);
-  printf (_("Saving session\n"));
+  textfield_add ("Saving session\n", MESSAGE_ERR);
+  printf ("Saving session\n");
 
 /*		havoc said this way is better, but I can't make it work :/	
 	fp = (FILE *)open(show_conf_dir("prefs"),O_CREAT | O_EXCL | O_TRUNC | O_RDWR, 0600);
@@ -132,9 +132,9 @@ session_save ()
 */
   if ((fp = fopen (show_conf_dir ("prefs"), "w")) == NULL)
     {
-      textfield_add (_("Unabled to open prefs file for writing\n"),
+      textfield_add ("Unabled to open prefs file for writing\n",
 		     MESSAGE_ERR);
-      printf (_("Unabled to open prefs file for writing\n"));
+      printf ("Unabled to open prefs file for writing\n");
       return -1;
     }
 

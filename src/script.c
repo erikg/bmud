@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: script.c,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: script.c,v 1.3 2004/01/04 15:23:08 erik Exp $
  */
 
 #include <sys/types.h>
@@ -107,7 +107,7 @@ script_load (char *filename, int type)
 	perl_parse(perl_env, NULL, 1, NULL, NULL);
 #endif	
 	tmpbuf=(char *)malloc(1024);
-	sprintf(tmpbuf, _("I can't support %s.\n"), filename);
+	sprintf(tmpbuf, "I can't support %s.\n", filename);
 	textfield_add(tmpbuf, MESSAGE_ERR);
 	free(buf);
 	free(tmpbuf);

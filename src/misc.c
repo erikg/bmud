@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.c,v 1.3 2003/12/25 16:36:08 erik Exp $
+ * $Id: misc.c,v 1.4 2004/01/04 15:23:08 erik Exp $
  */
 
 /* stuff that doesn't go elsewhere. conf dir handling and history */
@@ -220,8 +220,8 @@ check_my_dir ()
       bmud_conf_dir = NULL;
     }
 
-  textfield_add (_("Could not find your home dir"), MESSAGE_ERR);
-  printf (_("Could not find your home dir"));
+  textfield_add ("Could not find your home dir", MESSAGE_ERR);
+  printf ("Could not find your home dir");
   fflush (0);
 }
 

@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias.c,v 1.3 2003/12/25 16:36:08 erik Exp $
+ * $Id: alias.c,v 1.4 2004/01/04 15:23:08 erik Exp $
  */
 
 /* this is where the ircII style aliasing goes I thnk */
@@ -28,9 +28,10 @@
 /* ok, the way these are gotten to is either have a '/' or a '#' at the
 beginning of the entry line... */
 
-#include <string.h>
 #include <stdio.h>		/* for BUFSIZ */
+#include <string.h>
 #include <glib.h>
+
 #include "alias.h"
 #include "bmud.h"
 #include "color.h"
@@ -39,7 +40,7 @@ beginning of the entry line... */
 #include "net.h"
 #include "prefs.h"
 
-#define fake_help _("\
+#define fake_help "\
 There is no real help yet. This is a quicky list of aliases\n\
 /connect [hostname <port>]\tConnect to a server\n\
 /disconnect\t\tDisconnect from the current server\n\n\
@@ -56,7 +57,7 @@ There is no real help yet. This is a quicky list of aliases\n\
 /ssave\t\tsave session info\n\
 /sdef\t\tuse default session stuff\n\
 /help\t\tthis help thingy\n\n\
-All the command /'s can be replaced with # if you want, either works.\n")
+All the command /'s can be replaced with # if you want, either works.\n"
 
 
 static GHashTable *alias_table;
@@ -128,7 +129,7 @@ load_aliases (gchar * blah)
 
   alias_load (filename, alias_table);
 
-  textfield_add (_("Aliases loaded.\n"), MESSAGE_NONE);
+  textfield_add ("Aliases loaded.\n", MESSAGE_NONE);
 
   g_free (filename);
 }
@@ -142,8 +143,8 @@ save_aliases (gchar * blah)
   /* if the alias_table doesn't exist, no point in doing all this! */
   if (alias_table == NULL)
     {
-      textfield_add (_("There are not aliases to save!!\n"), MESSAGE_NONE);
-      g_warning (_("Tried to save empty alias table!"));
+      textfield_add ("There are not aliases to save!!\n", MESSAGE_NONE);
+      g_warning ("Tried to save empty alias table!");
       return;
     }
 
@@ -168,7 +169,7 @@ free_aliases ()
     }
   else
     {
-      textfield_add (_("Alias table was already NULL!\n"), MESSAGE_NONE);
+      textfield_add ("Alias table was already NULL!\n", MESSAGE_NONE);
     }
   return;
 }
@@ -193,7 +194,7 @@ add_alias (gchar * blah)
 
   g_strdelimit (avalue, "|", ' ');
 
-  sprintf (trash, _("Recorded alias \"%s\"\nAssociated action: %s\n"), akey,
+  sprintf (trash, "Recorded alias \"%s\"\nAssociated action: %s\n", akey,
 	   avalue);
 
   textfield_add (trash, MESSAGE_NONE);
