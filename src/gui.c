@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.21 2004/01/19 16:10:13 erik Exp $
+ * $Id: gui.c,v 1.22 2004/01/19 16:20:01 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -281,27 +281,31 @@ textfield_add (gchar * message, int colortype)
 	//gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL, message, -1);
 	break;
     case MESSAGE_ANSI:
-	/*
-	 * break the ansi into 2 parts, and do 'em 
-	 */
-
-/* TODO type issues, don't do stat box
-	if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	{
-	    clear (0, GTK_TEXT_VIEW (mud->stat));
-	    while (message[x] != '\n')
+	    int x, numbytes = strlen (message);
+
+	    /*
+	     * break the ansi into 2 parts, and do 'em 
+	     */
+	    if (mud->statsize != 0 && message[numbytes - 2] == '>')
+	    {
+		clear (0, GTK_TEXT_VIEW (mud->stat));
+		while (message[x] != '\n')
+		    x--;
+		disp_ansi (numbytes - x, (gchar *) & message[x + 1],
+		    mud->stat);
 		x--;
-	    disp_ansi (numbytes - x, (gchar *) & message[x + 1], mud->stat);
-	    x--;
-	    message[x] = 0;
-	    mud->curr_color = color[7][1];
-	} else
-*/
-	disp_ansi (buffer, message, &iter);
-	break;
+		message[x] = 0;
+		mud->curr_color = color[7][1];
+	    } else
+		disp_ansi (buffer, message, &iter);
+	    break;
+	}
+    default:
+	textfield_add ("Unknown type!\n", MESSAGE_ERR);
     }
 
-/*  TODO clear_backbuffer ();	*/
+    clear_backbuffer ();
 
     if (!scrolled_up)
 	gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (mud->text), mark, 0, TRUE,
@@ -319,13 +323,4 @@ clear (int n, GtkWidget * target)
 {
     gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW
 	    (target)), "", -1);
-}
-
-void
-cleartail ()
-{
-
-/*
-  g_print ("%d\n", g_list_length (GTK_TEXT_VIEW (mud->text)->current_line));
-*/
 }
