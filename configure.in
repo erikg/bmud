@@ -1,12 +1,12 @@
 AC_INIT(src/bmud.h)
-AM_CONFIG_HEADER(config.h)
+AM_CONFIG_HEADER(conf.h)
 AM_INIT_AUTOMAKE(bmud, 0.6)
 
 AC_PROG_CC
 AC_PROG_INSTALL
 
 ALL_LINGUAS="en_US"
-AM_GNU_GETTEXT
+AM_GNU_GETTEXT([external])
 
 AC_DEFINE_UNQUOTED(LOCALEDIR, "$prefix/share/locale", [Where the locale files are])
 
@@ -83,10 +83,10 @@ if test x$perl = xyes; then
 	AC_MSG_RESULT(yes)
 fi
 
-AC_OUTPUT([
+AC_OUTPUT([ m4/Makefile 
 Makefile 
 data/Makefile
 po/Makefile.in
 intl/Makefile
 src/Makefile
-],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
+],[])

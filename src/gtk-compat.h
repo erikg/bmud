@@ -1,5 +1,9 @@
 /* this is for the stuff that gnome would handle if we were using gnome. */
 
+//#ifdef HAVE_CONFIG_H
+#include "config.h"
+//#endif
+
 void
 init (int argc, char **argv)
 {

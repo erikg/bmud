@@ -3,10 +3,12 @@
 #include <stdio.h>
 #include <glib.h>
 
+#include "conf.h"
+
 #include "alias.h"
 #include "bmud.h"
-#include "color.h"
 #include "config.h"
+#include "color.h"
 #include "gui.h"
 #include "main.h"
 #include "misc.h"
