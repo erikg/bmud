@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-12-15 01:15-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-19 15:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,369 +15,387 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 
-#: src/alias.c:106
+#: src/alias.c:42
+msgid ""
+"There is no real help yet. This is a quicky list of aliases\n"
+"/connect [hostname <port>]\tConnect to a server\n"
+"/disconnect\t\tDisconnect from the current server\n"
+"\n"
+"/quit\t\texit this program\n"
+"/exit\t\texit the program\n"
+"\n"
+"/aload\t\tload the alias file\n"
+"/asave\t\tsave the aliases to the alias file\n"
+"/afree\t\tflush all the aliases\n"
+"/alias <alias name> <commands>\tset an alias\n"
+"\n"
+"/cload\t\tload color file\n"
+"/csave\t\tsave color file\n"
+"/cdef\t\tload default colors\n"
+"\n"
+"/sload\t\tload session info\n"
+"/ssave\t\tsave session info\n"
+"/sdef\t\tuse default session stuff\n"
+"/help\t\tthis help thingy\n"
+"\n"
+"All the command /'s can be replaced with # if you want, either works.\n"
+msgstr ""
+
+#: src/alias.c:131
 msgid "Aliases loaded.\n"
 msgstr ""
 
-#: src/alias.c:120
+#: src/alias.c:145
 msgid "There are not aliases to save!!\n"
 msgstr ""
 
-#: src/alias.c:121
+#: src/alias.c:146
 msgid "Tried to save empty alias table!"
 msgstr ""
 
-#: src/alias.c:146
+#: src/alias.c:171
 msgid "Alias table was already NULL!\n"
 msgstr ""
 
-#: src/alias.c:171
+#: src/alias.c:196
 #, c-format
 msgid ""
 "Recorded alias \"%s\"\n"
 "Associated action: %s\n"
 msgstr ""
 
-#: src/alias_utils.c:136
+#: src/alias_utils.c:161
 #, c-format
 msgid "Could not open file \"%s\" to save aliases!\n"
 msgstr ""
 
-#: src/alias_utils.c:145
+#: src/alias_utils.c:170
 #, c-format
 msgid "Aliases successfully saved to file \"%s\"."
 msgstr ""
 
-#: src/alias_utils.c:157
+#: src/alias_utils.c:182
 #, c-format
 msgid "Could not open \"%s\" for read!!"
 msgstr ""
 
-#: src/alias_utils.c:228
+#: src/alias_utils.c:253
 #, c-format
 msgid "alias_process(): akey: %s"
 msgstr ""
 
-#: src/alias_utils.c:229
+#: src/alias_utils.c:254
 #, c-format
 msgid "alias_process(): avalue: %s"
 msgstr ""
 
-#: src/alias_utils.c:233
+#: src/alias_utils.c:258
 msgid "Undefined Alias.\n"
 msgstr ""
 
-#: src/color.c:25
+#: src/color.c:50
 msgid "Black"
 msgstr ""
 
-#: src/color.c:25
+#: src/color.c:50
 msgid "Grey"
 msgstr ""
 
-#: src/color.c:27
+#: src/color.c:52
 msgid "Red"
 msgstr ""
 
-#: src/color.c:27
+#: src/color.c:52
 msgid "Pink"
 msgstr ""
 
-#: src/color.c:29
+#: src/color.c:54
 msgid "Green"
 msgstr ""
 
-#: src/color.c:29
+#: src/color.c:54
 msgid "Light_Green"
 msgstr ""
 
-#: src/color.c:31
+#: src/color.c:56
 msgid "Orange"
 msgstr ""
 
-#: src/color.c:31
+#: src/color.c:56
 msgid "Yellow"
 msgstr ""
 
-#: src/color.c:33
+#: src/color.c:58
 msgid "Blue"
 msgstr ""
 
-#: src/color.c:33
+#: src/color.c:58
 msgid "Light_Blue"
 msgstr ""
 
-#: src/color.c:35
+#: src/color.c:60
 msgid "Maroon"
 msgstr ""
 
-#: src/color.c:35
+#: src/color.c:60
 msgid "Purple"
 msgstr ""
 
-#: src/color.c:37
+#: src/color.c:62
 msgid "Cyan"
 msgstr ""
 
-#: src/color.c:37
+#: src/color.c:62
 msgid "Light_Cyan"
 msgstr ""
 
-#: src/color.c:39
+#: src/color.c:64
 msgid "Silver"
 msgstr ""
 
-#: src/color.c:39
+#: src/color.c:64
 msgid "White"
 msgstr ""
 
-#: src/color.c:41
+#: src/color.c:66
 msgid "MESSAGE"
 msgstr ""
 
-#: src/color.c:41
+#: src/color.c:66
 msgid "ERROR"
 msgstr ""
 
-#: src/color.c:236
+#: src/color.c:261
 msgid "Color allocation failed\n"
 msgstr ""
 
-#: src/color.c:283 src/color.c:285
+#: src/color.c:308 src/color.c:310
 msgid "Unabled to open color file for writing\n"
 msgstr ""
 
-#.
-#. textfield_add (_("Couldn't open color file, using defaults\n"),
-#. MESSAGE_ERR);
-#.
-#: src/color.c:304
+#: src/color.c:329
 msgid "Couldn't open color file, using defaults\n"
 msgstr ""
 
-#: src/config.c:306
+#: src/config.c:331
 msgid "BMUD!"
 msgstr ""
 
-#: src/config.c:312
+#: src/config.c:337
 msgid "Ok"
 msgstr ""
 
-#: src/config.c:313
+#: src/config.c:338
 msgid "Apply"
 msgstr ""
 
-#: src/config.c:314 src/cwiz.c:82 src/gui.c:79
+#: src/config.c:339 src/cwiz.c:107 src/gui.c:104
 msgid "Cancel"
 msgstr ""
 
-#: src/config.c:315
+#: src/config.c:340
 msgid "Defaults"
 msgstr ""
 
-#: src/config.c:316 src/gtk-compat.h:88
+#: src/config.c:341 src/gtk-compat.h:113
 msgid "Help"
 msgstr ""
 
-#: src/config.c:348
+#: src/config.c:373
 msgid "Colors"
 msgstr ""
 
-#: src/config.c:354
+#: src/config.c:379
 msgid "Font"
 msgstr ""
 
-#: src/config.c:360
+#: src/config.c:385
 msgid "History"
 msgstr ""
 
-#: src/config.c:366
+#: src/config.c:391
 msgid "Misc"
 msgstr ""
 
-#: src/cwiz.c:54
+#: src/cwiz.c:79
 msgid "BMUD Serverlist"
 msgstr ""
 
-#: src/cwiz.c:90
+#: src/cwiz.c:115
 msgid "Sorry, Couldn't open serverlist"
 msgstr ""
 
-#: src/gnome-compat.h:9
+#: src/gnome-compat.h:34
 msgid "Br0kEs MUD Client"
 msgstr ""
 
-#: src/gnome-compat.h:18
+#: src/gnome-compat.h:43
 msgid "Br0kEs mud client"
 msgstr ""
 
-#: src/gnome-compat.h:27
+#: src/gnome-compat.h:52
 msgid "Connection Wizard"
 msgstr ""
 
-#: src/gnome-compat.h:28 src/gnome-compat.h:41
+#: src/gnome-compat.h:53 src/gnome-compat.h:66
 msgid "Connect to a mud"
 msgstr ""
 
-#: src/gnome-compat.h:40
+#: src/gnome-compat.h:65
 msgid "Connect..."
 msgstr ""
 
-#: src/gnome-compat.h:53 src/gtk-compat.h:40
+#: src/gnome-compat.h:78 src/gtk-compat.h:65
 msgid "Disconnect"
 msgstr ""
 
-#: src/gnome-compat.h:54
+#: src/gnome-compat.h:79
 msgid "Disconnect from a mud"
 msgstr ""
 
-#: src/gnome-compat.h:67 src/gtk-compat.h:50
+#: src/gnome-compat.h:92 src/gtk-compat.h:75
 msgid "Preferences..."
 msgstr ""
 
-#: src/gnome-compat.h:68
+#: src/gnome-compat.h:93
 msgid "Preferences"
 msgstr ""
 
-#: src/gnome-compat.h:81 src/gtk-compat.h:60
+#: src/gnome-compat.h:106 src/gtk-compat.h:85
 msgid "Exit"
 msgstr ""
 
-#: src/gnome-compat.h:82
+#: src/gnome-compat.h:107
 msgid "Exit bmud"
 msgstr ""
 
-#: src/gnome-compat.h:97
+#: src/gnome-compat.h:122
 msgid "Equip..."
 msgstr ""
 
-#: src/gnome-compat.h:97
+#: src/gnome-compat.h:122
 msgid "Equipment Window"
 msgstr ""
 
-#: src/gnome-compat.h:99
+#: src/gnome-compat.h:124
 msgid "Map..."
 msgstr ""
 
-#: src/gnome-compat.h:99
+#: src/gnome-compat.h:124
 msgid "the mud map"
 msgstr ""
 
-#: src/gnome-compat.h:106
+#: src/gnome-compat.h:131
 msgid "About..."
 msgstr ""
 
-#: src/gnome-compat.h:114
+#: src/gnome-compat.h:139
 msgid "_File"
 msgstr ""
 
-#: src/gnome-compat.h:115
+#: src/gnome-compat.h:140
 msgid "_Tools"
 msgstr ""
 
-#: src/gnome-compat.h:116
+#: src/gnome-compat.h:141
 msgid "_Help"
 msgstr ""
 
-#: src/gtk-compat.h:21
+#: src/gtk-compat.h:46
 msgid "File"
 msgstr ""
 
-#: src/gtk-compat.h:27
+#: src/gtk-compat.h:52
 msgid "C-Wizard"
 msgstr ""
 
-#: src/gtk-compat.h:34 src/gui.c:70
+#: src/gtk-compat.h:59 src/gui.c:95
 msgid "Connect"
 msgstr ""
 
-#: src/gtk-compat.h:67
+#: src/gtk-compat.h:92
 msgid "Tools"
 msgstr ""
 
-#: src/gtk-compat.h:72
+#: src/gtk-compat.h:97
 msgid "Equip"
 msgstr ""
 
-#: src/gtk-compat.h:79
+#: src/gtk-compat.h:104
 msgid "Map"
 msgstr ""
 
-#: src/gtk-compat.h:94
+#: src/gtk-compat.h:119
 msgid "About"
 msgstr ""
 
-#: src/gtk-compat.h:99
+#: src/gtk-compat.h:124
 msgid "Manual"
 msgstr ""
 
-#: src/gui.c:50
+#: src/gui.c:75
 msgid "Host"
 msgstr ""
 
-#: src/gui.c:60
+#: src/gui.c:85
 msgid "Port"
 msgstr ""
 
-#: src/misc.c:194 src/misc.c:195
+#: src/misc.c:219 src/misc.c:220
 msgid "Could not find your home dir"
 msgstr ""
 
-#: src/net.c:80
+#: src/net.c:105
 msgid ""
 "\n"
 "*** Can't connect - you didn't specify a host\n"
 msgstr ""
 
-#: src/net.c:87
+#: src/net.c:112
 msgid ""
 "\n"
 "*** No port specified - assuming port 23\n"
 msgstr ""
 
-#: src/net.c:99
+#: src/net.c:124
 #, c-format
 msgid ""
 "\n"
 "*** Making connection to %s, port %s\n"
 msgstr ""
 
-#: src/net.c:111
+#: src/net.c:136
 msgid ""
 "\n"
 "*** Connection closed.\n"
 msgstr ""
 
-#: src/net.c:127
+#: src/net.c:152
 msgid ""
 "\n"
 "*** gethostbyname() failed! ***\n"
 msgstr ""
 
-#: src/net.c:155
+#: src/net.c:180
 msgid ""
 "\n"
 "*** Connection established.\n"
 msgstr ""
 
-#: src/net.c:220
+#: src/net.c:245
 msgid ""
 "\n"
 "*** 0 byte packet received\n"
 msgstr ""
 
-#.
-#. textfield_add (_("Could not open prefs file, using defaults\n"),
-#. MESSAGE_ERR);
-#.
-#: src/prefs.c:82
+#: src/prefs.c:107
 msgid "Could not open prefs file, using defaults\n"
 msgstr ""
 
-#: src/prefs.c:101 src/prefs.c:102
+#: src/prefs.c:126 src/prefs.c:127
 msgid "Saving session\n"
 msgstr ""
 
-#: src/prefs.c:110 src/prefs.c:112
+#: src/prefs.c:135 src/prefs.c:137
 msgid "Unabled to open prefs file for writing\n"
 msgstr ""
