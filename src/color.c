@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.16 2004/01/20 23:40:21 erik Exp $
+ * $Id: color.c,v 1.17 2004/01/20 23:40:29 erik Exp $
  */
 
 #include <stdio.h>
@@ -203,7 +203,8 @@ disp_ansi (char *dst, char *src)
 {
     //GdkColor col = color[7][0];
     int n = 0, x = 0, j = 0, size;
-    size = strlen(src);
+
+    size = strlen (src);
 
     while (n < size)
     {
@@ -240,7 +241,7 @@ disp_ansi (char *dst, char *src)
 	 * if it's not a 'special' code, prsrct 
 	 */
 	else if (src[n] != 27)
-		dst[j++] = src[n];
+	    dst[j++] = src[n];
 
 	/*
 	 * this is an ansi code, stripping time 
@@ -249,10 +250,10 @@ disp_ansi (char *dst, char *src)
 	{
 	    while (!isalpha (src[x + n]))
 		++x;
-		/*
-	    if (x < 9)
-		col = getcol (&src[n + 1], x);
-		*/
+	    /*
+	     * if (x < 9)
+	     * col = getcol (&src[n + 1], x);
+	     */
 	    n += x;
 	    x = 0;
 	}
