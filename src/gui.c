@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.11 2004/01/16 19:41:42 erik Exp $
+ * $Id: gui.c,v 1.12 2004/01/18 15:29:50 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -57,6 +57,7 @@ do_con ()
 
     memset (port, 0, 10);
     memset (host, 0, 1000);
+
 /* TODO type warning
     host = gtk_entry_get_text (GTK_ENTRY (mud->hostentry));
     port = gtk_entry_get_text (GTK_ENTRY (mud->portentry));
@@ -207,12 +208,13 @@ clear_backbuffer ()
 void
 textfield_add (gchar * message, int colortype)
 {
-    GtkAdjustment *adj = GTK_TEXT_VIEW (mud->text)->vadjustment;
     GtkTextIter iter, end;
-    GtkTextMark mark;
+    GtkTextMark *mark;
     GtkTextBuffer *buffer;
+    GdkRectangle rect;
+
     int scrolled_up = FALSE;
-    int x, numbytes = strlen (message);
+    int x, y, height, numbytes = strlen (message);
 
     if (message[0] == NULL)
 	return;
@@ -220,13 +222,18 @@ textfield_add (gchar * message, int colortype)
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->text));
     gtk_text_buffer_get_end_iter (buffer, &iter);
 
-/* TODO
-  if (adj->value < adj->upper - adj->page_size)
-    {
-      scrolled_up = TRUE;
-      gtk_text_freeze (GTK_TEXT_VIEW (mud->text));
-    }
-*/
+    mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, FALSE);
+
+/* stolen from gaim */
+    gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (mud->text), &rect);
+    gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (mud->text), &iter, &y,
+	&height);
+
+    if (((y + height) - (rect.y + rect.height)) > height
+	&& gtk_text_buffer_get_char_count (buffer))
+	scrolled_up = TRUE;
+/* end of stolen chunk */
+
     switch (colortype)
     {
     case MESSAGE_NONE:
@@ -234,7 +241,9 @@ textfield_add (gchar * message, int colortype)
 	gtk_text_buffer_insert (buffer, &iter, message, -1);
 	break;
     case MESSAGE_ERR:
-	/* TODO make this red */
+	/*
+	 * TODO make this red 
+	 */
 	gtk_text_buffer_insert (buffer, &iter, message, -1);
 	//gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL, message, -1);
 	break;
@@ -243,6 +252,7 @@ textfield_add (gchar * message, int colortype)
 	 * break the ansi into 2 parts, and do 'em 
 	 */
 	x = numbytes;
+
 /* TODO type issues, don't do stat box
 	if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	{
@@ -255,20 +265,19 @@ textfield_add (gchar * message, int colortype)
 	    mud->curr_color = color[7][1];
 	} else
 */
-	    disp_ansi (x, message, mud->text);
+	disp_ansi (x, message, mud->text);
 	break;
     }
 
 /*  TODO clear_backbuffer ();	*/
 
-/* TODO
-    if (scrolled_up)
-	gtk_text_thaw (GTK_TEXT_VIEW (mud->text));
-    else if (adj->value < adj->upper - (adj->page_size))
-	gtk_adjustment_set_value (adj, adj->upper - adj->page_size);
-*/
-gtk_text_buffer_get_end_mark (buffer, &mark);
-gtk_text_view_scroll_to_mark    (GTK_TEXT_VIEW (mud->text), &mark, 0, 1, 0, 1);
+    if (!scrolled_up)
+    {
+	gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (mud->text), mark, 0, TRUE,
+	    0.0, 1.0);
+	printf ("Zapping to end\n");
+	fflush (stdout);
+    }
     gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
     return;
 }
