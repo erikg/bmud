@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: net.c,v 1.6 2004/01/20 13:08:24 erik Exp $
+ * $Id: net.c,v 1.7 2004/01/20 13:10:46 erik Exp $
  */
 
 /* 
@@ -283,7 +283,7 @@ send_to_connection (GtkWidget * widget, gpointer data)
     widget = NULL;
     data = NULL;
 
-    entry_text = (gchar *)gtk_entry_get_text (GTK_ENTRY (mud->ent));
+    entry_text = (gchar *) gtk_entry_get_text (GTK_ENTRY (mud->ent));
     gtk_entry_select_region (GTK_ENTRY (mud->ent), 0,
 	GTK_ENTRY (mud->ent)->text_length);
 

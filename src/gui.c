@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.28 2004/01/20 13:02:44 erik Exp $
+ * $Id: gui.c,v 1.29 2004/01/20 13:10:46 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -268,7 +268,7 @@ textfield_add (gchar * message, int colortype)
     int scrolled_up = FALSE;
     int y, height;
 
-    if (!message||!*message)
+    if (!message || !*message)
 	return;
 
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->text));

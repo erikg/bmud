@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.13 2004/01/20 13:02:44 erik Exp $
+ * $Id: color.c,v 1.14 2004/01/20 13:10:46 erik Exp $
  */
 
 #include <stdio.h>
@@ -205,7 +205,7 @@ disp_ansi (char *dst, char *src, int offset)
     GdkColor col = color[7][0];
     int n = 0, x = 0;		/* in[n], x is sizeof ansi code */
 
-strcpy(dst,src);
+    strcpy (dst, src);
 
 #if 0
 
