@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.16 2004/01/18 18:10:52 erik Exp $
+ * $Id: gui.c,v 1.17 2004/01/18 18:33:01 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -140,6 +140,9 @@ spawn_gui ()
 
     do_menu (mud->vbox);
 
+    /*
+     * the text box 
+     */
     scrollbox = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbox),
 	GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
@@ -161,15 +164,21 @@ spawn_gui ()
 
     hbox = gtk_hbox_new (0, 0);
 
-/* TODO type error
-    mud->stat = gtk_text_new (0, 0);
-
+    /*
+     * the stat box 
+     */
+    mud->stat = gtk_entry_new ();
     gtk_widget_set_usize (mud->stat, mud->statsize, 20);
-    gtk_text_set_word_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
-    gtk_text_set_line_wrap (GTK_TEXT_VIEW (mud->stat), FALSE);
+    gtk_widget_modify_base (GTK_WIDGET (mud->stat), GTK_STATE_NORMAL,
+	&color[0][0]);
+    gtk_widget_modify_text (GTK_WIDGET (mud->stat), GTK_STATE_NORMAL,
+	&color[7][0]);
     gtk_widget_show (mud->stat);
     gtk_box_pack_start (GTK_BOX (hbox), mud->stat, FALSE, TRUE, 0);
-*/
+
+    /*
+     * the entry field 
+     */
     mud->ent = gtk_entry_new ();
     gtk_signal_connect_object (GTK_OBJECT (mud->ent), "activate",
 	GTK_SIGNAL_FUNC (send_to_connection), NULL);
@@ -178,6 +187,9 @@ spawn_gui ()
     gtk_widget_show (mud->ent);
     gtk_box_pack_start (GTK_BOX (hbox), mud->ent, TRUE, TRUE, 0);
 
+    /*
+     * and glue it together 
+     */
     gtk_widget_show (hbox);
     gtk_box_pack_start (GTK_BOX (mud->vbox), hbox, FALSE, TRUE, 0);
 
