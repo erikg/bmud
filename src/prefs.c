@@ -75,14 +75,15 @@ void
 session_default ()
 {
   int x;
-
+/*
   textfield_add (_("Could not open prefs file, using defaults\n"),
 		 MESSAGE_ERR);
+*/
   printf (_("Could not open prefs file, using defaults\n"));
 
   mud->hist->max = 20;
   mud->hist->cyclic = 0;
-  mud->disp_font_name = "fixed";
+  mud->disp_font_name = "courier";
   mud->maxlines = 200 * 60;	/* roughly 60 bytes per line? */
   mud->statsize = 150;
 

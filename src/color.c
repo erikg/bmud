@@ -297,8 +297,10 @@ color_save ()
 int
 color_default ()
 {
+/*
   textfield_add (_("Couldn't open color file, using defaults\n"),
 		 MESSAGE_ERR);
+*/
   printf (_("Couldn't open color file, using defaults\n"));
 
   set_color (&color[0][0], 0, 0, 0);

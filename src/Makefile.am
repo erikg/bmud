@@ -25,6 +25,7 @@ noinst_HEADERS = \
 	net.h\
 	prefs.h\
 	script.h
+
 lint:
 	for a in *.[ch]; do echo $$a ; lint $(CFLAGS) +posixstrictlib $$a > $$a.lint; done
 indent:

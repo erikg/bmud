@@ -23,9 +23,9 @@
      * -Erik <erik@smluc.org>
 */
 
+#include <sys/types.h>
 #include <netinet/in.h>		/* breaks bsd */
 #include <sys/socket.h>		/* breaks bsd */
-#include <sys/types.h>
 #include <gtk/gtk.h>
 #include <errno.h>
 #include <netdb.h>
@@ -35,6 +35,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <arpa/telnet.h>
+
 #include "alias.h"
 #include "bmud.h"
 #include "gui.h"

@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <glib.h>
+
 #include "alias.h"
 #include "bmud.h"
 #include "color.h"
@@ -41,6 +42,7 @@ main (int argc, char **argv)
 
   mud = g_malloc (sizeof (bmud));
   mud->hist = g_malloc (sizeof (struct bmud_history));
+	mud->hist->max=20;
   mud->hist->list = g_malloc (sizeof (gpointer) * (mud->hist->max + 1));
 
   init (argc, argv);		/* mud->window is now a window widget */
@@ -61,10 +63,13 @@ main (int argc, char **argv)
     gtk_widget_set_usize (mud->stat, 1, 20);
 
   color_load ();		/* color.c */
-
+/*
   if (mud->disp_font)
     g_free (mud->disp_font);
+*/
+  printf("Loading font: %s\n", mud->disp_font_name);	fflush(stdout);
   mud->disp_font = gdk_font_load (mud->disp_font_name);	/* mem leak */
+  printf("disp_font: %x\n", mud->disp_font);fflush(stdout);
 
   mud->curr_color = color[7][1];
 

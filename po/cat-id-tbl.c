@@ -109,5 +109,4 @@ Associated action: %s\n", 6},
   {"Saving session\n", 84},
   {"Unabled to open prefs file for writing\n", 85},
 };
-
 int _msg_tbl_length = 85;

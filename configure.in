@@ -16,12 +16,34 @@ AM_PATH_GTK(1.2.0,
 	]
 	,AC_MSG_ERROR(Cannot find GTK: Is gtk-config in path?))
 
-GNOME_INIT_HOOK(
-	[
-		AC_DEFINE(USE_GNOME)
-		CFLAGS="$CFLAGS $GNOME_INCLUDEDIR"
-		LIBS="$LIBS $GNOME_LIBDIR $GNOMEUI_LIBS"
+AC_ARG_WITH(gnome-includes,
+	[  --with-gnome-includes   Specify location of GNOME headers],[
+	CFLAGS="$CFLAGS -I$withval"
 	])
+AC_ARG_WITH(gnome-libs,
+	[  --with-gnome-libs       Specify location of GNOME libs],[
+	LDFLAGS="$LDFLAGS -L$withval"
+	gnome_prefix=$withval
+	])
+
+AC_ARG_ENABLE(gnome,
+[  --enable-gnome          Use GNOME [default=yes]], use_gnome=no, use_gnome=yes)
+if test "x$use_gnome" = xyes; then
+	AC_PATH_PROG(GNOME_CONFIG,gnome-config)
+	AC_MSG_CHECKING(for GNOME)
+	if $GNOME_CONFIG --libs-only-l gnome >/dev/null 2>&1; then
+		AC_DEFINE(USE_GNOME)
+		GNOME_CFLAGS=`gnome-config --cflags gnomeui`
+		GNOME_LIBS=`gnome-config --libs gnomeui`
+		CFLAGS="$CFLAGS $GNOME_CFLAGS"
+		LIBS="$LIBS $GNOME_LIBS"
+		AC_MSG_RESULT(yes)
+	else
+		AC_MSG_RESULT(no)
+	fi
+else
+		AC_MSG_RESULT(no)
+fi
 
 AC_ARG_ENABLE(zvt-term,
 [  --enable-zvt-term       Use ZVT to display the main window [default=no]],

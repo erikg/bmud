@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-09-26 12:39-0500\n"
+"POT-Creation-Date: 2000-12-15 01:15-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,7 +146,11 @@ msgstr ""
 msgid "Unabled to open color file for writing\n"
 msgstr ""
 
-#: src/color.c:300 src/color.c:302
+#.
+#. textfield_add (_("Couldn't open color file, using defaults\n"),
+#. MESSAGE_ERR);
+#.
+#: src/color.c:304
 msgid "Couldn't open color file, using defaults\n"
 msgstr ""
 
@@ -318,57 +322,61 @@ msgstr ""
 msgid "Could not find your home dir"
 msgstr ""
 
-#: src/net.c:79
+#: src/net.c:80
 msgid ""
 "\n"
 "*** Can't connect - you didn't specify a host\n"
 msgstr ""
 
-#: src/net.c:86
+#: src/net.c:87
 msgid ""
 "\n"
 "*** No port specified - assuming port 23\n"
 msgstr ""
 
-#: src/net.c:98
+#: src/net.c:99
 #, c-format
 msgid ""
 "\n"
 "*** Making connection to %s, port %s\n"
 msgstr ""
 
-#: src/net.c:110
+#: src/net.c:111
 msgid ""
 "\n"
 "*** Connection closed.\n"
 msgstr ""
 
-#: src/net.c:126
+#: src/net.c:127
 msgid ""
 "\n"
 "*** gethostbyname() failed! ***\n"
 msgstr ""
 
-#: src/net.c:154
+#: src/net.c:155
 msgid ""
 "\n"
 "*** Connection established.\n"
 msgstr ""
 
-#: src/net.c:219
+#: src/net.c:220
 msgid ""
 "\n"
 "*** 0 byte packet received\n"
 msgstr ""
 
-#: src/prefs.c:79 src/prefs.c:81
+#.
+#. textfield_add (_("Could not open prefs file, using defaults\n"),
+#. MESSAGE_ERR);
+#.
+#: src/prefs.c:82
 msgid "Could not open prefs file, using defaults\n"
 msgstr ""
 
-#: src/prefs.c:100 src/prefs.c:101
+#: src/prefs.c:101 src/prefs.c:102
 msgid "Saving session\n"
 msgstr ""
 
-#: src/prefs.c:109 src/prefs.c:111
+#: src/prefs.c:110 src/prefs.c:112
 msgid "Unabled to open prefs file for writing\n"
 msgstr ""
