@@ -1,21 +1,65 @@
-.\" this was stolen from the debian default 'undocumented' man page for 'panel'
-.TH BMUD 1 "October 1999" "Br0kE" "GNOME BMUD-0.5"
-.SH NAME
-BMUD: Br0kE's MUD client (GNOME version).
-.SH SYNOPSIS
-bmud [-V?] [--help] [--version] [other GNOME options...]
-.SH DESCRIPTION
+.\" bmud.1 man page for bmud
+.\" original manpage started october 1999
+.\" http://math.smsu.edu/~erik/software.php?id=5
+.\" $Id: bmud.1,v 1.2 2004/01/04 15:51:03 erik Exp $
+.\"===========================================================================
+.Dd August 5, 2002
+.Dt bmud 1
+.\"===========================================================================
+.Sh NAME
+.Nm bmud
+.Nd GNOME based MUD client.
+.\"===========================================================================
+.Sh SYNOPSIS
+.Nm
+.Op Fl vh 
+.Op Fl other GNOME options
+.Op Ar server:port
+.\"===========================================================================
+.Sh DESCRIPTION
 This program provides a GUI based medium for communicating with a MUD, MUSH, or
-MOO server. This software is
+MOO server.
+This software is
 .B ALPHA GRADE
-software, so don't be suprised by bugs, crashes, and other oopses. Please report bugs
-to
-.IR br0ke@math.smsu.edu
-.SH SEE ALSO
-.BR GNOME (1),
-.SH AUTHOR
-Erik Greenwald <
-.IR br0ke@math.smsu.edu
-> <
-.IR erik@smluc.org
->.
+software, so don't be suprised by bugs, crashes, and other oopses.
+Please report bugs to
+.IR erik@math.smsu.edu
+or
+.Ir erik@smluc.org
+.Pp
+.\"===========================================================================
+.Sh OPTIONS
+.Bl -tag -width
+.It Op Fl v
+Show version and exit.
+.It Op Fl h
+Show help and exit.
+.El
+.\"===========================================================================
+.Sh DIAGNOSTICS
+.Nm
+returns 0 on success and non-zero on failure. The help (-h) and version (-v)
+flags return 0. Operational errors return a negative value and interface
+(human) errors return a positive value.
+.Pp
+.Bl -tag -width 4n -offset indent -compact
+.It Sy -1
+malloc or read error
+.It Sy 0
+Success, -v, or -h
+.It Sy 1
+poorly defined option (missing mandatory argument, etc) or -?
+.It Sy 2
+unknown option
+.El
+.Pp
+.\"===========================================================================
+.Sh BUGS
+Other than a crappy manpage, 
+.Nm
+has no known bugs. Please report any to
+.An <erik@smluc.org>
+.\"===========================================================================
+.Sh AUTHOR
+.An Erik Greenwald <erik@smluc.org> <erik@math.smsu.edu>
+http://math.smsu.edu/~erik/software.php?id=5
