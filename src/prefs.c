@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: prefs.c,v 1.5 2004/01/18 15:43:15 erik Exp $
+ * $Id: prefs.c,v 1.6 2004/01/18 19:31:20 erik Exp $
  */
 
 /* handles ~/.bmud/prefs */
@@ -59,6 +59,12 @@ session_scan ()
 	mud->maxlines = atoi (value);
     else if (!strncmp (flag, "stat_size", 9))
 	mud->statsize = atoi (value);
+    else if (!strncmp (flag, "width", 5))
+	mud->width = atoi (value);
+    else if (!strncmp (flag, "height", 6))
+	mud->height = atoi (value);
+    else
+	printf ("Unknown flag: %d\n", flag);
     return;
 }
 
@@ -113,6 +119,8 @@ session_default ()
     mud->disp_font_name = "courier";
     mud->maxlines = 200 * 60;	/* roughly 60 bytes per line? */
     mud->statsize = 150;
+    mud->width = 500;
+    mud->height = 350;
 
     mud->hist->list = g_malloc (sizeof (void *) * mud->hist->max);
 
@@ -145,6 +153,8 @@ session_save ()
     fprintf (fp, "font_name %s\n", mud->disp_font_name);
     fprintf (fp, "max_lines %d\n", mud->maxlines);
     fprintf (fp, "stat_size %d\n", mud->statsize);
+    fprintf (fp, "width %d\n", mud->width);
+    fprintf (fp, "height %d\n", mud->height);
 
 /*		window position stuff someday?
 	sprintf(tmp,"%dx%d",mud->window

@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.18 2004/01/18 18:55:06 erik Exp $
+ * $Id: gui.c,v 1.19 2004/01/18 19:31:20 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -123,6 +123,15 @@ cbox ()
     return;
 }
 
+void
+resize (GtkContainer * window, gpointer * crud)
+{
+    gtk_widget_get_size_request (GTK_WIDGET(window), &mud->width, &mud->height);
+    /*
+     * TODO save hot prefs here 
+     */
+}
+
 	/*
 	 * create the main window 
 	 */
@@ -130,6 +139,11 @@ GtkWidget *
 spawn_gui ()
 {
     GtkWidget *hbox, *scrollbox;
+
+    gtk_window_set_default_size (GTK_WINDOW (mud->window), mud->width,
+	mud->height);
+    gtk_signal_connect (GTK_OBJECT (mud->window), "check-resize",
+	GTK_SIGNAL_FUNC (resize), NULL);
 
     mud->vbox = gtk_vbox_new (FALSE, 0);
 
@@ -168,8 +182,8 @@ spawn_gui ()
      */
     mud->stat = gtk_text_view_new ();
     gtk_widget_show (mud->stat);
-    gtk_widget_set_usize (mud->stat, mud->statsize, 20);
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(mud->stat), FALSE);
+    gtk_widget_set_size_request (mud->stat, mud->statsize, 20);
+    gtk_text_view_set_editable (GTK_TEXT_VIEW (mud->stat), FALSE);
     GTK_WIDGET_UNSET_FLAGS (mud->text, GTK_CAN_FOCUS);
     gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (mud->text), GTK_WRAP_NONE);
     gtk_widget_modify_base (GTK_WIDGET (mud->stat), GTK_STATE_NORMAL,

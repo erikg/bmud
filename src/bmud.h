@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: bmud.h,v 1.5 2004/01/18 15:43:15 erik Exp $
+ * $Id: bmud.h,v 1.6 2004/01/18 19:31:20 erik Exp $
  */
 
 #ifndef BMUD_H
@@ -66,6 +66,8 @@ typedef struct {
     gint lines;
     gint maxlines;
     gint statsize;
+    gint width;
+    gint height;
 } bmud;
 
 #endif
