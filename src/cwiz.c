@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: cwiz.c,v 1.3 2004/01/04 15:23:08 erik Exp $
+ * $Id: cwiz.c,v 1.4 2004/01/04 22:40:01 erik Exp $
  */
 
 /* this file came from Erik Thyren, I moved it out of gui.c because it's
@@ -28,18 +28,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "bmud.h"
+#include "cwiz.h"
 #include "gui.h"
 #include "main.h"
 #include "misc.h"
 #include "net.h"
-
-struct server
-{
-  char *host;
-  char *port;
-  struct server *last;
-};
 
 struct server *last;		/* to prevent a memory leak, a bass ackwards linked list
 				   is built. This is the final node of that list. */

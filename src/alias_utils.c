@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias_utils.c,v 1.3 2004/01/04 15:23:08 erik Exp $
+ * $Id: alias_utils.c,v 1.4 2004/01/04 22:40:01 erik Exp $
  */
 
 /*
@@ -41,6 +41,7 @@
 
 #include "bmud.h"
 #include "alias.h"
+#include "alias_utils.h"
 #include "gui.h"
 #include "net.h"
 
