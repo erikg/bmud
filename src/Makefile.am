@@ -31,4 +31,9 @@ lint:
 indent:
 	indent *.[ch]
 
+splint:
+	for a in *.[ch]; do echo $$a ; splint $(CFLAGS) +posixstrictlib $$a > $$a.lint; done
+gindent:
+	gindent *.[ch]
+
 
