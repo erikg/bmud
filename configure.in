@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.15 2004/01/20 15:29:13 erik Exp $
+# $Id: configure.in,v 1.16 2004/02/20 21:10:56 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
@@ -44,4 +44,4 @@ if test x$perl = xyes; then
 	AC_MSG_RESULT(yes)
 fi
 
-AC_OUTPUT(Makefile data/Makefile doc/Makefile src/Makefile bmud.spec bmud.lsm)
+AC_OUTPUT(Makefile data/Makefile doc/Makefile src/Makefile bmud.spec bmud.lsm doc/doxygen.conf)

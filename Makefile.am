@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.6 2004/01/04 16:17:22 erik Exp $
+# $Id: Makefile.am,v 1.7 2004/02/20 21:10:55 erik Exp $
 
 SUBDIRS = data doc src
 
@@ -23,3 +23,11 @@ lint:
 indent:
 	make -C src indent
 
+test:
+	make -C test test
+
+docs:
+	doxygen doc/doxygen.conf
+	make -C doc/doxygen/latex 
+	dvips -f doc/doxygen/latex/refman.dvi > refman.ps
+	ps2pdf refman.ps
