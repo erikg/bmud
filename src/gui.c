@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.14 2004/01/18 15:51:04 erik Exp $
+ * $Id: gui.c,v 1.15 2004/01/18 16:15:10 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -214,7 +214,7 @@ textfield_add (gchar * message, int colortype)
     GdkRectangle rect;
 
     int scrolled_up = FALSE;
-    int x, y, height, numbytes = strlen (message);
+    int y, height;
 
     if (message[0] == NULL)
 	return;
@@ -252,7 +252,6 @@ textfield_add (gchar * message, int colortype)
 	/*
 	 * break the ansi into 2 parts, and do 'em 
 	 */
-	x = numbytes;
 
 /* TODO type issues, don't do stat box
 	if (mud->statsize != 0 && message[numbytes - 2] == '>')
@@ -266,7 +265,7 @@ textfield_add (gchar * message, int colortype)
 	    mud->curr_color = color[7][1];
 	} else
 */
-	disp_ansi (x, message, mud->text);
+	disp_ansi (buffer, message, &iter);
 	break;
     }
 

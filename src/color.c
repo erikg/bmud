@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.8 2004/01/18 15:43:15 erik Exp $
+ * $Id: color.c,v 1.9 2004/01/18 16:15:09 erik Exp $
  */
 
 #include <stdio.h>
@@ -199,13 +199,16 @@ getcol (char *tmp, int bleh)
 
 /*** Scan thru the text to look for escapes ***/
 void
-disp_ansi (int size, gchar * in, GtkWidget * target)
+disp_ansi (GtkTextBuffer * buffer, gchar * message, GtkTextIter * iter)
 {
 
     GdkColor col = color[7][0];
     int n = 0, x = 0;		/* in[n], x is sizeof ansi code */
 
-    printf ("%s\n", in);
+    printf ("%s\n", message);
+    gtk_text_buffer_insert (buffer, iter, message, -1);
+
+#if 0
 
     while (n < size)
     {
@@ -263,6 +266,8 @@ disp_ansi (int size, gchar * in, GtkWidget * target)
 	}
 	++n;
     }
+
+#endif
     return;
 }
 

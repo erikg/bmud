@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.h,v 1.3 2004/01/18 15:43:15 erik Exp $
+ * $Id: color.h,v 1.4 2004/01/18 16:15:10 erik Exp $
  */
 
 extern GdkColor *foreground;
@@ -30,7 +30,7 @@ extern gchar *cn[9][2];		/* names of colors */
 
 extern void show_colorm (void);
 extern void init_colors ();
-extern void disp_ansi (int, gchar *, GtkWidget *);
+extern void disp_ansi (GtkTextBuffer *, gchar *, GtkTextIter *);
 extern int color_load ();
 extern int color_default ();
 extern int color_dump ();
