@@ -1,17 +1,10 @@
-# $Id: Makefile.am,v 1.3 2004/01/04 15:42:36 erik Exp $
+# $Id: Makefile.am,v 1.4 2004/01/04 16:23:17 erik Exp $
 
-EXTRA_DIST = bmud.desktop bmud.html bmud.png mudservers topic.dat
+desktopdir = ${datadir}/gnome/apps/Games
+helpdir = ${datadir}/gnome/help/@PACKAGE@/C
+pixdir = ${datadir}/pixmaps
 
-install:
-	mkdir -p ${datadir}/gnome/apps/Games
-	mkdir -p ${datadir}/gnome/help/bmud/C
-	mkdir -p ${datadir}/pixmaps
-	install -m 644 bmud.desktop ${datadir}/gnome/apps/Games/bmud.desktop
-	install -m 644 topic.dat ${datadir}/gnome/help/bmud/C/topic.dat
-	install -m 644 bmud.html ${datadir}/gnome/help/bmud/C/bmud.html
-	install -m 644 bmud.png ${datadir}/pixmaps/bmud.png
+dist_desktop_DATA = bmud.desktop
+dist_help_DATA = topic.dat bmud.html
+dist_pix_DATA = bmud.png
 
-uninstall:
-	rm -f ${datadir}/gnome/apps/Games/bmud.desktop
-	rm -rf ${datadir}/gnome/help/bmud
-	rm -f ${datadir}/pixmaps/bmud.png
