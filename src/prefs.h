@@ -21,9 +21,9 @@
  *****************************************************************************/
 
 /*
- * $Id: prefs.h,v 1.3 2004/01/18 15:43:15 erik Exp $
+ * $Id: prefs.h,v 1.4 2004/01/20 13:04:32 erik Exp $
  */
 
-extern int session_load ();
-extern void session_default ();
-extern int session_save ();
+int session_load ();
+void session_default ();
+int session_save ();

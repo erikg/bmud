@@ -21,16 +21,16 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.h,v 1.3 2004/01/18 15:43:15 erik Exp $
+ * $Id: misc.h,v 1.4 2004/01/20 13:04:32 erik Exp $
  */
 
-extern void check_my_dir ();
-extern char *show_conf_dir (char *);
-extern void hist_add (char *);
-extern gint hist_evt (GtkWidget *, GdkEventKey *, gpointer);
-extern void hist_clear ();
+void check_my_dir ();
+char *show_conf_dir (char *);
+void hist_add (char *);
+gint hist_evt (GtkWidget *, GdkEventKey *, gpointer);
+void hist_clear ();
 
-extern char *gethome ();
-extern char *gethome_conf ();
-extern char *gethome_conf_file (char *);
-extern char *gethome_misc (char *);
+char *gethome ();
+char *gethome_conf ();
+char *gethome_conf_file (char *);
+char *gethome_misc (char *);

@@ -21,18 +21,18 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.h,v 1.5 2004/01/18 15:43:15 erik Exp $
+ * $Id: gui.h,v 1.6 2004/01/20 13:04:32 erik Exp $
  */
 
-extern GtkWidget *spawn_gui (void);
-extern void textfield_add (gchar *, int);
-extern void cbox (void);
-extern void clist (void);
-extern void clear (int, GtkWidget *);
-extern void cleartail ();
-extern void init (int, char **);
-extern void do_menu (GtkWidget *);
-extern void do_about ();
-extern void destructify ();
+GtkWidget *spawn_gui (void);
+void textfield_add (gchar *, int);
+void cbox (void);
+void clist (void);
+void clear (int, GtkWidget *);
+void cleartail ();
+void init (int, char **);
+void do_menu (GtkWidget *);
+void do_about ();
+void destructify ();
 
 extern GtkWidget *win;		/* for use in main.o */

@@ -21,16 +21,16 @@
  *****************************************************************************/
 
 /*
- * $Id: alias.h,v 1.3 2004/01/18 15:43:14 erik Exp $
+ * $Id: alias.h,v 1.4 2004/01/20 13:04:32 erik Exp $
  */
 
-extern void do_alias (char *);
-extern void free_aliases ();
-extern GHashTable *alias_new ();
-extern void alias_destroy (GHashTable *);
-extern void alias_free (gpointer, gpointer, gpointer);
-extern void alias_load (gchar *, GHashTable *);
-extern void alias_dump (gchar *, GHashTable *);
-extern void alias_trim_input (gchar *);
-extern void alias_insert (GHashTable *, gchar *, gchar *);
-extern void alias_process (GHashTable *, gchar *);
+void do_alias (char *);
+void free_aliases ();
+GHashTable *alias_new ();
+void alias_destroy (GHashTable *);
+void alias_free (gpointer, gpointer, gpointer);
+void alias_load (gchar *, GHashTable *);
+void alias_dump (gchar *, GHashTable *);
+void alias_trim_input (gchar *);
+void alias_insert (GHashTable *, gchar *, gchar *);
+void alias_process (GHashTable *, gchar *);

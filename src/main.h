@@ -21,13 +21,13 @@
  *****************************************************************************/
 
 /*
- * $Id: main.h,v 1.3 2004/01/18 15:43:15 erik Exp $
+ * $Id: main.h,v 1.4 2004/01/20 13:04:32 erik Exp $
  */
 
 #ifndef __BMUD_H_
 #define __BMUD_H_
 
 extern bmud *mud;
-extern void bmud_exit ();
+void bmud_exit ();
 
 #endif

@@ -21,12 +21,12 @@
  *****************************************************************************/
 
 /*
- * $Id: net.h,v 1.3 2004/01/18 15:43:15 erik Exp $
+ * $Id: net.h,v 1.4 2004/01/20 13:04:32 erik Exp $
  */
 
-extern void make_connection (char *host, char *port);
-extern void open_connection (const char *host, const char *port);
-extern void send_to_connection (GtkWidget *, gpointer data);
-extern void xmit_to_connection (gchar *);
-extern void read_from_connection (gpointer, gint, GdkInputCondition);
-extern void disconnect (void);
+void make_connection (char *host, char *port);
+void open_connection (const char *host, const char *port);
+void send_to_connection (GtkWidget *, gpointer data);
+void xmit_to_connection (gchar *);
+void read_from_connection (gpointer, gint, GdkInputCondition);
+void disconnect (void);
