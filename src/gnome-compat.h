@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gnome-compat.h,v 1.3 2003/12/25 16:36:08 erik Exp $
+ * $Id: gnome-compat.h,v 1.4 2004/01/12 08:43:06 erik Exp $
  */
 
 #include "main.h"
@@ -37,10 +37,10 @@ init (int argc, char **argv)
 void
 do_about ()
 {
-    const char *authors[] = { "Erik Greenwald", NULL };
+#include "authors.h"
 
     gtk_widget_show (gnome_about_new ("BMUD", VERSION,
-	    "Copyright (c) 1998-9 Erik Greenwald", _("Br0kEs mud client"),
+	    "Copyright (c) 1998-2003 Erik Greenwald", _("Br0kEs mud client"),
 	    authors, NULL, NULL, NULL));
 }
 

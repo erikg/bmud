@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.7 2004/01/04 21:15:26 erik Exp $
+# $Id: Makefile.am,v 1.8 2004/01/12 08:43:05 erik Exp $
 
 bin_PROGRAMS = bmud 
 bmud_CFLAGS = \
@@ -8,7 +8,7 @@ bmud_CFLAGS = \
 bmud_LDADD = @PACKAGE_LIBS@ @GUILE_LIBS@ @PERL_LIBS@
 
 bmud_SOURCES = alias.c alias_utils.c color.c conf.c cwiz.c gui.c main.c misc.c net.c prefs.c script.c
-noinst_HEADERS = $(bmud_SOURCES:.c=.h) gnome-compat.h gtk-compat.h 
+noinst_HEADERS = $(bmud_SOURCES:.c=.h) gnome-compat.h gtk-compat.h authors.h
 
 lint:
 	for a in *.[ch]; do echo $$a ; lint $(CFLAGS) +posixstrictlib $$a > $$a.lint; done
