@@ -21,8 +21,14 @@
  *****************************************************************************/
 
 /*
- * $Id: color.h,v 1.5 2004/01/19 16:27:47 erik Exp $
+ * $Id: color.h,v 1.6 2004/01/19 17:24:36 erik Exp $
  */
+
+typedef struct color_tag_s
+{
+	GtkTextTag tag;
+	GtkTextIter start, end;
+} color_tag_t;
 
 extern GdkColor *foreground;
 extern GdkColor color[9][2];
@@ -30,7 +36,7 @@ extern gchar *cn[9][2];		/* names of colors */
 
 extern void show_colorm (void);
 extern void init_colors ();
-extern void disp_ansi (GtkTextBuffer *, gchar *, GtkTextIter *, int length);
+extern void disp_ansi (char *dst, char *src, color_tag_t **tags);
 extern int color_load ();
 extern int color_default ();
 extern int color_dump ();

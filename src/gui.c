@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.25 2004/01/19 16:44:09 erik Exp $
+ * $Id: gui.c,v 1.26 2004/01/19 17:24:36 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -140,8 +140,10 @@ spawn_gui ()
 
     gtk_window_set_default_size (GTK_WINDOW (mud->window), mud->width,
 	mud->height);
-    gtk_signal_connect (GTK_OBJECT (mud->window), "check-resize",
-	GTK_SIGNAL_FUNC (resize), NULL);
+
+/* TODO causes a spin?
+    gtk_signal_connect (GTK_OBJECT (mud->window), "check-resize", GTK_SIGNAL_FUNC (resize), NULL);
+*/
 
     mud->vbox = gtk_vbox_new (FALSE, 0);
 
@@ -291,18 +293,35 @@ textfield_add (gchar * message, int colortype)
 	    if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	    {
 		GtkTextIter statiter;
+		char *text = malloc (strlen (message));
+		color_tag_t **tags;
 
 		clear (0, mud->stat);
 		while (message[x] != '\n')
 		    x--;
-		disp_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->
-			    stat)), (gchar *) & message[x + 1], &statiter,
+
+/*
+		disp_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud-> stat)), (gchar *) & message[x + 1], &statiter,
 		    numbytes - x);
+*/
+		disp_ansi (text, message, tags);
+		gtk_text_buffer_insert (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud-> stat)), &iter, text, -1);
+
 		x--;
 		message[x] = 0;
 		mud->curr_color = color[7][1];
 	    } else
+	    {
+		char *text = malloc (strlen (message));
+		color_tag_t **tags;
+
+		disp_ansi (text, message, tags);
+		gtk_text_buffer_insert (buffer, &iter, text, -1);
+/*
 		disp_ansi (buffer, message, &iter, -1);
+*/
+
+	    }
 	    break;
 	}
     default:
