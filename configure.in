@@ -87,6 +87,5 @@ AC_OUTPUT([ m4/Makefile
 Makefile 
 data/Makefile
 po/Makefile.in
-intl/Makefile
 src/Makefile
 ],[])
