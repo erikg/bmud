@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: net.c,v 1.4 2004/01/04 15:23:08 erik Exp $
+ * $Id: net.c,v 1.5 2004/01/18 15:43:15 erik Exp $
  */
 
 /* 
@@ -80,236 +81,241 @@
 
 /* this may become an array of globals. -Erik */
 
-struct one_global
-{
-  int sockfd, connected, echo;
-  gint input_monitor;
-}
-global;
+struct one_global {
+    int sockfd, connected, echo;
+    gint input_monitor;
+} global;
 
 void
 make_connection (char *host, char *port)
 {
-  /* 
-     In one of the header files BUFSIZ is declared.  Figured
-     we might as well use it instead of the 2,048-byte 
-     buffer.  On x86 systems BUFSIZ = 8192.
-     -- RJH
-   */
+    /*
+     * In one of the header files BUFSIZ is declared.  Figured
+     * we might as well use it instead of the 2,048-byte 
+     * buffer.  On x86 systems BUFSIZ = 8192.
+     * -- RJH
+     */
 
-  char buf[BUFSIZ];
-  memset (buf, 0, BUFSIZ * sizeof (char));
+    char buf[BUFSIZ];
+    memset (buf, 0, BUFSIZ * sizeof (char));
 
-  if (strcmp (host, "\0") == 0)
+    if (strcmp (host, "\0") == 0)
     {
-      sprintf (buf, "\n*** Can't connect - you didn't specify a host\n");
-      textfield_add (buf, MESSAGE_ERR);
-      return;
+	sprintf (buf, "\n*** Can't connect - you didn't specify a host\n");
+	textfield_add (buf, MESSAGE_ERR);
+	return;
     }
 
-  if (strcmp (port, "\0") == 0)
+    if (strcmp (port, "\0") == 0)
     {
-      sprintf (buf, "\n*** No port specified - assuming port 23\n");
-      textfield_add (buf, MESSAGE_NORMAL);
+	sprintf (buf, "\n*** No port specified - assuming port 23\n");
+	textfield_add (buf, MESSAGE_NORMAL);
 
-      /* 
-         Original code had 'port = "23\0"'.  The trailing \0 was
-         redundant: anything in quotes is null-terminated by C.
-         -- RJH
-       */
+	/*
+	 * Original code had 'port = "23\0"'.  The trailing \0 was
+	 * redundant: anything in quotes is null-terminated by C.
+	 * -- RJH
+	 */
 
-      port = "23";
+	port = "23";
     }
 
-  sprintf (buf, "\n*** Making connection to %s, port %s\n", host, port);
-  textfield_add (buf, MESSAGE_NORMAL);
+    sprintf (buf, "\n*** Making connection to %s, port %s\n", host, port);
+    textfield_add (buf, MESSAGE_NORMAL);
 
-  open_connection (host, port);
+    open_connection (host, port);
 }
 
 void
 disconnect (void)
 {
-  close (global.sockfd);
-  if (global.input_monitor)	/* else a gdk assert fails -Br0kE jul03-1999 */
-    gdk_input_remove (global.input_monitor);
-  textfield_add ("\n*** Connection closed.\n", MESSAGE_NORMAL);
-  global.connected = FALSE;
+    close (global.sockfd);
+
+    if (global.input_monitor)	/* else a gdk assert fails -Br0kE jul03-1999 */
+	gdk_input_remove (global.input_monitor);
+
+    textfield_add ("\n*** Connection closed.\n", MESSAGE_NORMAL);
+    global.connected = FALSE;
 }
 
 void
 open_connection (const char *host, const char *port)
 {
-  char buf[BUFSIZ];
-  int N;
-  struct hostent *he = gethostbyname (host);
-  struct sockaddr_in their_addr;
+    char buf[BUFSIZ];
+    int N;
+    struct hostent *he = gethostbyname (host);
+    struct sockaddr_in their_addr;
 
-  memset (buf, 0, BUFSIZ * sizeof (char));
+    memset (buf, 0, BUFSIZ * sizeof (char));
 
-  if (he == NULL)
+    if (he == NULL)
     {
-      textfield_add ("\n*** gethostbyname() failed! ***\n", MESSAGE_ERR);
-      return;
+	textfield_add ("\n*** gethostbyname() failed! ***\n", MESSAGE_ERR);
+	return;
     }
 
-  global.sockfd = socket (AF_INET, SOCK_STREAM, 0);
+    global.sockfd = socket (AF_INET, SOCK_STREAM, 0);
 
-  if (global.sockfd == -1)
+    if (global.sockfd == -1)
     {
-      textfield_add (strerror (errno), MESSAGE_ERR);
-      return;
+	textfield_add (strerror (errno), MESSAGE_ERR);
+	return;
     }
 
-  their_addr.sin_family = AF_INET;
-  their_addr.sin_port = htons (atoi (port));
-  their_addr.sin_addr = *((struct in_addr *) he->h_addr);
+    their_addr.sin_family = AF_INET;
+    their_addr.sin_port = htons (atoi (port));
+    their_addr.sin_addr = *((struct in_addr *)he->h_addr);
 
-  memset ((void *) (&their_addr.sin_zero), 0, 8);
+    memset ((void *)(&their_addr.sin_zero), 0, 8);
 
-  N =
-    connect (global.sockfd, (struct sockaddr *) &their_addr,
-	     sizeof (struct sockaddr));
+    N = connect (global.sockfd, (struct sockaddr *)&their_addr,
+	sizeof (struct sockaddr));
 
-  if (N == -1)
+    if (N == -1)
     {
-      textfield_add (strerror (errno), MESSAGE_ERR);
-      return;
+	textfield_add (strerror (errno), MESSAGE_ERR);
+	return;
     }
 
-  textfield_add ("\n*** Connection established.\n", MESSAGE_NORMAL);
+    textfield_add ("\n*** Connection established.\n", MESSAGE_NORMAL);
 
-  global.input_monitor =
-    gdk_input_add (global.sockfd, GDK_INPUT_READ, read_from_connection, NULL);
+    global.input_monitor =
+	gdk_input_add (global.sockfd, GDK_INPUT_READ, read_from_connection,
+	NULL);
 
-  global.connected = TRUE;
+    global.connected = TRUE;
 
 }
 
 void
 read_from_connection (gpointer data, gint source, GdkInputCondition condition)
 {
-  /* 
-     For some reason there's a BUFSIZ defined in the header files.
-     Figured we might as well use that instead of the original 
-     2,048-byte buffer.  On Intel x86 systems, BUFSIZ = 8192.
-     -- RJH
-   */
+    /*
+     * For some reason there's a BUFSIZ defined in the header files.
+     * Figured we might as well use that instead of the original 
+     * 2,048-byte buffer.  On Intel x86 systems, BUFSIZ = 8192.
+     * -- RJH
+     */
 
-  char buf[BUFSIZ];
-  int numbytes;
-  /* 
-     Found a bug here.  The following line is incorrect:
+    char buf[BUFSIZ];
+    int numbytes;
 
-     memset(buf, 0, sizeof(char));
+    /*
+     * Found a bug here.  The following line is incorrect:
+     * 
+     * memset(buf, 0, sizeof(char));
+     * 
+     * -- RJH
+     */
 
-     -- RJH
-   */
+    data = NULL;
+    source = 0;
+    condition = 0;
+    memset (buf, 0, BUFSIZ * sizeof (char));
 
-  data = NULL; source=0; condition=0;
-  memset (buf, 0, BUFSIZ * sizeof (char));
+    /*
+     * Originally this code used a recv() call, but recv() and
+     * recvfrom() have a lot of overlap and the manpages say
+     * one or the other is going to go bye-bye.  Hence, I've
+     * changed this to be a read() call, which should be around
+     * for a long time.  :)   -- RJH
+     */
 
-  /* 
-     Originally this code used a recv() call, but recv() and
-     recvfrom() have a lot of overlap and the manpages say
-     one or the other is going to go bye-bye.  Hence, I've
-     changed this to be a read() call, which should be around
-     for a long time.  :)   -- RJH
-   */
+    numbytes = read (global.sockfd, buf, BUFSIZ);
 
-  numbytes = read (global.sockfd, buf, BUFSIZ);
-
-  if (numbytes == -1)
+    if (numbytes == -1)
     {
-      textfield_add (strerror (errno), MESSAGE_ERR);
-      disconnect ();
-      return;
+	textfield_add (strerror (errno), MESSAGE_ERR);
+	disconnect ();
+	return;
     }
 
-  /* 
-     This statement is extraneous: since the entire buffer has been
-     memset()ted to 0, there's no need to null-terminate what we
-     read into the buffer.  -- RJH
+    /*
+     * This statement is extraneous: since the entire buffer has been
+     * memset()ted to 0, there's no need to null-terminate what we
+     * read into the buffer.  -- RJH
+     * 
+     * buf[numbytes] = '\0';
+     */
 
-     buf[numbytes] = '\0';
-   */
-
-  /*
-   * Sometimes we get here even though there isn't any data to read
-   * from the socket..
-   *
-   * found by Michael Stevens
-   */
-  if (numbytes == 0)
+    /*
+     * Sometimes we get here even though there isn't any data to read
+     * from the socket..
+     *
+     * found by Michael Stevens
+     */
+    if (numbytes == 0)
     {
-      textfield_add ("\n*** 0 byte packet received\n", MESSAGE_ERR);
-      disconnect ();
-      return;
+	textfield_add ("\n*** 0 byte packet received\n", MESSAGE_ERR);
+	disconnect ();
+	return;
     }
 
-  /* 
-     And why in the world is this here?  It's redundant.  :)
-     -- RJH
+    /*
+     * And why in the world is this here?  It's redundant.  :)
+     * -- RJH
+     * 
+     * buf[numbytes]=0;
+     */
 
-     buf[numbytes]=0;
-   */
-
-  textfield_add (buf, MESSAGE_ANSI);
-  return;
+    textfield_add (buf, MESSAGE_ANSI);
+    return;
 }
 
 void
 xmit_to_connection (gchar * text)
 {
-  write (global.sockfd, text, strlen (text));
-  write (global.sockfd, "\r\n", 2);
+    write (global.sockfd, text, strlen (text));
+    write (global.sockfd, "\r\n", 2);
 
-  if (global.echo)
+    if (global.echo)
     {
-      textfield_add (text, MESSAGE_ANSI);
-      textfield_add ("\n", MESSAGE_NONE);
+	textfield_add (text, MESSAGE_ANSI);
+	textfield_add ("\n", MESSAGE_NONE);
     }
 }
 
 void
 send_to_connection (GtkWidget * widget, gpointer data)
 {
-  gchar *entry_text;
+    gchar *entry_text;
 
-  widget = NULL;
-  data = NULL;
+    widget = NULL;
+    data = NULL;
 
-  entry_text = gtk_entry_get_text (GTK_ENTRY (mud->ent));
-  gtk_entry_select_region (GTK_ENTRY (mud->ent), 0,
-			   GTK_ENTRY (mud->ent)->text_length);
+    entry_text = gtk_entry_get_text (GTK_ENTRY (mud->ent));
+    gtk_entry_select_region (GTK_ENTRY (mud->ent), 0,
+	GTK_ENTRY (mud->ent)->text_length);
 
-  hist_add (entry_text);	/* add it to the command history */
+    hist_add (entry_text);	/* add it to the command history */
 
-  if (entry_text[0] == '/' || entry_text[0] == '#')
+    if (entry_text[0] == '/' || entry_text[0] == '#')
     {
-      do_alias ((char *) &entry_text[1]);	/* strips the / or # */
-      gtk_entry_set_text (GTK_ENTRY (mud->ent), "");
-      return;
+	do_alias ((char *)&entry_text[1]);	/* strips the / or # */
+	gtk_entry_set_text (GTK_ENTRY (mud->ent), "");
+	return;
     }
 
-  /* 
-     Originally these write() calls were send() calls.  Send()
-     isn't in danger of being deprecated, but for symmetry with
-     the read() calls I decided to do it this way anyway.
+    /*
+     * Originally these write() calls were send() calls.  Send()
+     * isn't in danger of being deprecated, but for symmetry with
+     * the read() calls I decided to do it this way anyway.
+     * 
+     * Also, the "send(sockfd, "\n", 1, 0)" should have been
+     * "send(sockfd, "\r\n", 2, 0).  \r\n is a two-byte sequence,
+     * not a one-fer.  :)
+     * -- RJH
+     */
 
-     Also, the "send(sockfd, "\n", 1, 0)" should have been
-     "send(sockfd, "\r\n", 2, 0).  \r\n is a two-byte sequence,
-     not a one-fer.  :)
-     -- RJH
-   */
+    /*
+     * the write/send crap moved to "xmit_to_connection" to help facilitate
+     * * aliases. Nov 24 1999 Erik 
+     */
 
-  /* the write/send crap moved to "xmit_to_connection" to help facilitate
-   * aliases. Nov 24 1999 Erik */
+    xmit_to_connection (entry_text);
 
-  xmit_to_connection (entry_text);
+    gtk_entry_set_text (GTK_ENTRY (mud->ent), "");	/* clear the entry line */
+    gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
 
-  gtk_entry_set_text (GTK_ENTRY (mud->ent), "");	/* clear the entry line */
-  gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
-
-  textfield_add ("\n", MESSAGE_NONE);
+    textfield_add ("\n", MESSAGE_NONE);
 }

@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias.h,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: alias.h,v 1.3 2004/01/18 15:43:14 erik Exp $
  */
 
 extern void do_alias (char *);
@@ -28,9 +29,8 @@ extern void free_aliases ();
 extern GHashTable *alias_new ();
 extern void alias_destroy (GHashTable *);
 extern void alias_free (gpointer, gpointer, gpointer);
-extern void alias_load(gchar *, GHashTable *);
-extern void alias_dump(gchar *, GHashTable *);
-extern void alias_trim_input(gchar *);
-extern void alias_insert(GHashTable *, gchar *, gchar *);
-extern void alias_process(GHashTable *, gchar *);
-
+extern void alias_load (gchar *, GHashTable *);
+extern void alias_dump (gchar *, GHashTable *);
+extern void alias_trim_input (gchar *);
+extern void alias_insert (GHashTable *, gchar *, gchar *);
+extern void alias_process (GHashTable *, gchar *);

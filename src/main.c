@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.12 2004/01/12 13:06:05 erik Exp $
+ * $Id: main.c,v 1.13 2004/01/18 15:43:15 erik Exp $
  */
 
 /* houses the main function. */
@@ -54,38 +55,41 @@ bmud *mud;			/* icky global */
 void
 bmud_exit ()
 {
-  free_aliases ();
-  gtk_main_quit ();
-  return;
+    free_aliases ();
+    gtk_main_quit ();
+    return;
 }
 
 int
 main (int argc, char **argv)
 {
-  GtkStyle *style;
-  GtkThemeEngine *eng;
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
+    GtkStyle *style;
+    GtkThemeEngine *eng;
 
-  mud = g_malloc (sizeof (bmud));
-  memset(mud, 0, sizeof(bmud));
-  mud->hist = g_malloc (sizeof (struct bmud_history));
-  memset(mud->hist, 0, sizeof(struct bmud_history));
-  mud->hist->max=20;
-  mud->hist->list = g_malloc (sizeof (gpointer) * (mud->hist->max + 1));
+    bindtextdomain (PACKAGE, LOCALEDIR);
+    textdomain (PACKAGE);
 
-  init (argc, argv);		/* mud->window is now a window widget */
-  /* gnome-compat.h or gtk-compat.h */
+    mud = g_malloc (sizeof (bmud));
+    memset (mud, 0, sizeof (bmud));
+    mud->hist = g_malloc (sizeof (struct bmud_history));
+    memset (mud->hist, 0, sizeof (struct bmud_history));
+    mud->hist->max = 20;
+    mud->hist->list = g_malloc (sizeof (gpointer) * (mud->hist->max + 1));
 
-  check_my_dir ();		/* misc.c */
+    init (argc, argv);		/* mud->window is now a window widget */
+    /*
+     * gnome-compat.h or gtk-compat.h 
+     */
 
-  if (show_conf_dir (""))	/* misc.c */
-    gtk_rc_parse (show_conf_dir ("gtkrc"));
+    check_my_dir ();		/* misc.c */
 
-  gtk_widget_realize (mud->window);
-  mud->window = spawn_gui ();	/* gui.c */
+    if (show_conf_dir (""))	/* misc.c */
+	gtk_rc_parse (show_conf_dir ("gtkrc"));
 
-  session_load ();		/* prefs.c */
+    gtk_widget_realize (mud->window);
+    mud->window = spawn_gui ();	/* gui.c */
+
+    session_load ();		/* prefs.c */
 
 /* TODO
   gtk_widget_set_usize (mud->stat, mud->statsize, 20);
@@ -93,24 +97,24 @@ main (int argc, char **argv)
     gtk_widget_set_usize (mud->stat, 1, 20);
 */
 
-  color_load ();		/* color.c */
+    color_load ();		/* color.c */
 
-  if (mud->disp_font)
-    g_free (mud->disp_font);
-  mud->disp_font = gdk_font_load (mud->disp_font_name);	/* mem leak */
+    if (mud->disp_font)
+	g_free (mud->disp_font);
+    mud->disp_font = gdk_font_load (mud->disp_font_name);	/* mem leak */
 
-  mud->curr_color = color[7][1];
+    mud->curr_color = color[7][1];
 
-  gtk_widget_show (mud->window);
-  gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
+    gtk_widget_show (mud->window);
+    gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
 
 /*  TODO set background colors
   gdk_window_set_background (GTK_TEXT (mud->text)->text_area, &color[0][0]);
   gdk_window_set_background (GTK_TEXT (mud->stat)->text_area, &color[0][0]);
 */
 
-  script_init(argc, argv);	/* if guile is enabled, this doesn't return */
-  gtk_main ();
+    script_init (argc, argv);	/* if guile is enabled, this doesn't return */
+    gtk_main ();
 
-  return 0;
+    return 0;
 }

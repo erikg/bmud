@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias.c,v 1.5 2004/01/12 10:52:44 erik Exp $
+ * $Id: alias.c,v 1.6 2004/01/18 15:43:14 erik Exp $
  */
 
 /* this is where the ircII style aliasing goes I thnk */
@@ -65,185 +66,189 @@ static GHashTable *alias_table;
 void
 fake_help_thingy ()
 {
-  textfield_add (fake_help, MESSAGE_NORMAL);
-  return;
+    textfield_add (fake_help, MESSAGE_NORMAL);
+    return;
 }
 
 void
 do_load_aliases (char *blah)
 {
-  char *trash, *filename;
+    char *trash, *filename;
 
-  trash = g_malloc (1024);
-  filename = g_malloc (1024);
-  sscanf (blah, "%s %s", trash, filename);
-  g_free (trash);
+    trash = g_malloc (1024);
+    filename = g_malloc (1024);
+    sscanf (blah, "%s %s", trash, filename);
+    g_free (trash);
 
 }
 
 void
 connect_alias (char *blah)
 {
-  char *trash, *host, *port;
-  trash = (char *) g_malloc (1024);
-  host = (char *) g_malloc (1024);
-  port = (char *) g_malloc (1024);
-  host[0] = 0;
-  port[0] = 0;
-  sscanf (blah, "%s %s %s", trash, host, port);
-  g_free (trash);
-  if (host[0] != 0 && port[0] != 0)
+    char *trash, *host, *port;
+
+    trash = (char *)g_malloc (1024);
+    host = (char *)g_malloc (1024);
+    port = (char *)g_malloc (1024);
+    host[0] = 0;
+    port[0] = 0;
+    sscanf (blah, "%s %s %s", trash, host, port);
+    g_free (trash);
+    if (host[0] != 0 && port[0] != 0)
     {
-      make_connection (host, port);
-      g_free (host);
-      g_free (port);
-      return;
+	make_connection (host, port);
+	g_free (host);
+	g_free (port);
+	return;
     }
-  g_free (host);
-  g_free (port);
-  cbox ();
-  return;
+    g_free (host);
+    g_free (port);
+    cbox ();
+    return;
 }
 
 void
 load_aliases (gchar * blah)
 {
-  gchar *trash;
-  gchar *filename;
+    gchar *trash;
+    gchar *filename;
 
-  trash = (gchar *) g_malloc0 (BUFSIZ);
-  filename = (gchar *) g_malloc0 (BUFSIZ);
+    trash = (gchar *) g_malloc0 (BUFSIZ);
+    filename = (gchar *) g_malloc0 (BUFSIZ);
 
-  sscanf (blah, "%s %s", trash, filename);
+    sscanf (blah, "%s %s", trash, filename);
 
-  g_free (trash);
+    g_free (trash);
 
-  if (alias_table != NULL)
+    if (alias_table != NULL)
     {
-      /* table has already been allocated. Must destroy
-         to get rid of dangling pointers! */
-      alias_destroy (alias_table);
+	/*
+	 * table has already been allocated. Must destroy
+	 * to get rid of dangling pointers! 
+	 */
+	alias_destroy (alias_table);
     }
 
-  alias_table = alias_new ();
+    alias_table = alias_new ();
 
-  alias_load (filename, alias_table);
+    alias_load (filename, alias_table);
 
-  textfield_add ("Aliases loaded.\n", MESSAGE_NONE);
+    textfield_add ("Aliases loaded.\n", MESSAGE_NONE);
 
-  g_free (filename);
+    g_free (filename);
 }
 
 void
 save_aliases (gchar * blah)
 {
-  gchar *trash;
-  gchar *filename;
+    gchar *trash;
+    gchar *filename;
 
-  /* if the alias_table doesn't exist, no point in doing all this! */
-  if (alias_table == NULL)
+    /*
+     * if the alias_table doesn't exist, no point in doing all this! 
+     */
+    if (alias_table == NULL)
     {
-      textfield_add ("There are not aliases to save!!\n", MESSAGE_NONE);
-      g_warning ("Tried to save empty alias table!");
-      return;
+	textfield_add ("There are not aliases to save!!\n", MESSAGE_NONE);
+	g_warning ("Tried to save empty alias table!");
+	return;
     }
 
-  trash = (gchar *) g_malloc0 (BUFSIZ);
-  filename = (gchar *) g_malloc0 (BUFSIZ);
+    trash = (gchar *) g_malloc0 (BUFSIZ);
+    filename = (gchar *) g_malloc0 (BUFSIZ);
 
-  sscanf (blah, "%s %s", trash, filename);
+    sscanf (blah, "%s %s", trash, filename);
 
-  g_free (trash);
+    g_free (trash);
 
-  alias_dump (filename, alias_table);
+    alias_dump (filename, alias_table);
 
-  g_free (filename);
+    g_free (filename);
 }
 
 void
 free_aliases ()
 {
-  if (alias_table != NULL)
+    if (alias_table != NULL)
     {
-      alias_destroy (alias_table);
-    }
-  else
+	alias_destroy (alias_table);
+    } else
     {
-      textfield_add ("Alias table was already NULL!\n", MESSAGE_NONE);
+	textfield_add ("Alias table was already NULL!\n", MESSAGE_NONE);
     }
-  return;
+    return;
 }
 
 void
 add_alias (gchar * blah)
 {
-  gchar *trash;
-  gchar *akey;
-  gchar *avalue;
+    gchar *trash;
+    gchar *akey;
+    gchar *avalue;
 
-  if (alias_table == NULL)
-    alias_table = alias_new ();
+    if (alias_table == NULL)
+	alias_table = alias_new ();
 
-  trash = (gchar *) g_malloc (BUFSIZ);
-  akey = (gchar *) g_malloc0 (BUFSIZ);
-  avalue = (gchar *) g_malloc0 (BUFSIZ);
+    trash = (gchar *) g_malloc (BUFSIZ);
+    akey = (gchar *) g_malloc0 (BUFSIZ);
+    avalue = (gchar *) g_malloc0 (BUFSIZ);
 
-  alias_trim_input (blah);
+    alias_trim_input (blah);
 
-  sscanf (blah, "%s %s %s", trash, akey, avalue);
+    sscanf (blah, "%s %s %s", trash, akey, avalue);
 
-  g_strdelimit (avalue, "|", ' ');
+    g_strdelimit (avalue, "|", ' ');
 
-  sprintf (trash, "Recorded alias \"%s\"\nAssociated action: %s\n", akey,
-	   avalue);
+    sprintf (trash, "Recorded alias \"%s\"\nAssociated action: %s\n", akey,
+	avalue);
 
-  textfield_add (trash, MESSAGE_NONE);
+    textfield_add (trash, MESSAGE_NONE);
 
-  g_free (trash);
+    g_free (trash);
 
-  alias_insert (alias_table, akey, avalue);
+    alias_insert (alias_table, akey, avalue);
 
-  g_free (akey);
-  g_free (avalue);
+    g_free (akey);
+    g_free (avalue);
 }
 
 void
 do_alias (char *blah)
 {
-  if (!strncmp (blah, "con", 3))
-    connect_alias (blah);
-  else if (!strncmp (blah, "disconnect", 3))
-    disconnect ();
-  else if (!strncmp (blah, "clear", 2))
-    clear (0, GTK_WIDGET (mud->text));
-  else if (!strncmp (blah, "help", 4))
-    fake_help_thingy ();
-  else if (!strncmp (blah, "qui", 3))
-    bmud_exit ();
-  else if (!strncmp (blah, "exi", 3))
-    bmud_exit ();
-  else if (!strncmp (blah, "cload", 5))
-    color_load ();
-  else if (!strncmp (blah, "csave", 5))
-    color_save ();
-  else if (!strncmp (blah, "cdef", 4))
-    color_default ();
-  else if (!strncmp (blah, "sload", 5))
-    session_load ();
-  else if (!strncmp (blah, "ssave", 5))
-    session_save ();
-  else if (!strncmp (blah, "sdef", 4))
-    session_default ();
-  else if (!strncmp (blah, "aload", 5))
-    load_aliases (blah);
-  else if (!strncmp (blah, "asave", 5))
-    save_aliases (blah);
-  else if (!strncmp (blah, "afree", 5))
-    free_aliases ();
-  else if (!strncmp (blah, "alias", 5))
-    add_alias (blah);
-  else
-    alias_process (alias_table, blah);
+    if (!strncmp (blah, "con", 3))
+	connect_alias (blah);
+    else if (!strncmp (blah, "disconnect", 3))
+	disconnect ();
+    else if (!strncmp (blah, "clear", 2))
+	clear (0, GTK_WIDGET (mud->text));
+    else if (!strncmp (blah, "help", 4))
+	fake_help_thingy ();
+    else if (!strncmp (blah, "qui", 3))
+	bmud_exit ();
+    else if (!strncmp (blah, "exi", 3))
+	bmud_exit ();
+    else if (!strncmp (blah, "cload", 5))
+	color_load ();
+    else if (!strncmp (blah, "csave", 5))
+	color_save ();
+    else if (!strncmp (blah, "cdef", 4))
+	color_default ();
+    else if (!strncmp (blah, "sload", 5))
+	session_load ();
+    else if (!strncmp (blah, "ssave", 5))
+	session_save ();
+    else if (!strncmp (blah, "sdef", 4))
+	session_default ();
+    else if (!strncmp (blah, "aload", 5))
+	load_aliases (blah);
+    else if (!strncmp (blah, "asave", 5))
+	save_aliases (blah);
+    else if (!strncmp (blah, "afree", 5))
+	free_aliases ();
+    else if (!strncmp (blah, "alias", 5))
+	add_alias (blah);
+    else
+	alias_process (alias_table, blah);
 
-  return;
+    return;
 }

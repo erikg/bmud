@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: bmud.h,v 1.4 2004/01/04 15:23:08 erik Exp $
+ * $Id: bmud.h,v 1.5 2004/01/18 15:43:15 erik Exp $
  */
 
 #ifndef BMUD_H
@@ -41,32 +42,30 @@
 
 #define SERVERFILE "mudservers"
 
-struct bmud_history
-{
-  gchar **list;			/* the actual history */
-  gchar *tmp;			/* in case something was typed before traverssing hist */
-  int size;			/* current number of elements */
-  int pos;			/* where to add */
-  int cur;			/* which is displayed */
-  int max;			/* total number of elements :) */
-  int cyclic;			/* controls cyclic vs linear history */
+struct bmud_history {
+    gchar **list;		/* the actual history */
+    gchar *tmp;			/* in case something was typed before traverssing hist */
+    int size;			/* current number of elements */
+    int pos;			/* where to add */
+    int cur;			/* which is displayed */
+    int max;			/* total number of elements :) */
+    int cyclic;			/* controls cyclic vs linear history */
 };
 
-typedef struct
-{
-  GtkWidget *window, *menu, *text, *stat, *ent, *hostentry, *portentry, *vbox;
+typedef struct {
+    GtkWidget *window, *menu, *text, *stat, *ent, *hostentry, *portentry,
+	*vbox;
 
-  GdkFont *disp_font;
-  gchar *disp_font_name;
-  GdkColor curr_color;
+    GdkFont *disp_font;
+    gchar *disp_font_name;
+    GdkColor curr_color;
 
-  struct bmud_history *hist;
+    struct bmud_history *hist;
 
-  gint items;
-  gint lines;
-  gint maxlines;
-  gint statsize;
-}
-bmud;
+    gint items;
+    gint lines;
+    gint maxlines;
+    gint statsize;
+} bmud;
 
 #endif

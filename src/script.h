@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: script.h,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: script.h,v 1.3 2004/01/18 15:43:15 erik Exp $
  */
 
 #ifndef __SCRIPT_H_
@@ -30,11 +31,10 @@
 #define SCRIPT_PERL   0x02
 #define SCRIPT_PLUGIN 0x80	/* unused, reserved */
 
-void script_init();
-void script_load(char *, int);
-void script_parse(char *);
-void script_unload(int);
-void script_shutdown();
+void script_init ();
+void script_load (char *, int);
+void script_parse (char *);
+void script_unload (int);
+void script_shutdown ();
 
 #endif
-

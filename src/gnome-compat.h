@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gnome-compat.h,v 1.4 2004/01/12 08:43:06 erik Exp $
+ * $Id: gnome-compat.h,v 1.5 2004/01/18 15:43:15 erik Exp $
  */
 
 #include "main.h"
@@ -30,8 +31,8 @@
 void
 init (int argc, char **argv)
 {
-  gnome_init ("BMUD", NULL, argc, argv);
-  mud->window = gnome_app_new ("BMUD", _("Br0kEs MUD Client"));
+    gnome_init ("BMUD", NULL, argc, argv);
+    mud->window = gnome_app_new ("BMUD", _("Br0kEs MUD Client"));
 }
 
 void
@@ -47,109 +48,111 @@ do_about ()
 void
 do_menu (GtkWidget * garbage)
 {
-  GnomeUIInfo filemenu[] = {
-	{	
+    GnomeUIInfo filemenu[] = {
+	{
 		GNOME_APP_UI_ITEM,
 		N_("Connection Wizard"),
 		N_("Connect to a mud"),
-		(gpointer)clist,
+		(gpointer) clist,
 		mud,
 		NULL,
 		GNOME_APP_PIXMAP_STOCK,
 		GNOME_STOCK_MENU_NEW,
 		0,
 		0,
-		NULL
-	},
+	    NULL},
 	{
 		GNOME_APP_UI_ITEM,
 		N_("Connect..."),
 		N_("Connect to a mud"),
-		(gpointer)cbox,
+		(gpointer) cbox,
 		mud,
 		NULL,
 		GNOME_APP_PIXMAP_STOCK,
 		GNOME_STOCK_MENU_NEW,
 		0,
 		0,
-		NULL
-	},
+	    NULL},
 	{
 		GNOME_APP_UI_ITEM,
 		N_("Disconnect"),
 		N_("Disconnect from a mud"),
-		(gpointer)disconnect,
+		(gpointer) disconnect,
 		NULL,
 		NULL,
 		GNOME_APP_PIXMAP_STOCK,
 		GNOME_STOCK_MENU_CLOSE,
 		0,
 		0,
-		NULL
-	},
+	    NULL},
 	GNOMEUIINFO_SEPARATOR,
 	{
 		GNOME_APP_UI_ITEM,
 		N_("Preferences..."),
 		N_("Preferences"),
-		(gpointer)show_config,
+		(gpointer) show_config,
 		NULL,
 		NULL,
 		GNOME_APP_PIXMAP_STOCK,
 		GNOME_STOCK_MENU_PREF,
 		0,
 		0,
-		NULL
-	},
+	    NULL},
 	GNOMEUIINFO_SEPARATOR,
 	{
 		GNOME_APP_UI_ITEM,
 		N_("Exit"),
 		N_("Exit bmud"),
-		(gpointer)bmud_exit,
+		(gpointer) bmud_exit,
 		NULL,
 		NULL,
 		GNOME_APP_PIXMAP_STOCK,
 		GNOME_STOCK_MENU_QUIT,
 		0,
 		0,
-		NULL
-	},
+	    NULL},
 	GNOMEUIINFO_END
-};
+    };
 
-GnomeUIInfo toolmenu[] = {
+    GnomeUIInfo toolmenu[] = {
 
-{GNOME_APP_UI_ITEM, N_("Equip..."), N_("Equipment Window"), NULL, NULL,
-NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP, 0, 0, NULL},
-{GNOME_APP_UI_ITEM, N_("Map..."), N_("the mud map"), NULL, NULL, NULL,
-GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
-GNOMEUIINFO_END
-};
+	{GNOME_APP_UI_ITEM, N_("Equip..."), N_("Equipment Window"), NULL, NULL,
+	    NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP, 0, 0, NULL},
+	{GNOME_APP_UI_ITEM, N_("Map..."), N_("the mud map"), NULL, NULL, NULL,
+	    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
+	GNOMEUIINFO_END
+    };
 
-GnomeUIInfo helpmenu[] = {
+    GnomeUIInfo helpmenu[] = {
 
-{GNOME_APP_UI_ITEM, N_("About..."), NULL, (gpointer)do_about, NULL, NULL,
-GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-GNOMEUIINFO_SEPARATOR,
-GNOMEUIINFO_HELP ("bmud"),
-GNOMEUIINFO_END
-};
+	{GNOME_APP_UI_ITEM, N_("About..."), NULL, (gpointer) do_about, NULL,
+		NULL,
+	    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_HELP ("bmud"),
+	GNOMEUIINFO_END
+    };
 
-GnomeUIInfo mainmenu[] = {
-GNOMEUIINFO_SUBTREE (N_("_File"), filemenu),
-GNOMEUIINFO_SUBTREE (N_("_Tools"), toolmenu),
-GNOMEUIINFO_SUBTREE (N_("_Help"), helpmenu),
-GNOMEUIINFO_END
-};
+    GnomeUIInfo mainmenu[] = {
+	GNOMEUIINFO_SUBTREE (N_("_File"), filemenu),
+	GNOMEUIINFO_SUBTREE (N_("_Tools"), toolmenu),
+	GNOMEUIINFO_SUBTREE (N_("_Help"), helpmenu),
+	GNOMEUIINFO_END
+    };
 
-  gnome_app_create_menus ((GnomeApp *) mud->window, mainmenu);
-	  /* put the Help menu on the far right */
-  gtk_menu_item_right_justify (GTK_MENU_ITEM (mainmenu[2].widget));
+    gnome_app_create_menus ((GnomeApp *) mud->window, mainmenu);
+    /*
+     * put the Help menu on the far right 
+     */
+    gtk_menu_item_right_justify (GTK_MENU_ITEM (mainmenu[2].widget));
 
-	  /* grey out the stuff that's not implemented */
-	  /* someday these will be with us... */
-  gtk_widget_set_sensitive (GTK_WIDGET (toolmenu[0].widget), FALSE);
-  gtk_widget_set_sensitive (GTK_WIDGET (toolmenu[1].widget), FALSE);
-  return;
+    /*
+     * grey out the stuff that's not implemented 
+     */
+    /*
+     * someday these will be with us... 
+     */
+    gtk_widget_set_sensitive (GTK_WIDGET (toolmenu[0].widget), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET (toolmenu[1].widget), FALSE);
+    return;
 }

@@ -21,14 +21,13 @@
  *****************************************************************************/
 
 /*
- * $Id: cwiz.h,v 1.1 2004/01/04 22:40:01 erik Exp $
+ * $Id: cwiz.h,v 1.2 2004/01/18 15:43:15 erik Exp $
  */
 
 #ifndef CWIZ_H
 #define CWIZ_H
 
-struct server
-{
+struct server {
     char *host;
     char *port;
     struct server *last;

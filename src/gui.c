@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.12 2004/01/18 15:29:50 erik Exp $
+ * $Id: gui.c,v 1.13 2004/01/18 15:43:15 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -232,6 +232,7 @@ textfield_add (gchar * message, int colortype)
     if (((y + height) - (rect.y + rect.height)) > height
 	&& gtk_text_buffer_get_char_count (buffer))
 	scrolled_up = TRUE;
+
 /* end of stolen chunk */
 
     switch (colortype)

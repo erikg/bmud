@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: prefs.c,v 1.4 2004/01/04 15:23:08 erik Exp $
+ * $Id: prefs.c,v 1.5 2004/01/18 15:43:15 erik Exp $
  */
 
 /* handles ~/.bmud/prefs */
@@ -41,108 +42,109 @@ FILE *fp;
 void
 session_scan ()
 {
-  char flag[1024], value[1024];
-  if (fscanf (fp, "%s %s", flag, value) != 2)
-    return;			/* wasn't real */
-  if (!strncmp (flag, "hist_max", 8))
-    mud->hist->max = atoi (value);
-  else if (!strncmp (flag, "hist_cyclic", 10))
-    mud->hist->cyclic = atoi (value);
-  else if (!strncmp (flag, "font_name", 9))
+    char flag[1024], value[1024];
+
+    if (fscanf (fp, "%s %s", flag, value) != 2)
+	return;			/* wasn't real */
+    if (!strncmp (flag, "hist_max", 8))
+	mud->hist->max = atoi (value);
+    else if (!strncmp (flag, "hist_cyclic", 10))
+	mud->hist->cyclic = atoi (value);
+    else if (!strncmp (flag, "font_name", 9))
     {
-      if (mud->disp_font_name)
-	free (mud->disp_font_name);
-      mud->disp_font_name = g_strdup (value);
-    }
-  else if (!strncmp (flag, "max_lines", 9))
-    mud->maxlines = atoi (value);
-  else if (!strncmp (flag, "stat_size", 9))
-    mud->statsize = atoi (value);
-  return;
+	if (mud->disp_font_name)
+	    free (mud->disp_font_name);
+	mud->disp_font_name = g_strdup (value);
+    } else if (!strncmp (flag, "max_lines", 9))
+	mud->maxlines = atoi (value);
+    else if (!strncmp (flag, "stat_size", 9))
+	mud->statsize = atoi (value);
+    return;
 }
 
 int
 session_load ()
 {
-  int x;
+    int x;
 
-  mud->hist->size = 0;
-  mud->hist->cur = 0;
-  mud->hist->pos = 0;
-  mud->lines = 0;
+    mud->hist->size = 0;
+    mud->hist->cur = 0;
+    mud->hist->pos = 0;
+    mud->lines = 0;
 
-  if (show_conf_dir ("") == NULL)
+    if (show_conf_dir ("") == NULL)
     {
-      session_default ();
-      return 1;
+	session_default ();
+	return 1;
     }
 
-  if ((fp = fopen (show_conf_dir ("prefs"), "r")) == NULL)
+    if ((fp = fopen (show_conf_dir ("prefs"), "r")) == NULL)
     {
-      session_default ();
-      return 1;
+	session_default ();
+	return 1;
     }
-  while (!feof (fp))
-    session_scan ();
-  fclose (fp);
+    while (!feof (fp))
+	session_scan ();
+    fclose (fp);
 
-  if (mud->hist->list)
-    free (mud->hist->list);
-  mud->hist->list = g_malloc (sizeof (void *) * mud->hist->max);
+    if (mud->hist->list)
+	free (mud->hist->list);
+    mud->hist->list = g_malloc (sizeof (void *) * mud->hist->max);
 
-  for (x = 0; x < mud->hist->max; x++)
-    mud->hist->list[x] = NULL;
+    for (x = 0; x < mud->hist->max; x++)
+	mud->hist->list[x] = NULL;
 
-  return 1;
+    return 1;
 }
 
 void
 session_default ()
 {
-  int x;
+    int x;
+
 /*
   textfield_add ("Could not open prefs file, using defaults\n",
 		 MESSAGE_ERR);
 */
-  printf ("Could not open prefs file, using defaults\n");
+    printf ("Could not open prefs file, using defaults\n");
 
-  mud->hist->max = 20;
-  mud->hist->cyclic = 0;
-  mud->disp_font_name = "courier";
-  mud->maxlines = 200 * 60;	/* roughly 60 bytes per line? */
-  mud->statsize = 150;
+    mud->hist->max = 20;
+    mud->hist->cyclic = 0;
+    mud->disp_font_name = "courier";
+    mud->maxlines = 200 * 60;	/* roughly 60 bytes per line? */
+    mud->statsize = 150;
 
-  mud->hist->list = g_malloc (sizeof (void *) * mud->hist->max);
+    mud->hist->list = g_malloc (sizeof (void *) * mud->hist->max);
 
-  for (x = 0; x < mud->hist->max; x++)
-    mud->hist->list[x] = NULL;
+    for (x = 0; x < mud->hist->max; x++)
+	mud->hist->list[x] = NULL;
 
-  return;
+    return;
 }
 
 int
 session_save ()
 {
-  textfield_add ("Saving session\n", MESSAGE_ERR);
-  printf ("Saving session\n");
+    textfield_add ("Saving session\n", MESSAGE_ERR);
+    printf ("Saving session\n");
 
 /*		havoc said this way is better, but I can't make it work :/	
 	fp = (FILE *)open(show_conf_dir("prefs"),O_CREAT | O_EXCL | O_TRUNC | O_RDWR, 0600);
 	if( fp == NULL )
 */
-  if ((fp = fopen (show_conf_dir ("prefs"), "w")) == NULL)
+    if ((fp = fopen (show_conf_dir ("prefs"), "w")) == NULL)
     {
-      textfield_add ("Unabled to open prefs file for writing\n",
-		     MESSAGE_ERR);
-      printf ("Unabled to open prefs file for writing\n");
-      return -1;
+	textfield_add ("Unabled to open prefs file for writing\n",
+	    MESSAGE_ERR);
+	printf ("Unabled to open prefs file for writing\n");
+	return -1;
     }
 
-  fprintf (fp, "hist_max %d\n", mud->hist->max);
-  fprintf (fp, "hist_cyclic %d\n", mud->hist->cyclic);
-  fprintf (fp, "font_name %s\n", mud->disp_font_name);
-  fprintf (fp, "max_lines %d\n", mud->maxlines);
-  fprintf (fp, "stat_size %d\n", mud->statsize);
+    fprintf (fp, "hist_max %d\n", mud->hist->max);
+    fprintf (fp, "hist_cyclic %d\n", mud->hist->cyclic);
+    fprintf (fp, "font_name %s\n", mud->disp_font_name);
+    fprintf (fp, "max_lines %d\n", mud->maxlines);
+    fprintf (fp, "stat_size %d\n", mud->statsize);
 
 /*		window position stuff someday?
 	sprintf(tmp,"%dx%d",mud->window
@@ -150,7 +152,7 @@ session_save ()
 	sprintf(tmp,"%dx%d",mud->window-
 */
 
-  fclose (fp);
+    fclose (fp);
 
-  return 0;
+    return 0;
 }

@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.h,v 1.2 2003/11/19 20:12:52 erik Exp $
+ * $Id: misc.h,v 1.3 2004/01/18 15:43:15 erik Exp $
  */
 
 extern void check_my_dir ();
@@ -29,8 +30,7 @@ extern void hist_add (char *);
 extern gint hist_evt (GtkWidget *, GdkEventKey *, gpointer);
 extern void hist_clear ();
 
-extern char *gethome();		
-extern char *gethome_conf();		
-extern char *gethome_conf_file(char *);
-extern char *gethome_misc(char *);
-
+extern char *gethome ();
+extern char *gethome_conf ();
+extern char *gethome_conf_file (char *);
+extern char *gethome_misc (char *);
