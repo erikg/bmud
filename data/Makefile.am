@@ -1,7 +1,6 @@
-# $Id: Makefile.am,v 1.2 2004/01/04 15:33:18 erik Exp $
+# $Id: Makefile.am,v 1.3 2004/01/04 15:42:36 erik Exp $
 
-EXTRA_DIST = bmud.1 bmud.1.gz bmud.1.gz.gnome bmud.1.gz.gtk\
-	bmud.desktop bmud.html bmud.png mudservers topic.dat
+EXTRA_DIST = bmud.desktop bmud.html bmud.png mudservers topic.dat
 
 install:
 	mkdir -p ${datadir}/gnome/apps/Games
