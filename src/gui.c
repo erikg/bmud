@@ -20,10 +20,14 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.4 2004/01/04 15:23:08 erik Exp $
+ * $Id: gui.c,v 1.5 2004/01/04 18:45:15 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
+
+#include <stdio.h>
+
+#include "config.h"
 
 #include "bmud.h"
 #include "color.h"
@@ -31,7 +35,6 @@
 #include "main.h"
 #include "misc.h"
 #include "net.h"
-#include <stdio.h>
 
 GtkWidget *win;
 
@@ -120,10 +123,9 @@ cbox ()
 GtkWidget *
 spawn_gui ()
 {
-  GtkWidget *hbox, *vscrollbar;
+  GtkWidget *hbox, *scrollbox;
 
   mud->vbox = gtk_vbox_new (FALSE, 0);
-  hbox = gtk_hbox_new (FALSE, 0);
 
   gtk_signal_connect (GTK_OBJECT (mud->window), "delete_event",
 		      GTK_SIGNAL_FUNC (bmud_exit), NULL);
@@ -132,24 +134,15 @@ spawn_gui ()
 
   do_menu (mud->vbox);
 
-#ifdef USE_ZVT
-  mud->text = zvt_term_new();
-#else
-  mud->text = gtk_text_new (0, 0);
-  gtk_text_set_word_wrap (GTK_TEXT_VIEW (mud->text), TRUE);	/* wordwrap */
-#endif
+  scrollbox = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrollbox);
 
+  mud->text = gtk_text_view_new ();
   gtk_widget_show (mud->text);
+  gtk_container_add (GTK_CONTAINER (scrollbox), mud->text);
+  gtk_text_view_set_editable (GTK_TEXT_VIEW (mud->text), FALSE);
 
-  gtk_box_pack_start (GTK_BOX (hbox), mud->text, TRUE, TRUE, 0);
-/*
-  vscrollbar = gtk_vscrollbar_new (GTK_TEXT_VIEW (mud->text)->vadj);
-*/
-  gtk_box_pack_start (GTK_BOX (hbox), vscrollbar, FALSE, FALSE, 0);
-  gtk_widget_show (vscrollbar);
-
-  gtk_widget_show (hbox);
-  gtk_box_pack_start (GTK_BOX (mud->vbox), hbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (mud->vbox), scrollbox, TRUE, TRUE, 0);
 
   hbox = gtk_hbox_new (0, 0);
 
@@ -172,12 +165,7 @@ spawn_gui ()
   gtk_box_pack_start (GTK_BOX (mud->vbox), hbox, FALSE, TRUE, 0);
 
   gtk_container_border_width (GTK_CONTAINER (mud->window), 1);
-#ifdef USE_GNOME
   gnome_app_set_contents (GNOME_APP (mud->window), mud->vbox);
-#else
-  gtk_widget_show (mud->vbox);
-  gtk_container_add (GTK_CONTAINER (mud->window), mud->vbox);
-#endif
 
   return mud->window;
 }
@@ -210,7 +198,6 @@ textfield_add (gchar * message, int colortype)
   if (message[0] == '\0')
     return;
 
-#ifndef USE_ZVT
   if (adj->value < adj->upper - adj->page_size)
     {
       scrolled_up = TRUE;
@@ -223,7 +210,7 @@ textfield_add (gchar * message, int colortype)
   if (colortype == MESSAGE_ERR)
     gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL,
 		     message, -1);
-#endif  
+
   if (colortype == MESSAGE_ANSI)
     {
       /* break the ansi into 2 parts, and do 'em */
@@ -246,12 +233,10 @@ textfield_add (gchar * message, int colortype)
 
 /*  clear_backbuffer ();	*/
 
-#ifndef USE_ZVT
   if (scrolled_up)
     gtk_text_thaw (GTK_TEXT_VIEW (mud->text));
   else if (adj->value < adj->upper - (adj->page_size))
     gtk_adjustment_set_value (adj, adj->upper - adj->page_size);
-#endif
   
   gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
   return;

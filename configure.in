@@ -1,15 +1,22 @@
-# $Id: configure.in,v 1.12 2004/01/04 15:55:15 erik Exp $
+# $Id: configure.in,v 1.13 2004/01/04 18:49:47 erik Exp $
 
 AC_INIT(src/main.c)
-AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(bmud, 0.6)
+AM_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
 
+AC_ISC_POSIX
 AC_PROG_CC
 AC_PROG_INSTALL
+AM_PROG_CC_STDC
+AC_HEADER_STDC
 
 AC_DEFINE(USE_GNOME,,[Use GNOME Framework])
-CFLAGS="$CFLAGS `pkg-config --cflags libgnomeui-2.0`"
-LIBS="$LIBS `pkg-config --libs libgnomeui-2.0`"
+
+pkg_modules="libgnomeui-2.0"
+PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
+AC_SUBST(PACKAGE_CFLAGS)
+AC_SUBST(PACKAGE_LIBS)
 
 AC_ARG_ENABLE(guile,
 [  --enable-guile          Use GNU Guile for scripting [default=yes]],

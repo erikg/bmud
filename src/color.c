@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.5 2004/01/04 15:23:08 erik Exp $
+ * $Id: color.c,v 1.6 2004/01/04 18:45:15 erik Exp $
  */
 
 #include <stdio.h>
@@ -198,7 +198,7 @@ getcol (char *tmp, int bleh)
 void
 disp_ansi (int size, gchar * in, GtkWidget * target)
 {
-#ifndef USE_ZVT
+
   GdkColor col = color[7][0];
   int n = 0, x = 0;		/* in[n], x is sizeof ansi code */
 
@@ -246,9 +246,6 @@ disp_ansi (int size, gchar * in, GtkWidget * target)
       ++n;
     }
   gtk_text_thaw (GTK_TEXT_VIEW (target));
-#else	/* USE_ZVT */
-  zvt_term_feed(GTK_TEXT_VIEW (target), in, size);
-#endif
   return;
 }
 

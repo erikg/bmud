@@ -1,6 +1,13 @@
-# $Id: Makefile.am,v 1.5 2004/01/04 16:00:06 erik Exp $
+# $Id: Makefile.am,v 1.6 2004/01/04 18:49:47 erik Exp $
+
+INCLUDES = \
+        -DPACKAGE_DATA_DIR=\""$(datadir)"\" \
+        -DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
+        @PACKAGE_CFLAGS@
+
 
 bin_PROGRAMS = bmud 
+bmud_LDADD = @PACKAGE_LIBS@
 
 bmud_SOURCES = \
 	alias.c\

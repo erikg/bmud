@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.8 2004/01/04 16:01:47 erik Exp $
+ * $Id: main.c,v 1.9 2004/01/04 18:45:15 erik Exp $
  */
 
 /* houses the main function. */
@@ -102,14 +102,10 @@ main (int argc, char **argv)
 
   gtk_widget_show (mud->window);
 
-#ifndef USE_ZVT  
-  {
 /*  
   gdk_window_set_background (GTK_TEXT (mud->text)->text_area, &color[0][0]);
   gdk_window_set_background (GTK_TEXT (mud->stat)->text_area, &color[0][0]);
 */
-  }
-#endif
 
   script_init(argc, argv);	/* if guile is enabled, this doesn't return */
   gtk_main ();
