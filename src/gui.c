@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.29 2004/01/20 13:10:46 erik Exp $
+ * $Id: gui.c,v 1.30 2004/01/20 23:40:21 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -241,13 +241,18 @@ void
 textfield_add_ansi (GtkTextBuffer * buffer, char *text, GtkTextIter * iter,
     color_tag_t * tags)
 {
+    GtkTextIter start, end;
+    int offset = gtk_text_iter_get_offset (iter);
+
     gtk_text_buffer_insert (buffer, iter, text, -1);
     while (tags)
     {
 	color_tag_t *tmp;
 
-	gtk_text_buffer_apply_tag (buffer, &tags->tag, &tags->start,
-	    &tags->end);
+	gtk_text_buffer_get_iter_at_offset (buffer, &start,
+	    tags->start + offset);
+	gtk_text_buffer_get_iter_at_offset (buffer, &end, tags->end + offset);
+	gtk_text_buffer_apply_tag (buffer, &tags->tag, &start, &end);
 	tmp = tags;
 	tags = tags->next;
 	free (tags);
@@ -302,7 +307,7 @@ textfield_add (gchar * message, int colortype)
 	break;
     case MESSAGE_ANSI:
 	{
-	    int x = 0, numbytes = strlen (message), offset = 0;
+	    int x = 0, numbytes = strlen (message);
 	    char *text = malloc (numbytes);
 	    color_tag_t *tags;
 
@@ -321,7 +326,7 @@ textfield_add (gchar * message, int colortype)
 		disp_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud-> stat)), (gchar *) & message[x + 1], &statiter,
 		    numbytes - x);
 */
-		tags = disp_ansi (text, message, offset);
+		tags = disp_ansi (text, message);
 		textfield_add_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW
 			(mud->stat)), text, &iter, tags);
 
@@ -330,7 +335,7 @@ textfield_add (gchar * message, int colortype)
 		mud->curr_color = color[7][1];
 	    } else
 	    {
-		tags = disp_ansi (text, message, offset);
+		tags = disp_ansi (text, message);
 		textfield_add_ansi (buffer, text, &iter, tags);
 	    }
 	    break;

@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.15 2004/01/20 15:22:09 erik Exp $
+ * $Id: color.c,v 1.16 2004/01/20 23:40:21 erik Exp $
  */
 
 #include <stdio.h>
@@ -199,7 +199,7 @@ getcol (char *tmp, int bleh)
 
 /*** Scan thru the text to look for escapes ***/
 color_tag_t *
-disp_ansi (char *dst, char *src, int offset)
+disp_ansi (char *dst, char *src)
 {
     //GdkColor col = color[7][0];
     int n = 0, x = 0, j = 0, size;
