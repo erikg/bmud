@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.5 2004/01/04 18:45:15 erik Exp $
+ * $Id: gui.c,v 1.6 2004/01/04 19:33:03 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -135,12 +135,16 @@ spawn_gui ()
   do_menu (mud->vbox);
 
   scrollbox = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbox), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
   gtk_widget_show (scrollbox);
 
   mud->text = gtk_text_view_new ();
   gtk_widget_show (mud->text);
   gtk_container_add (GTK_CONTAINER (scrollbox), mud->text);
   gtk_text_view_set_editable (GTK_TEXT_VIEW (mud->text), FALSE);
+  GTK_WIDGET_UNSET_FLAGS (mud->text, GTK_CAN_FOCUS);
+  gtk_text_view_set_editable (GTK_TEXT_VIEW (mud->text), FALSE);
+  gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (mud->text), GTK_WRAP_WORD);
 
   gtk_box_pack_start (GTK_BOX (mud->vbox), scrollbox, TRUE, TRUE, 0);
 
@@ -247,12 +251,9 @@ textfield_add (gchar * message, int colortype)
 void
 clear (int n, GtkTextView * target)
 {
-	n=0;
-/*
   gtk_text_freeze (target);
   gtk_text_backward_delete (target, gtk_text_get_length (target));
   gtk_text_thaw (target);
-*/
 }
 
 void

@@ -1,3 +1,4 @@
+
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
@@ -20,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.c,v 1.4 2004/01/04 15:23:08 erik Exp $
+ * $Id: misc.c,v 1.5 2004/01/04 19:33:03 erik Exp $
  */
 
 /* stuff that doesn't go elsewhere. conf dir handling and history */
@@ -38,191 +39,212 @@
 
 static char *bmud_conf_dir;
 
-char *gethome()
+char *
+gethome ()
 {
-	return getenv("HOME");
+    return getenv ("HOME");
 }
 
-char *gethome_misc(char *subdir)
+char *
+gethome_misc (char *subdir)
 {
-	char *buf;
-	int len;
-	len = strlen(gethome()) + strlen(subdir) + 2;
-	buf = (char *)malloc(len);
-	snprintf(buf, len, "%s/%s", gethome(), subdir);
-	return buf;
+    char *buf;
+    int len;
+
+    len = strlen (gethome ()) + strlen (subdir) + 2;
+    buf = (char *)malloc (len);
+    snprintf (buf, len, "%s/%s", gethome (), subdir);
+    return buf;
 }
 
-char *gethome_conf()
+char *
+gethome_conf ()
 {
-	return gethome_misc(".bmud");
+    return gethome_misc (".bmud");
 }
 
-char *gethome_conf_file(char *file)
+char *
+gethome_conf_file (char *file)
 {
-	char *buf;
-	int len;
-	buf = gethome_conf();
-	len = strlen(buf);
-	buf = realloc( buf, strlen(buf)+strlen(file)+2 );
-	snprintf( buf+len+1, strlen(file)+1, "/%s", file);
-	return buf;
+    char *buf;
+    int len;
+
+    buf = gethome_conf ();
+    len = strlen (buf);
+    buf = realloc (buf, strlen (buf) + strlen (file) + 2);
+    snprintf (buf + len + 1, strlen (file) + 1, "/%s", file);
+    return buf;
 }
 
 void
 hist_add (char *x)
 {
-  /* abort if history is disabled or x is blank */
-  if (mud->hist->max < 1 || x[0] == 0)
-    return;
-  /* free up 'lost' bit */
-/*      if(mud->hist->list[mud->hist->pos]!=NULL)   make sure we don't free null*/
-  g_free (mud->hist->list[mud->hist->pos]);
-  /* add our line to the history */
-  mud->hist->list[mud->hist->pos] = g_strdup (x);
-  /* update the rest of history */
-  mud->hist->cur = mud->hist->pos;
-  if (mud->hist->size < mud->hist->max)
-    mud->hist->size++;
-  mud->hist->pos = (mud->hist->pos + 1) % mud->hist->size;
+    /*
+     * abort if history is disabled or x is blank 
+     */
+    if (mud->hist->max < 1 || x[0] == 0)
+	return;
+    /*
+     * free up 'lost' bit 
+     */
+    if (mud->hist->list && mud->hist->list[mud->hist->pos])	/* make sure we don't free null */
+	g_free (mud->hist->list[mud->hist->pos]);
+    /*
+     * add our line to the history 
+     */
+    mud->hist->list[mud->hist->pos] = g_strdup (x);
+    /*
+     * update the rest of history 
+     */
+    mud->hist->cur = mud->hist->pos;
+    if (mud->hist->size < mud->hist->max)
+	mud->hist->size++;
+    mud->hist->pos = (mud->hist->pos + 1) % mud->hist->size;
 
-/*	if(mud->hist->tmp)	*/
-  g_free (mud->hist->tmp);
-  mud->hist->cur = mud->hist->pos;
+    if (mud->hist->tmp)
+	g_free (mud->hist->tmp);
+    mud->hist->tmp = NULL;
+    mud->hist->cur = mud->hist->pos;
 }
 
 void
 hist_prev ()
 {
-  if (mud->hist->cyclic == 0)
-    if ((mud->hist->pos + 1) % mud->hist->size == mud->hist->cur)
-      return;
+    if (mud->hist->cyclic == 0)
+	if ((mud->hist->pos + 1) % mud->hist->size == mud->hist->cur)
+	    return;
+
 /*      if(mud->hist->list[mud->hist->cur])	*/
-  g_free (mud->hist->list[mud->hist->cur]);
-  mud->hist->list[mud->hist->cur] =
-    g_strdup (gtk_entry_get_text (GTK_ENTRY (mud->ent)));
-  if (mud->hist->size > 0)
+    g_free (mud->hist->list[mud->hist->cur]);
+    mud->hist->list[mud->hist->cur] =
+	g_strdup (gtk_entry_get_text (GTK_ENTRY (mud->ent)));
+    if (mud->hist->size > 0)
     {
-      mud->hist->cur--;
-      if (mud->hist->cur < 0)
-	mud->hist->cur = mud->hist->size - 1;
+	mud->hist->cur--;
+	if (mud->hist->cur < 0)
+	    mud->hist->cur = mud->hist->size - 1;
     }
-  gtk_entry_set_text (GTK_ENTRY (mud->ent), mud->hist->list[mud->hist->cur]);
+    gtk_entry_set_text (GTK_ENTRY (mud->ent), mud->hist->list[mud->hist->cur]);
 }
 
 void
 hist_next ()
 {
-  if (mud->hist->cyclic == 0)
-    if (mud->hist->cur == mud->hist->pos)
-      return;
-  mud->hist->list[mud->hist->cur] =
-    g_strdup (gtk_entry_get_text (GTK_ENTRY (mud->ent)));
-  if (mud->hist->size)
-    mud->hist->cur = (mud->hist->cur + 1) % mud->hist->size;
-  gtk_entry_set_text (GTK_ENTRY (mud->ent), mud->hist->list[mud->hist->cur]);
+    if (mud->hist->cyclic == 0)
+	if (mud->hist->cur == mud->hist->pos)
+	    return;
+    mud->hist->list[mud->hist->cur] =
+	g_strdup (gtk_entry_get_text (GTK_ENTRY (mud->ent)));
+    if (mud->hist->size)
+	mud->hist->cur = (mud->hist->cur + 1) % mud->hist->size;
+    gtk_entry_set_text (GTK_ENTRY (mud->ent), mud->hist->list[mud->hist->cur]);
 }
 
 void
 hist_clear ()
 {
-  int x;
-  for (x = 0; x < mud->hist->max; x++)
-    g_free (mud->hist->list[x]);
-  mud->hist->cur = mud->hist->pos = 0;
+    int x;
+
+    for (x = 0; x < mud->hist->max; x++)
+	g_free (mud->hist->list[x]);
+    mud->hist->cur = mud->hist->pos = 0;
 }
 
 gint
 hist_evt (GtkWidget * w, GdkEventKey * event, gpointer data)
 {
-	data = NULL;
-  switch (event->keyval)
+    data = NULL;
+    switch (event->keyval)
     {
     case GDK_Up:
-      {
-	hist_prev ();
-	break;
-      }
+	{
+	    hist_prev ();
+	    break;
+	}
     case GDK_Down:
-      {
-	hist_next ();
-	break;
-      }
+	{
+	    hist_next ();
+	    break;
+	}
     case GDK_Page_Up:
-      {
+	{
+
 /*
 	GtkAdjustment *adj = GTK_TEXT (mud->text)->vadj;
 	gtk_adjustment_set_value (adj, adj->value - adj->page_size);
 */
-	break;
-      }
+	    break;
+	}
     case GDK_Page_Down:
-      {
+	{
+
 /*
 	GtkAdjustment *adj = GTK_TEXT (mud->text)->vadj;
 	if (adj->value < adj->upper - adj->page_size)
 	  gtk_adjustment_set_value (adj, adj->value + adj->page_size);
 */
-	break;
-      }
+	    break;
+	}
     default:
-      /* normal handling */
-      return 0;
-      break;
+	/*
+	 * normal handling 
+	 */
+	return 0;
+	break;
     }
-  gtk_signal_emit_stop_by_name (GTK_OBJECT (w), "key_press_event");
-  return 1;
+    gtk_signal_emit_stop_by_name (GTK_OBJECT (w), "key_press_event");
+    return 1;
 }
 
 void
 check_my_dir ()
 {
-  char *homedir;
-  if (bmud_conf_dir)
-    return;
-  homedir = (char *) g_malloc (256);
-  memset (homedir, 0, 256);
+    char *homedir;
 
-  if (bmud_conf_dir)
-    g_free (bmud_conf_dir);
-  bmud_conf_dir = NULL;
+    if (bmud_conf_dir)
+	return;
+    homedir = (char *)g_malloc (256);
+    memset (homedir, 0, 256);
 
-  homedir = g_get_home_dir ();
+    if (bmud_conf_dir)
+	g_free (bmud_conf_dir);
+    bmud_conf_dir = NULL;
 
-  if (homedir == NULL || homedir[0] == 0)
+    homedir = g_get_home_dir ();
+
+    if (homedir == NULL || homedir[0] == 0)
     {
-      if (homedir)
-	g_free (homedir);
-      homedir = (char *) getenv ("HOME");
+	if (homedir)
+	    g_free (homedir);
+	homedir = (char *)getenv ("HOME");
     }
 
-  if (homedir != NULL && homedir[0] != 0)
+    if (homedir != NULL && homedir[0] != 0)
     {
-      DIR *x;
+	DIR *x;
 
-      bmud_conf_dir = g_strconcat (homedir, "/.bmud/", NULL);
+	bmud_conf_dir = g_strconcat (homedir, "/.bmud/", NULL);
 
-      x = opendir (bmud_conf_dir);
-      if (x == NULL)
-	mkdir (bmud_conf_dir, 0755);
-      else
+	x = opendir (bmud_conf_dir);
+	if (x == NULL)
+	    mkdir (bmud_conf_dir, 0755);
+	else
 	{
-	  closedir (x);
+	    closedir (x);
 	}
 
-      if (homedir)
-	g_free (homedir);
-      return;
-    }
-  else
+	if (homedir)
+	    g_free (homedir);
+	return;
+    } else
     {
-      g_free (homedir);
-      bmud_conf_dir = NULL;
+	g_free (homedir);
+	bmud_conf_dir = NULL;
     }
 
-  textfield_add ("Could not find your home dir", MESSAGE_ERR);
-  printf ("Could not find your home dir");
-  fflush (0);
+    textfield_add ("Could not find your home dir", MESSAGE_ERR);
+    printf ("Could not find your home dir");
+    fflush (0);
 }
 
 gchar *zibberwalkie;
@@ -230,8 +252,8 @@ gchar *zibberwalkie;
 char *
 show_conf_dir (char *file)
 {
-  if (zibberwalkie)
-    g_free (zibberwalkie);
-  zibberwalkie = g_strconcat (bmud_conf_dir, file, NULL);
-  return zibberwalkie;
+    if (zibberwalkie)
+	g_free (zibberwalkie);
+    zibberwalkie = g_strconcat (bmud_conf_dir, file, NULL);
+    return zibberwalkie;
 }

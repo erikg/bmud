@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.6 2004/01/04 18:45:15 erik Exp $
+ * $Id: color.c,v 1.7 2004/01/04 19:33:03 erik Exp $
  */
 
 #include <stdio.h>
@@ -201,8 +201,7 @@ disp_ansi (int size, gchar * in, GtkWidget * target)
 
   GdkColor col = color[7][0];
   int n = 0, x = 0;		/* in[n], x is sizeof ansi code */
-
-  gtk_text_freeze (GTK_TEXT_VIEW (target));
+printf("%s\n", in);
 
   while (n < size)
     {
@@ -230,9 +229,12 @@ disp_ansi (int size, gchar * in, GtkWidget * target)
 
       /* if it's not a 'special' code, print */
       else if (in[n] != 27)
+  gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW (target)),
+        &in[n], 1);
+/*
 	gtk_text_insert (GTK_TEXT_VIEW (target), mud->disp_font, &col, NULL,
 			 &in[n], 1);
-
+*/
       /* this is an ansi code, stripping time */
       else
 	{
@@ -245,7 +247,6 @@ disp_ansi (int size, gchar * in, GtkWidget * target)
 	}
       ++n;
     }
-  gtk_text_thaw (GTK_TEXT_VIEW (target));
   return;
 }
 
