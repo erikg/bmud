@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.15 2004/01/18 18:28:22 erik Exp $
+ * $Id: main.c,v 1.16 2004/01/18 18:55:06 erik Exp $
  */
 
 /* houses the main function. */
@@ -77,21 +77,16 @@ main (int argc, char **argv)
     mud->hist->list = g_malloc (sizeof (gpointer) * (mud->hist->max + 1));
 
     init (argc, argv);		/* mud->window is now a window widget */
-    /*
-     * gnome-compat.h or gtk-compat.h 
-     */
 
     check_my_dir ();		/* misc.c */
-
     if (show_conf_dir (""))	/* misc.c */
 	gtk_rc_parse (show_conf_dir ("gtkrc"));
 
+    session_load ();		/* prefs.c */
     color_load ();		/* color.c */
 
     gtk_widget_realize (mud->window);
     mud->window = spawn_gui ();	/* gui.c */
-
-    session_load ();		/* prefs.c */
 
     if (mud->disp_font)
 	g_free (mud->disp_font);

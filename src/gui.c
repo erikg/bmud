@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.17 2004/01/18 18:33:01 erik Exp $
+ * $Id: gui.c,v 1.18 2004/01/18 18:55:06 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -153,7 +153,6 @@ spawn_gui ()
     gtk_container_add (GTK_CONTAINER (scrollbox), mud->text);
     gtk_text_view_set_editable (GTK_TEXT_VIEW (mud->text), FALSE);
     GTK_WIDGET_UNSET_FLAGS (mud->text, GTK_CAN_FOCUS);
-    gtk_text_view_set_editable (GTK_TEXT_VIEW (mud->text), FALSE);
     gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (mud->text), GTK_WRAP_WORD);
     gtk_widget_modify_base (GTK_WIDGET (mud->text), GTK_STATE_NORMAL,
 	&color[0][0]);
@@ -167,13 +166,16 @@ spawn_gui ()
     /*
      * the stat box 
      */
-    mud->stat = gtk_entry_new ();
+    mud->stat = gtk_text_view_new ();
+    gtk_widget_show (mud->stat);
     gtk_widget_set_usize (mud->stat, mud->statsize, 20);
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(mud->stat), FALSE);
+    GTK_WIDGET_UNSET_FLAGS (mud->text, GTK_CAN_FOCUS);
+    gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (mud->text), GTK_WRAP_NONE);
     gtk_widget_modify_base (GTK_WIDGET (mud->stat), GTK_STATE_NORMAL,
 	&color[0][0]);
     gtk_widget_modify_text (GTK_WIDGET (mud->stat), GTK_STATE_NORMAL,
 	&color[7][0]);
-    gtk_widget_show (mud->stat);
     gtk_box_pack_start (GTK_BOX (hbox), mud->stat, FALSE, TRUE, 0);
 
     /*
