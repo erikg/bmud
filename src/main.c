@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.13 2004/01/18 15:43:15 erik Exp $
+ * $Id: main.c,v 1.14 2004/01/18 18:10:53 erik Exp $
  */
 
 /* houses the main function. */
@@ -86,6 +86,8 @@ main (int argc, char **argv)
     if (show_conf_dir (""))	/* misc.c */
 	gtk_rc_parse (show_conf_dir ("gtkrc"));
 
+    color_load ();		/* color.c */
+
     gtk_widget_realize (mud->window);
     mud->window = spawn_gui ();	/* gui.c */
 
@@ -97,8 +99,6 @@ main (int argc, char **argv)
     gtk_widget_set_usize (mud->stat, 1, 20);
 */
 
-    color_load ();		/* color.c */
-
     if (mud->disp_font)
 	g_free (mud->disp_font);
     mud->disp_font = gdk_font_load (mud->disp_font_name);	/* mem leak */
@@ -107,11 +107,6 @@ main (int argc, char **argv)
 
     gtk_widget_show (mud->window);
     gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
-
-/*  TODO set background colors
-  gdk_window_set_background (GTK_TEXT (mud->text)->text_area, &color[0][0]);
-  gdk_window_set_background (GTK_TEXT (mud->stat)->text_area, &color[0][0]);
-*/
 
     script_init (argc, argv);	/* if guile is enabled, this doesn't return */
     gtk_main ();

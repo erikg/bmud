@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.15 2004/01/18 16:15:10 erik Exp $
+ * $Id: gui.c,v 1.16 2004/01/18 18:10:52 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -152,6 +152,10 @@ spawn_gui ()
     GTK_WIDGET_UNSET_FLAGS (mud->text, GTK_CAN_FOCUS);
     gtk_text_view_set_editable (GTK_TEXT_VIEW (mud->text), FALSE);
     gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (mud->text), GTK_WRAP_WORD);
+    gtk_widget_modify_base (GTK_WIDGET (mud->text), GTK_STATE_NORMAL,
+	&color[0][0]);
+    gtk_widget_modify_text (GTK_WIDGET (mud->text), GTK_STATE_NORMAL,
+	&color[7][0]);
 
     gtk_box_pack_start (GTK_BOX (mud->vbox), scrollbox, TRUE, TRUE, 0);
 
