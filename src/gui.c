@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.22 2004/01/19 16:20:01 erik Exp $
+ * $Id: gui.c,v 1.23 2004/01/19 16:34:50 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -223,6 +223,7 @@ spawn_gui ()
 void
 clear_backbuffer ()
 {
+/*
     int n = gtk_text_get_length (GTK_TEXT_VIEW (mud->text));
 
     if (mud->maxlines <= 0 || n < mud->maxlines)
@@ -232,6 +233,7 @@ clear_backbuffer ()
     gtk_text_backward_delete (GTK_TEXT_VIEW (mud->text), n - mud->maxlines);
     gtk_text_set_point (GTK_TEXT_VIEW (mud->text), mud->maxlines);
     gtk_text_thaw (GTK_TEXT_VIEW (mud->text));
+*/
 }
 
 	/*
@@ -282,23 +284,23 @@ textfield_add (gchar * message, int colortype)
 	break;
     case MESSAGE_ANSI:
 	{
-	    int x, numbytes = strlen (message);
+	    int x = 0, numbytes = strlen (message);
 
 	    /*
 	     * break the ansi into 2 parts, and do 'em 
 	     */
 	    if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	    {
-		clear (0, GTK_TEXT_VIEW (mud->stat));
+		GtkTextIter statiter;
+		clear (0, mud->stat);
 		while (message[x] != '\n')
 		    x--;
-		disp_ansi (numbytes - x, (gchar *) & message[x + 1],
-		    mud->stat);
+		disp_ansi (gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->stat)), (gchar *) & message[x + 1], &statiter, numbytes - x);
 		x--;
 		message[x] = 0;
 		mud->curr_color = color[7][1];
 	    } else
-		disp_ansi (buffer, message, &iter);
+		disp_ansi (buffer, message, &iter, -1);
 	    break;
 	}
     default:
