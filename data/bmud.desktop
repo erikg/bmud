@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Bmud
+Comment=Br0kEs MUD client
+Exec=bmud
+Icon=bmud.png
+Terminal=0
+Type=Application

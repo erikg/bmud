@@ -1,0 +1,58 @@
+simple ansi gtk mud client
+only one session at a time
+command entry has buffer history, as well as normal 'entry' editing
+main text window is black with ansi colored text, which is configurable
+provides tintin++ aliasing, possably editable popup context menu?
+plans eq tree window with context menu, as well as dynamic 'map' window
+has 'connect wizard', double click the pic and it does login/passwd(opt)
+stores character data and mud data
+plans character window
+keymapping
+GNOME support (np, dun it before, will do it again :) 
+GPL type deal, no charge, c`est gratis
+
+
+################### GUI CONSTRUCTION ########################################
+
+main window
+	vbox
+		menubar
+			file
+				connect
+				disconnect
+				---
+				exit
+			options
+				font selector
+			tools
+				eq
+				map
+					
+			help
+				about
+
+		main text (ansi color optional)
+
+		hbox
+			stat entry    
+			string entry
+
+eq window
+	future
+map window
+	future
+
+################################### FILES ####################################
+
+Makefile
+README
+alias.c	  the tt++ aliasing schema
+ansi.c 	  color setting routines? steal from bezerk/amcl?
+configure
+eq.c	* equip window, for the future
+gui.c     gui calls, makes the 'main' window
+main.c	  top level
+map.c	* map window, for the future
+net.c	  network calls, probly be almost identicle to amcl's?
+wiz.c	* code for the connect wizard and saved infoz (not yet?)
+

@@ -1,0 +1,53 @@
+> 
+> 1. Does anyone have a handy reference to terminal escape codes, especially
+>    the ones for colours?
+
+They are the same as xterm/rxvt/konsole/linux console, etc.  Hopefully
+there will be a reference at some point, but for now use others.
+
+Generally, for the basic attributes, you have:
+
+\E[nm
+
+Where n is a decimal number:
+
+30-37 sets foreground colours 0-7, 90-97 set colours 8-15.
+40-47 sets background colours 0-7, 100-107 set colours 8-15.
+1 is bold
+4 is underline
+5 is blink (unimplemented)
+7 is reverse
+22 turns off bold
+24 turns off underline
+25 turns off blink
+27 turns off reverse
+0 resets attributes
+
+You can also combine them in one command, such as
+
+\E[31;1;7;44m
+
+Sets foreground 1, background 4, and bold/reverse.
+
+(I might've got the foreground/background inverted)
+
+> 2. Is there any chance that the matching code in zvt will ever add colour
+>    highlighting as well as underline/bold?  This would be really cool for
+>    R, as it would let us add nice highlighting of keywords etc.
+
+It might, but the code effort is a less trivial than the current
+stuff (it is trivial to invert bold/underline/revrse on/opff, but
+to save colours would require a copy of the lines in question).
+
+> 3. Having looked at gnome-genius, the appropriate communication method
+>    between R and zvt would appear to be a pipe (given that I really don't
+>    want to fork).  Does this seem reasonable?
+
+That really depends on what you're doing.  If you have your own keyboard
+event handler, you can get the keystrokes yourself and process accordingly.
+Then just use it to output stuff.  I guess it depends on what you
+are doing.
+
+Michael
+
+

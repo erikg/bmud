@@ -1,0 +1,20 @@
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 1 |grep -v 0 |wc -l
+     97
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 2 |wc -l
+     11
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 3 |wc -l
+     11
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 4 |wc -l
+     19
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 5 |wc -l
+      9
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 6 |wc -l
+     14
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 7 |wc -l
+      4
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 8 |wc -l
+      5
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 9 |wc -l
+     11
+br0ke@shells /var/log/apache$ cat bmudpoll |cut -c -2 |grep 10 |wc -l
+     14

@@ -1,0 +1,18 @@
+EXTRA_DIST = Makefile.am bmud.1 bmud.1.gz bmud.1.gz.gnome bmud.1.gz.gtk\
+	bmud.desktop bmud.html bmud.lsm bmud.png mudservers rpm-bmud.spec\
+	topic.dat
+
+
+install:
+	mkdir -p ${datadir}/gnome/apps/Games
+	mkdir -p ${datadir}/gnome/help/bmud/C
+	mkdir -p ${datadir}/pixmaps
+	install -m 644 bmud.desktop ${datadir}/gnome/apps/Games/bmud.desktop
+	install -m 644 topic.dat ${datadir}/gnome/help/bmud/C/topic.dat
+	install -m 644 bmud.html ${datadir}/gnome/help/bmud/C/bmud.html
+	install -m 644 bmud.png ${datadir}/pixmaps/bmud.png
+
+uninstall:
+	rm -f ${datadir}/gnome/apps/Games/bmud.desktop
+	rm -rf ${datadir}/gnome/help/bmud
+	rm -f ${datadir}/pixmaps/bmud.png

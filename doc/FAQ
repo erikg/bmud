@@ -1,0 +1,8 @@
+Q: Why not use zvt?
+A: A couple reasons. zvt doesn't support dynamic width fonts. While most people
+   like static width fonts so the ascii 'art' comes out right, I like the 
+   goudyoldstyle font. Another reason is when I was implementing the text box,
+   the zvt widgets was very alpha, very buggy, and very difficult to use. I may
+   implement it as an optional target, possably runtime (like in irssi?)
+
+

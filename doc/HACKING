@@ -1,0 +1,93 @@
+This is a quick "how to contribute" guide. If you're not on the bmud mailing 
+list, you probably should be. 
+
+	$ echo subscribe | mail bmud-request@mail.dynsol.net
+
+
+=================== Code Style ========================
+
+******
+Indentation is tabbed, not spaced. If you use spaces, I will hunt you down and 
+beat you with a silly stick :) This is because A) tab is easier than space space
+space space space ... and B) it's trivial to set how many spaces a tab delimits
+to, so people who like 2 or 4 or 8 or pi spaces of indentation can all be happy.
+
+******
+Braces should be placed on lines by themselves, indented to the same level as 
+the preceding statement. I prefer the consistancy, even tho I'm wrong :) 
+
+	Myfunc( int x )
+	{
+		int y;
+		if( x > 3 )
+		{
+			y = whatever;
+		}
+	}
+
+
+******
+Naming of functions should represent a general catagory and specific activity. 
+Naming of variables is unregulated. I try to keep the names fairly intuitive...
+
+******
+Spacing for functions: I like to do stuff like "void myfunc( int x, int y )" so
+it's fairly easy to see that's going on. If there's a math formula that has a
+lot of crap, I try to use spacing to help signify what's going on. This is a
+clip from color.c as of 0.4: if( in[n]==-1 && in[n+2]==1 )
+hopefully there won't be anything more complex than that? :)
+
+******
+Commenting should be brief and concise, but definitly present if code is not 
+obvious. Comments are meant to clear up ambigouities, not fill books :) One very
+important detail is to use C style commenting, *NOT* C++ style commenting. I
+know that it's fun to use // instead of /* */, and I also know that the various
+tools can be flagged to accept c++, but I don't wanna learn all the flags and I
+want to keep as close to ansi as possable. If gtk+ were ansi, I'd be using
+-ansi -pedantic -Wall -Werror for compiling... :)
+
+******
+The only coding standard that really pisses me off is the indentation thing...
+And the comments. :)
+
+
+==================== submission ===========================
+
+Diff patches. :) move your working structure to another name (hopefully one that
+has something to do with the patch)
+
+	$ mv bmud-0.x bmud-0.x-neato_feature
+
+unpack the original of the same version (so I know how to apply the patch)
+
+	$ tar zxvf bmud-0.x.tar.gz
+
+cd into your modified versions directory
+
+	$ cd bmud-0.x-neato_feature
+
+clean up what you can
+
+	$ make distclean ; rm *~ */*~
+
+make the patch file
+
+	$ diff -urNb bmud-0.x bmud-0.x-neato_feature > bmud-0.x-neato_feature.patch
+
+edit the patch file and clean up unnecessary crap. I did a patch for one gamei
+that gave me a frikkin' half meg patch file, but after hand editing I had a mere
+6k file. Most of the file was like the configure script and assorted stuff like
+that. PLEASE clean up the patch file :)
+
+Email the patch to me at <br0ke@shells.dynsol.net> or <br0ke@math.smsu.edu> or
+to the bmud list <bmud@mail.dynsol.net>. 
+
+Make sure you put your name in the Authors file :)
+
+If the patch does not compile cleanly on the release it was built against, it
+will probably be ignored. Be prepared to argue for why your patch should be
+included, as I've very stupid and very stubborn. I will respond as soon as I get
+time to look through the patch, and give it a test run. Please don't get upset
+if I don't email the next day, I have very little time to devote to this project
+and often go weeks between looking at it.
+

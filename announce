@@ -1,0 +1,4 @@
+ * restructuring of directory tree
+ * cleaned up automake/conf
+ * RPM dist now (deb on the way)
+ * major improvements to stability

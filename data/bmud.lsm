@@ -1,0 +1,14 @@
+Begin3
+Title:		Bmud
+Version:	0.4
+Entered-date:	Aug 8 1998
+Description:	GNOME based mud client
+Keywords:	mud mush moo game client gnome
+Author:		Erik Greenwald (br0ke@math.smsu.edu)
+Maintained-by:	Erik Greenwald (br0ke@math.smsu.edu)
+Primary-site:	http://math.smsu.edu/~br0ke/bmud.html
+Alternate-site: 
+Original-site:	http://math.smsu.edu/~br0ke/bmud.html
+Platforms:      Linux/GNOME
+Copying-policy: GNU Copyright
+End

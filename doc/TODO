@@ -1,0 +1,13 @@
+soon:
+	configuration dialog
+	fix backlog clipping
+	smart stat box resizing
+	mebbe scripting (alias, triggers, etc)
+
+not so soon:
+	map
+	eq memory
+	autowalk
+	connect wizard (improvements)
+	multiple connections.
+	threading?

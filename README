@@ -1,0 +1,89 @@
+Br0kEs MUD Client.
+
+GNOME mud client designed to be fast, friendly, and highly configurable.
+For more info, read 'PROPOSAL'...
+
+started late aug5 '98
+
+** INSTALLATION **
+
+basic configure/make setup. Installed the binary to /usr/local/bin/bmud and the gnome desktop info to /usr/share/gnome/apps/Games/bmud.desktop. Don't even gotta restart panel, it *SHOULD* just automagically appear in the 'Games' section...
+
+./configure
+make
+make install
+
+** TODO **
+
+DONE-ISH 1  aliasing, I said tt++ in the proposal, but I'm thinking more like ircII now
+DONE-ISH 2  color and font selection dialog
+3  connect wizard that'll store IP, port, and login info
+4  automapper that can flag areas and have a 'quick goto' thing
+5  logging?
+DONE 6  fix the damn colors, I ripped the ansi shit form amcl and it's f*cked up
+7  make the 'stat' box (lower left) auto-resizing
+8  make the main window start clearing its buffer, maybe only keep the last
+	200? lines? definitly has to be an option tho? *shrug*
+DONE 9  fix the auto-scroll mechanism so if something happens when you're scrolled
+	up it doesn't scroll all the way back down
+10 speed up the display, apperantly this is important as proven by zmud?
+11 make an equipment tree box (that's automatically updated, and has some dnd
+12 make a character view box that shows 'score' and 'level' stuff and auto
+	updates itself as stuff changes
+13 bugfixes. It feels real robust right now (aug 8 morning) but I KNOW
+	there's bugs in it that needs to be stomped
+
+** HOW TO REPORT A BUG **
+
+email br0ke@math.smsu.edu or the mailing list
+do NOT report bugs like "I click this and it doesn't work" if it's in todo
+do NOT bitch and moan if it crashes and breaks something. It's alpha grade.
+do NOT email me saying "it sucks", if you think it sucks, tell me WHY :)
+do NOT ask if I will port to windows, or I'll be forced to bitchslap you so
+hard your pimpdaddy, 'billy G', bruises so bad he has to go to the hospital
+
+** HOW TO HELP OUT **
+
+code patches welcome, minor fixes or large peices. Please send patches in
+unified diff format
+
+make distclean
+cd ..
+mv bmud-0.x bmud-0.x-neatoshiznitz
+tar zxvf bmud-0.x.tar.gz
+diff -urNb bmud-0.x bmud-0.x-neatoshiznitz > bmud-0.x-neatoshiznits.patch
+
+please go thru the files and clip out the unnecessary stuff, uhhhhhh, diff
+tends to put in a lot of trash from like config stuff and stuff :/
+
+art for icons and stuff
+
+ideas/designs
+
+email br0ke@math.smsu.edu with thoughts, ideas, patch files, updated
+source, money, beer, pizza, hardware...
+
+
+
+
+
+** CONTRIBUTIONS **
+
+[Connect wizard]
+
+The connection wizard is pretty easy. Just type in the number of the server
+in the gtk_entry.
+
+There's a DEFINE in bmud.h where you specify the filename where to look for
+servers. The format of the list should be "host port", I have included an
+examplelist called mudservers (dont expect all of them to work, they're
+fictional :)).
+
+One thing that I have noticed is that if you have many servers in your list you
+get a really big Wizard window, to fix that I'll add a scrollbar.
+
+Erik Thyren
+
+(see AUTHORS for contributions without README's)
+
+
