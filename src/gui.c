@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.7 2004/01/05 00:11:24 erik Exp $
+ * $Id: gui.c,v 1.8 2004/01/12 10:40:45 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -205,11 +205,16 @@ void
 textfield_add (gchar * message, int colortype)
 {
     GtkAdjustment *adj = GTK_TEXT_VIEW (mud->text)->vadjustment;
+    GtkTextIter iter, end;
+    GtkTextBuffer *buffer;
     int scrolled_up = FALSE;
     int x, numbytes = strlen (message);
 
     if (message[0] == NULL)
 	return;
+
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mud->text));
+    gtk_text_buffer_get_end_iter (buffer, &iter);
 
 /*
   if (adj->value < adj->upper - adj->page_size)
@@ -222,14 +227,10 @@ textfield_add (gchar * message, int colortype)
     {
     case MESSAGE_NONE:
     case MESSAGE_NORMAL:
-	gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW
-		(mud->text)), message, -1);
-
-//      gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[7][1], NULL, message, -1);
+	gtk_text_buffer_insert (buffer, &iter, message, -1);
 	break;
     case MESSAGE_ERR:
-	gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW
-		(mud->text)), message, -1);
+	gtk_text_buffer_insert (buffer, &iter, message, -1);
 	//gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL, message, -1);
 	break;
     case MESSAGE_ANSI:
@@ -254,11 +255,12 @@ textfield_add (gchar * message, int colortype)
 
 /*  clear_backbuffer ();	*/
 
+/*
     if (scrolled_up)
 	gtk_text_thaw (GTK_TEXT_VIEW (mud->text));
     else if (adj->value < adj->upper - (adj->page_size))
 	gtk_adjustment_set_value (adj, adj->upper - adj->page_size);
-
+*/
     gtk_widget_grab_focus (GTK_WIDGET (mud->ent));
     return;
 }
@@ -270,7 +272,8 @@ textfield_add (gchar * message, int colortype)
 void
 clear (int n, GtkWidget * target)
 {
-    gtk_text_buffer_set_text (GTK_TEXT_BUFFER(target), NULL, 0);
+    gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW
+	    (target)), "", -1);
 }
 
 void
