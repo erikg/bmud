@@ -1,6 +1,6 @@
-SUBDIRS = m4  po data src 
+SUBDIRS = data src 
 
-EXTRA_DIST= config.rpath ChangeLog
+EXTRA_DIST= config.rpath mkinstalldirs  config.rpath ChangeLog
 
 .PHONY : rpm
 rpm: dist
@@ -24,4 +24,3 @@ lint:
 indent:
 	make -C src indent
 
-ACLOCAL_AMFLAGS = -I m4

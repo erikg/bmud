@@ -5,11 +5,6 @@ AM_INIT_AUTOMAKE(bmud, 0.6)
 AC_PROG_CC
 AC_PROG_INSTALL
 
-ALL_LINGUAS="en_US"
-AM_GNU_GETTEXT([external])
-
-AC_DEFINE_UNQUOTED(LOCALEDIR, "$prefix/share/locale", [Where the locale files are])
-
 dnl AM_PATH_GTK(1.2.0,
 dnl 	[
 dnl 		CFLAGS="$CFLAGS $GTK_CFLAGS"
@@ -87,9 +82,4 @@ if test x$perl = xyes; then
 	AC_MSG_RESULT(yes)
 fi
 
-AC_OUTPUT([ m4/Makefile 
-Makefile 
-data/Makefile
-po/Makefile.in
-src/Makefile
-],[])
+AC_OUTPUT(Makefile data/Makefile src/Makefile)
