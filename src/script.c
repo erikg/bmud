@@ -21,16 +21,14 @@
  *****************************************************************************/
 
 /*
- * $Id: script.c,v 1.4 2004/01/18 15:43:15 erik Exp $
+ * $Id: script.c,v 1.5 2004/01/20 13:07:00 erik Exp $
  */
 
+#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <errno.h>
-
-#define _XOPEN_SOURCE
-#define __XOPEN_SOURCE
 
 #ifdef USE_GUILE
 #include <guile/gh.h>
