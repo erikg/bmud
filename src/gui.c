@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.19 2004/01/18 19:31:20 erik Exp $
+ * $Id: gui.c,v 1.20 2004/01/19 16:07:24 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -58,10 +58,9 @@ do_con ()
     memset (port, 0, 10);
     memset (host, 0, 1000);
 
-/* TODO type warning
     host = gtk_entry_get_text (GTK_ENTRY (mud->hostentry));
     port = gtk_entry_get_text (GTK_ENTRY (mud->portentry));
-*/
+
     make_connection (host, port);
     destructify ();
     return;
