@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.20 2004/01/19 16:07:24 erik Exp $
+ * $Id: gui.c,v 1.21 2004/01/19 16:10:13 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -58,8 +58,8 @@ do_con ()
     memset (port, 0, 10);
     memset (host, 0, 1000);
 
-    host = gtk_entry_get_text (GTK_ENTRY (mud->hostentry));
-    port = gtk_entry_get_text (GTK_ENTRY (mud->portentry));
+    host = (char *)gtk_entry_get_text (GTK_ENTRY (mud->hostentry));
+    port = (char *)gtk_entry_get_text (GTK_ENTRY (mud->portentry));
 
     make_connection (host, port);
     destructify ();
@@ -98,10 +98,7 @@ cbox ()
 
     button = gtk_button_new_with_label ("Connect");
 
-/* TODO
-	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);	
-	gtk_widget_grab_default (GTK_WIDGET(button));
-*/
+
     gtk_signal_connect (GTK_OBJECT (button), "clicked",
 	GTK_SIGNAL_FUNC (do_con), &mud);
     gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
@@ -119,13 +116,17 @@ cbox ()
     gtk_widget_show (vbox);
     gtk_widget_show (win);
 
+    GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+    gtk_widget_grab_default (GTK_WIDGET (button));
+
     return;
 }
 
 void
 resize (GtkContainer * window, gpointer * crud)
 {
-    gtk_widget_get_size_request (GTK_WIDGET(window), &mud->width, &mud->height);
+    gtk_widget_get_size_request (GTK_WIDGET (window), &mud->width,
+	&mud->height);
     /*
      * TODO save hot prefs here 
      */
