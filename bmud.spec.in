@@ -1,13 +1,13 @@
 Summary: GTK+/GNOME MUD client
-Name: bmud
-Version: 0.6
+Name: @PACKAGE@
+Version: @VERSION@
 Release: 1
 Copyright: GPL
 Vendor: Erik Greenwald
-Url: http://math.smsu.edu/~br0ke/bmud.html
+Url: http://math.smsu.edu/~br0ke/@PACKAGE@.html
 Group: Applications/Text
-Source0: http://math.smsu.edu/~br0ke/files/bmud-0.6.tar.gz
-Buildroot: /var/tmp/bmud
+Source0: http://math.smsu.edu/~br0ke/files/@PACKAGE@-@VERSION@.tar.gz
+Buildroot: /var/tmp/@PACKAGE@
 
 %description
 
