@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.14 2004/01/18 18:10:53 erik Exp $
+ * $Id: main.c,v 1.15 2004/01/18 18:28:22 erik Exp $
  */
 
 /* houses the main function. */
@@ -92,12 +92,6 @@ main (int argc, char **argv)
     mud->window = spawn_gui ();	/* gui.c */
 
     session_load ();		/* prefs.c */
-
-/* TODO
-  gtk_widget_set_usize (mud->stat, mud->statsize, 20);
-  if (mud->statsize == 0)
-    gtk_widget_set_usize (mud->stat, 1, 20);
-*/
 
     if (mud->disp_font)
 	g_free (mud->disp_font);
