@@ -21,17 +21,26 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.c,v 1.7 2005/10/04 20:44:22 erik Exp $
+ * $Id: misc.c,v 1.8 2005/10/04 20:57:00 erik Exp $
  */
 
 /* stuff that doesn't go elsewhere. conf dir handling and history */
 
 #include <stdio.h>
-#include <gdk/gdkkeysyms.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <dirent.h>
+
+#ifdef USE_GNOME
+# ifndef GNOME_H
+#  include <gnome.h>
+# endif
+#else
+# include <gtk/gtk.h>
+#endif
+#include <gdk/gdkkeysyms.h>
+
 #include "bmud.h"
 #include "misc.h"
 #include "main.h"

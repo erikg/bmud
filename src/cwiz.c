@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: cwiz.c,v 1.6 2005/10/04 20:44:22 erik Exp $
+ * $Id: cwiz.c,v 1.7 2005/10/04 20:57:00 erik Exp $
  */
 
 /* this file came from Erik Thyren, I moved it out of gui.c because it's
@@ -29,6 +29,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+#ifdef USE_GNOME
+#ifndef GNOME_H
+#include <gnome.h>
+#endif
+#else
+#include <gtk/gtk.h>
+#endif
 
 #include "bmud.h"
 #include "cwiz.h"

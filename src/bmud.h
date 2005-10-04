@@ -21,19 +21,11 @@
  *****************************************************************************/
 
 /*
- * $Id: bmud.h,v 1.7 2005/10/04 20:44:22 erik Exp $
+ * $Id: bmud.h,v 1.8 2005/10/04 20:57:00 erik Exp $
  */
 
 #ifndef BMUD_H
 #define BMUD_H
-
-#ifdef USE_GNOME
-#ifndef GNOME_H
-#include <gnome.h>
-#endif
-#else
-#include <gtk/gtk.h>
-#endif
 
 #define MESSAGE_ERR     0
 #define MESSAGE_NORMAL  1

@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias.c,v 1.7 2005/10/04 20:44:22 erik Exp $
+ * $Id: alias.c,v 1.8 2005/10/04 20:57:00 erik Exp $
  */
 
 /* this is where the ircII style aliasing goes I thnk */
@@ -32,6 +32,14 @@ beginning of the entry line... */
 #include <stdio.h>		/* for BUFSIZ */
 #include <string.h>
 #include <glib.h>
+
+#ifdef USE_GNOME
+#ifndef GNOME_H
+#include <gnome.h>
+#endif
+#else
+#include <gtk/gtk.h>
+#endif
 
 #include "alias.h"
 #include "bmud.h"

@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias_utils.c,v 1.6 2005/10/04 20:44:22 erik Exp $
+ * $Id: alias_utils.c,v 1.7 2005/10/04 20:57:00 erik Exp $
  */
 
 /*
@@ -41,6 +41,14 @@
 #include <stdio.h>		/* BUFSIZ and other oopses */
 #include <string.h>
 #include <glib.h>
+
+#ifdef USE_GNOME
+#ifndef GNOME_H
+#include <gnome.h>
+#endif
+#else
+#include <gtk/gtk.h>
+#endif
 
 #include "bmud.h"
 #include "alias.h"

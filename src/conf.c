@@ -21,13 +21,23 @@
  *****************************************************************************/
 
 /*
- * $Id: conf.c,v 1.3 2005/10/04 20:44:22 erik Exp $
+ * $Id: conf.c,v 1.4 2005/10/04 20:57:00 erik Exp $
  */
 
 /* this is the gui for the config box */
 
 #include <stdlib.h>
+
+#ifdef USE_GNOME
+#ifndef GNOME_H
+#include <gnome.h>
+#endif
+#else
+#include <gtk/gtk.h>
+#endif
+
 #include <gtk/gtktreeview.h>
+
 #include "bmud.h"
 #include "main.h"
 #include "color.h"

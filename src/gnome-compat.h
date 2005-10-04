@@ -21,10 +21,8 @@
  *****************************************************************************/
 
 /*
- * $Id: gnome-compat.h,v 1.7 2005/10/04 20:44:22 erik Exp $
+ * $Id: gnome-compat.h,v 1.8 2005/10/04 20:57:00 erik Exp $
  */
-
-#include "main.h"
 
 /* all the gnome specific stuff should go in here. */
 

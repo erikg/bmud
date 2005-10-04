@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.18 2005/10/04 20:44:22 erik Exp $
+ * $Id: color.c,v 1.19 2005/10/04 20:57:00 erik Exp $
  */
 
 #include <stdio.h>
@@ -29,6 +29,14 @@
 #include <fcntl.h>
 #include <ctype.h>
 #include <string.h>
+
+#ifdef USE_GNOME
+#ifndef GNOME_H
+#include <gnome.h>
+#endif
+#else
+#include <gtk/gtk.h>
+#endif
 
 #include "bmud.h"
 #include "color.h"

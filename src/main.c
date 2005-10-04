@@ -21,22 +21,33 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.17 2005/10/04 20:44:22 erik Exp $
+ * $Id: main.c,v 1.18 2005/10/04 20:57:00 erik Exp $
  */
 
 /* houses the main function. */
 
+#include "config.h"
+
 #include <stdio.h>
 #include <glib.h>
 
-#include "config.h"
+
+#ifdef USE_GNOME
+# ifndef GNOME_H
+#  include <gnome.h>
+# endif
+# include "main.h"
+# include "gnome-compat.h"
+#else
+# include <gtk/gtk.h>
+# include "gtk-compat.h"
+#endif
+
 
 #include "alias.h"
-#include "bmud.h"
 #include "color.h"
 #include "conf.h"
 #include "gui.h"
-#include "main.h"
 #include "misc.h"
 #include "net.h"
 #include "prefs.h"
@@ -44,11 +55,6 @@
 
 bmud *mud;			/* icky global */
 
-#ifdef USE_GNOME
-#include "gnome-compat.h"
-#else
-#include "gtk-compat.h"
-#endif
 
 #include <locale.h>
 
