@@ -1,8 +1,8 @@
-# $Id: Makefile.am,v 1.12 2004/01/20 15:29:13 erik Exp $
+# $Id: Makefile.am,v 1.13 2005/10/04 20:30:44 erik Exp $
 
 bin_PROGRAMS = bmud 
-bmud_CFLAGS = @PACKAGE_CFLAGS@ @GUILE_CFLAGS@ @PERL_CFLAGS@
-bmud_LDADD = @PACKAGE_LIBS@ @GUILE_LIBS@ @PERL_LIBS@
+AM_CFLAGS = @PACKAGE_CFLAGS@ @GUILE_CFLAGS@ @PERL_CFLAGS@
+LDADD = @PACKAGE_LIBS@ @GUILE_LIBS@ @PERL_LIBS@
 
 bmud_SOURCES = alias.c alias_utils.c color.c conf.c cwiz.c gui.c main.c misc.c net.c prefs.c script.c
 noinst_HEADERS = $(bmud_SOURCES:.c=.h) bmud.h gnome-compat.h gtk-compat.h authors.h
