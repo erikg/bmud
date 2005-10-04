@@ -21,10 +21,23 @@
  *****************************************************************************/
 
 /*
- * $Id: gnome-compat.h,v 1.8 2005/10/04 20:57:00 erik Exp $
+ * $Id: gnome-compat.c,v 1.1 2005/10/04 21:22:32 erik Exp $
  */
 
 /* all the gnome specific stuff should go in here. */
+
+#include "config.h"
+
+#include <stdio.h>
+
+#include <gnome.h>
+
+#include "bmud.h"
+#include "conf.h"
+#include "g-compat.h"
+#include "gui.h"
+#include "main.h"
+#include "net.h"
 
 void
 init (int argc, char **argv)

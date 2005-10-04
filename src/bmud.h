@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: bmud.h,v 1.8 2005/10/04 20:57:00 erik Exp $
+ * $Id: bmud.h,v 1.9 2005/10/04 21:22:32 erik Exp $
  */
 
 #ifndef BMUD_H
@@ -44,7 +44,7 @@ struct bmud_history {
     int cyclic;			/* controls cyclic vs linear history */
 };
 
-typedef struct {
+typedef struct bmud_s {
     GtkWidget *window, *menu, *text, *stat, *ent, *hostentry, *portentry,
 	*vbox;
 
@@ -60,6 +60,6 @@ typedef struct {
     gint statsize;
     gint width;
     gint height;
-} bmud;
+} bmud_t;
 
 #endif

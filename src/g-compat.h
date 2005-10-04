@@ -21,13 +21,9 @@
  *****************************************************************************/
 
 /*
- * $Id: main.h,v 1.6 2005/10/04 21:22:32 erik Exp $
+ * $Id: g-compat.h,v 1.1 2005/10/04 21:22:32 erik Exp $
  */
 
-#ifndef __BMUD_H_
-#define __BMUD_H_
-
-extern bmud_t *mud;
-void bmud_exit ();
-
-#endif
+void init (int argc, char **argv);
+void do_about ();
+void do_menu (GtkWidget * garbage);

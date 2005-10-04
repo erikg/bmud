@@ -21,10 +21,12 @@
  *****************************************************************************/
 
 /*
- * $Id: gtk-compat.h,v 1.5 2005/10/04 20:44:22 erik Exp $
+ * $Id: gtk-compat.c,v 1.1 2005/10/04 21:22:32 erik Exp $
  */
 
 /* this is for the stuff that gnome would handle if we were using gnome. */
+
+#include "g-compat.h"
 
 void
 init (int argc, char **argv)

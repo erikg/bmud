@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.18 2005/10/04 20:57:00 erik Exp $
+ * $Id: main.c,v 1.19 2005/10/04 21:22:32 erik Exp $
  */
 
 /* houses the main function. */
@@ -36,24 +36,24 @@
 # ifndef GNOME_H
 #  include <gnome.h>
 # endif
-# include "main.h"
-# include "gnome-compat.h"
 #else
 # include <gtk/gtk.h>
-# include "gtk-compat.h"
 #endif
 
+#include "g-compat.h"
 
 #include "alias.h"
+#include "bmud.h"
 #include "color.h"
 #include "conf.h"
 #include "gui.h"
+#include "main.h"
 #include "misc.h"
 #include "net.h"
 #include "prefs.h"
 #include "script.h"
 
-bmud *mud;			/* icky global */
+bmud_t *mud;			/* icky global */
 
 
 #include <locale.h>
@@ -75,8 +75,8 @@ main (int argc, char **argv)
     bindtextdomain (PACKAGE, LOCALEDIR);
     textdomain (PACKAGE);
 
-    mud = g_malloc (sizeof (bmud));
-    memset (mud, 0, sizeof (bmud));
+    mud = g_malloc (sizeof (bmud_t));
+    memset (mud, 0, sizeof (bmud_t));
     mud->hist = g_malloc (sizeof (struct bmud_history));
     memset (mud->hist, 0, sizeof (struct bmud_history));
     mud->hist->max = 20;

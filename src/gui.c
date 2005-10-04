@@ -21,10 +21,12 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.32 2005/10/04 20:57:00 erik Exp $
+ * $Id: gui.c,v 1.33 2005/10/04 21:22:32 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
+
+#include "config.h"
 
 #include <stdio.h>
 
@@ -35,8 +37,6 @@
 #else
 # include <gtk/gtk.h>
 #endif
-
-#include "config.h"
 
 #include "bmud.h"
 #include "color.h"
