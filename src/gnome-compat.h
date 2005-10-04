@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gnome-compat.h,v 1.5 2004/01/18 15:43:15 erik Exp $
+ * $Id: gnome-compat.h,v 1.6 2005/10/04 20:37:22 erik Exp $
  */
 
 #include "main.h"
@@ -38,7 +38,13 @@ init (int argc, char **argv)
 void
 do_about ()
 {
-#include "authors.h"
+    const char *authors[] = {
+	"Erik Greenwald <erik@math.missouristate.edu> <erik@smluc.org>\n\tMain author/maintainer.",
+	"Erik Thyren\n\tGTK+ connect wizard",
+	"Robert J. Hansen <rjhansen@inav.net>\n\trewrite of net.c",
+	"Dan Tenner\n\taliases",
+	NULL
+    };
 
     gtk_widget_show (gnome_about_new ("BMUD", VERSION,
 	    "Copyright (c) 1998-2003 Erik Greenwald", _("Br0kEs mud client"),
