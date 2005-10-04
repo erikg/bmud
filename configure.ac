@@ -1,4 +1,4 @@
-# $Id: configure.ac,v 1.1 2005/10/04 18:54:04 erik Exp $
+# $Id: configure.ac,v 1.2 2005/10/04 20:24:34 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
@@ -13,8 +13,7 @@ AC_HEADER_STDC
 
 AC_DEFINE(USE_GNOME,,[Use GNOME Framework])
 
-pkg_modules="libgnomeui-2.0"
-PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
+PKG_CHECK_MODULES(PACKAGE, "libgnomeui-2.0")
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
 
@@ -28,6 +27,19 @@ if test x$guile = xyes; then
 	GUILE_LIBS=`guile-config link`
 	AC_SUBST(GUILE_CFLAGS)
 	AC_SUBST(GUILE_LIBS)
+	AC_MSG_RESULT(yes)
+fi
+
+AC_ARG_ENABLE(python,
+[  --enable-python         Use Python for scripting [default=yes]],
+	, python=yes)
+if test x$python = xyes; then
+	AC_MSG_CHECKING(for PYTHON)
+	AC_DEFINE(USE_PYTHON,,[python for scripting])
+#	PYTHON_CFLAGS=`python -MExtUtils::Embed -e ccopts`
+#	PYTHON_LIBS=`python -MExtUtils::Embed -e ldopts`
+#	AC_SUBST(PYTHON_CFLAGS)
+#	AC_SUBST(PYTHON_LIBS)
 	AC_MSG_RESULT(yes)
 fi
 
