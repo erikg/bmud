@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: net.c,v 1.7 2004/01/20 13:10:46 erik Exp $
+ * $Id: net.c,v 1.8 2005/10/04 18:58:16 erik Exp $
  */
 
 /* 
@@ -131,7 +131,7 @@ disconnect (void)
 {
     close (global.sockfd);
 
-    if (global.input_monitor)	/* else a gdk assert fails -Br0kE jul03-1999 */
+    if (global.input_monitor)	/* else a gdk assert fails -Erik jul03-1999 */
 	gdk_input_remove (global.input_monitor);
 
     textfield_add ("\n*** Connection closed.\n", MESSAGE_NORMAL);
