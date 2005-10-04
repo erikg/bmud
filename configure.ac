@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.16 2004/02/20 21:10:56 erik Exp $
+# $Id: configure.ac,v 1.1 2005/10/04 18:54:04 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
