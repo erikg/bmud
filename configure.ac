@@ -1,9 +1,8 @@
-# $Id: configure.ac,v 1.3 2005/10/04 20:31:14 erik Exp $
+# $Id: configure.ac,v 1.4 2005/10/04 21:04:44 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
 AM_CONFIG_HEADER(config.h)
-AM_MAINTAINER_MODE
 
 AC_ISC_POSIX
 AC_PROG_CC
