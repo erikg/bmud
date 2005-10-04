@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.15 2005/10/04 21:22:32 erik Exp $
+# $Id: Makefile.am,v 1.16 2005/10/04 21:24:26 erik Exp $
 
 bin_PROGRAMS = bmud 
 AM_CFLAGS = @PACKAGE_CFLAGS@ @GUILE_CFLAGS@ @PERL_CFLAGS@
@@ -9,7 +9,7 @@ GUI=gnome
 bmud_sources = alias.c alias_utils.c color.c conf.c cwiz.c gui.c main.c misc.c net.c prefs.c script.c
 noinst_HEADERS = $(bmud_sources:.c=.h) bmud.h g-compat.h
 
-bmud_SOURCES = $(BMUD_SOURCES) gnome-compat.c
+bmud_SOURCES = $(bmud_sources) gnome-compat.c
 
 #if GNOME
 #bmud_SOURCES += gnome-compat.c
