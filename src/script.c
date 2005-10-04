@@ -2,7 +2,7 @@
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
- *     Copyright (C) 1998-2003 Erik Greenwald <erik@smluc.org>               *
+ *     Copyright (C) 1998-2005 Erik Greenwald <erik@smluc.org>               *
  *                                                                           *
  *     This program is free software; you can redistribute it and/or modify  *
  *     it under the terms of the GNU General Public License as published by  *
@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: script.c,v 1.5 2004/01/20 13:07:00 erik Exp $
+ * $Id: script.c,v 1.6 2005/10/04 20:44:22 erik Exp $
  */
 
 #include <string.h>
