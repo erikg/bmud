@@ -1,4 +1,4 @@
-# $Id: configure.ac,v 1.2 2005/10/04 20:24:34 erik Exp $
+# $Id: configure.ac,v 1.3 2005/10/04 20:31:14 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
@@ -13,7 +13,7 @@ AC_HEADER_STDC
 
 AC_DEFINE(USE_GNOME,,[Use GNOME Framework])
 
-PKG_CHECK_MODULES(PACKAGE, "libgnomeui-2.0")
+PKG_CHECK_MODULES(PACKAGE, ["libgnomeui-2.0"])
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
 
@@ -34,7 +34,7 @@ AC_ARG_ENABLE(python,
 [  --enable-python         Use Python for scripting [default=yes]],
 	, python=yes)
 if test x$python = xyes; then
-	AC_MSG_CHECKING(for PYTHON)
+	AC_MSG_CHECKING(for Python)
 	AC_DEFINE(USE_PYTHON,,[python for scripting])
 #	PYTHON_CFLAGS=`python -MExtUtils::Embed -e ccopts`
 #	PYTHON_LIBS=`python -MExtUtils::Embed -e ldopts`
