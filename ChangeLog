@@ -1,5 +1,56 @@
+20051005:
+	* fixes to ChangeLog
+
+20051004:
+	* move gtk/gnome compat to seperate .c files
+	* removal of #include directives from headers
+
 20051003:
 	* updated hostnames and contact info.
+
+20040120:
+	* shifted offset (color.h)
+	* removed unnecessary extern keywords
+	* cleanup
+
+20040119:
+	* beginning of tag system for colors
+	* save window geometry in prefs
+	* indentation pass (gindent)
+	* added length field to disp_ansi
+	* next field for tags... linked list instead of null terminated array
+	  (gui.c) FIXME
+	* disabled backbuffer clear
+	* some shmoo to make the stat box a little happier
+
+20040118:
+	* store and use window geometry
+	* shift stat back to text view for multicolor stuff...
+	* revive the stat box
+	* fix default colors for main widget
+	* hack to put text in output window...
+	* remove the "zapping to end" debugging statement
+	* gindent
+	* scroll behavior fixed
+
+20040112:
+	* fix compile warnings
+
+20040104:
+	* rpm fixes
+	* generate lsm and spec files
+	* conversion to gnome2
+	* header fixes
+	* cleanup
+
+20031225:
+	* beginnings of gnome2 conversion
+
+20031118:
+	* fixes for FreeBSD
+
+20001107:
+	* regeneration of lost cvs repo.
 
 20000917:
 	* Since last time, I've been working on a lot of other stuff. I got
