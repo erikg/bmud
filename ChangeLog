@@ -1,330 +1,337 @@
 20051003:
 	* updated hostnames and contact info.
 
-### this shit is in the wrong order and prefixed wrong. FIXME
+20000917:
+	* Since last time, I've been working on a lot of other stuff. I got
+	  another betta (perl), and he died, too. :/ frustrating. At some point
+	  I had modified the source so each has its own header instead of one
+	  big bmud.h
+	* Fixed up automake/autoconf stuff.
+	* Got dist and rpm targets working all good
+	* Threw in scripting stubs, added guile support to it.
 
-1998
+20000206:
+	* woke up and sed (my betta) was dead :(
+	* David Knight sent me a patch for the backbuffer
 
-Aug 05:
-	started project, wrote proposal, had it checked
-	talked to a couple people about the pros and cons of another mud cl
-	wrote gnome-ic UI from scratch, looking good so far
-	ripped ansi and net code, 330 lines after fixing....
-
-	root@fenris /mud/bmud# cat *.c *.h |wc -l
-	    442
-
-Aug 06:
-	got the background color to go black (WOOHOO, 1up on amcl)
-	got the init_color func working smoothly
-	enabled 'disconnect'
-	made 'connect' gui
-	got connect working
-	got ansi color scheming mostly working, there's a bug tho, which is ALSO in amcl
-	made entry thing work right (deletes after hitting enter, nifty)
-	moved toplevel struct to global, lots of converting
-	fixed menu crash
-	the bezerk colors chunk is fucked up :( gonna have to fix that...
-	started the 'status' shift, but it's got weird ansiness to it
-
-	root@fenris /mud/bmud# cat *.c *.h |wc -l
-	    813
-
-Aug 07:
-	dicked with this and that, didn't do much of use. :)
-
-Aug 08:
-	changed the stat from GtkEntry to GtkText
-	got the stat thing doing colors
-	made the stat bar stripped in net.c better
-	put menu plugs for 'options' and 'tools' in
-	did the readme, lsm, copied the GPL
-	some very very crude hardcoded aliasing. just to have SOMETHING
-	root@fenris /mud/bmud# cat *.c *.h |wc -l
-	    866
-
-Aug 09:
-	cleaned up the connect dialog
-	built "service not available" dialogs for map and eq
-	plugged map/eq into the menu, now all the work will be in their files
-	root@fenris /mud/bmud# cat *.c *.h | wc -l
-	    906
-
-Aug 11:
-	did all that autoconf/automake/aclocal/configure crap.
-	fixed up the map/eq/wiz plugs with 'not implemented' boxes.
-
-Aug 12-19:
-	tried gtktty, as per an email. didn't work, couple days wasted.
-	reinstalled/upgraded the os
-	been d/l'ing and tweaking and getting gnome back working
-	now using gtk+-1.1 and gnome-0.27
-	spent a couple days running here and there getting parts to upgrade 
-		a REALLY old computer (386) for someone
-	tried to force the config scripts and makefile to work again
-
-Aug 20:
-	put it back to gtk_text from gtk_tty
-	stripped out the color stuff
-	replaced the scrolling stuff, now scrolls faster and only if needed
-		it won't autoscroll if you scrolled up. :)
-	started the paperwork on a new color method, should be configurable,
-		faster, and MUCH more accurate
-Sep 09:
-	um, ok, back, I guess :) school takes a much higher priority than bmud 
-Sep 21:
-	throwing away my blocking ansi parser for now *sigh*
-Oct 02:
-	bleh, pulled it out of mothballs, hehehe
-Oct 03:
-	Got the ansi working CORRECTLY and quite quickly :)
-	Stream ansi parsing, would prefer blocking, but this'll do for now
-Oct 09:
-	put in /clear, need to make a real aliasing scheme...
-	fixed the \x0d problem, stupidassed m$ imbeciles... :)
-	started adding a generic clear() function so handle continous del
-	now hides passwd entry...
-Oct 10:
-	started implementing a command history (linked lists), almost done...
-Oct 12: 
-	*** release 0.2
-------:
-	Lots of school stuff ate up my time.
-	Got a monster3d voodoo card. That ate my free time :D
-	Killed the linked list approach to command history.
-	Implemented history with circular queue. Much sexier.
-	Started working on a gtk+ only backport.
-Nov 07:
-	Started on key bindings for menu items. ho ho ho.
-Nov 08-11:
-	didn't do bmud stuff, was busy installing themes and doing hw...
-	lots of homework
-Nov 12:
-	Font selector added (this may be problematic with older version of gtk+)
-
-	root@fenris:/home/mud/bmud# cat *.c *.h |wc -l
-	   1046
-
-Nov 13-14:
-	Added the beginnings of the color selector. Not gonna be fully
-		implemented this release.
-	Can't figure out menu bindings :/ 
-	Added the keybindings page_up and page_down for scrolling window
-	Updating the webpage.
-	*** RELEASE 0.3
-
-Nov 21:
-	fixed the keybindings for the gnome menu and for text box
-	gtk+ backport works!!!!!!
-	added padding to the black windows, so words aren't against the edge
-	moved a lot of files around, trimmed 200 lines and a few files out
-Nov 22:
-	made makefiles for both gtk and gnome, gotta figure out configure...	
-
-Nov 23 to Dec 13:
-	haven't been doing much, been in school... finals this week, too...
-	seperate makefiles, with Makefile being a toplevel deal
-	added a backbuffer, *BUT* it's broken now
-	doing a 'half release' so ppl can d/l, play, and help me write it :)
-
-1999
-
-Jan (a few days after new years):
-	got a job. 'Dynamic Solutions, Inc.'
-
-Jun 20 (1999):
-	got an email with a connect wizard a few days ago. People use this ???
-	Stole the aclocal/automake/autoconf stuff from netferret, minor tweaks
-	Restructured the directory tree a bit (mostly for GNUtools)
-	Added the .desktop thingie for gnome, ah need a pic now.
-	Killed the old .30 gnome_init().
-	Did a little updating to tmp.h and TODO
-
-Jul 03:
-	ummmm, hi :)
-	color_load causes... unusual problems if called before gtk_main().
-	fixed bug in net.c with a gdk assert if disconnecting when not connected
-	fixed gtk_rc_parse in main.c, now ya don't gotta be root
-	must do all the config shit like gnome control-center.
-
-	root@fenris /home/bmud/src# cat *.[ch] |wc -l
-	   1600
-  
-Jul 22:
-	Got a new webpage up.
-	Wrote a cgi to poll for what language scripting should be in.
-	merged ansi.c into color.c, ansi.c now does not exist.
-	Filled in a lot on prefs.c, now has basic preferences working :)
-	re-disabled the buffer culling.
-	fixed a silly bug in the history
-	added /help to aliasing
-	changed /connect so you can do give /connect parms :)
-	fixed connect wizard so it looks in ~/.bmud/mudservers
-	updated tmp.h some
-	added some help stuff
-	fixed some automake stuff
-
-	root@fenris /home/bmud/src# cat *.[ch] |wc -l
-	   1689
-
-Jul 23:
-	Broke the help stuff, but re-fixed it :) now installs nicely
-	It now checks to see if ~/.bmud/ exists and creates it if it doesn't
-	sent a nice long long long email to gnome-devel-list@gnome.org :)
-	A little more automake fixing
-	Trimmed out most of color.c and have been rewriting
-	Color saving now works ok. Loads colors on start, too
-	Several problems in the history have sprung up. :(
-	Got a gentleman who wants to make debian packages :)
-	terminated nasty history bug. Can't assume it'll be 0'd for ya :)
-	now copies license (GPL) to the info dir (burp)
-
-Jul 25:
-	Rebuilt bmud.h so it's a LOT more logical.
-	g_get_home_dir() sometimes fails, so I put in a redundancy check
-	managed to break session loading in the process :/
-	weirdassed problems all over :/ emailing gnome list for help
-	moved connect wizard to its own file
-	fixed session loading
-
-	root@fenris /home/bmud/src# cat *.[ch] | wc -l
-	    1669
-
-Jul 26:
-	Talked to Neil sorta, he's interested in coding (cool)
-	Downloaded and checked out the latest amcl, Robins been working hard :/
-		A lot of the things I've done, he's also done, which is weird
-		cuz I haven't been following his code or releasing mine...
-	Been working on getting the mailing list working :)
-	accidently deleted 800 lines of demo code for a linux game developer
-		site i'm working on :( and my mc doesn't have undelfs. And I
-		don't got libext2 installed and I don't see a 2.1 deb for it.
-	emailed a gtk list for help
-
-Jul 27:
-	Got an email response from Erik Mouw, suggesting using efence or dmalloc
-	downloaded, installed, and used efence. slow as sh**, but it works
-	the mystery bug was me forgetting to malloc mud->hist->list before 
-		setting it to NULL's. I'd had minor quirks in hist before... :/
-	went thru the source doing cleanup and a little bit of commenting
-	cleaned out all the printf stuff I was using for debugging
-	Neil is working on the equipment list, that I'm too scared to attempt
-	Went thru and added textfield_add's for all the error messages
-	refix0red some lame display stuff involving the \r/13/^M thingie
-	*** RELEASE 0.4 ***
-
-	root@fenris /home/bmud/src# cat *.[ch] | wc -l
-	   1631
-
-Jul 29:
-	added \r to outputted newlines, as per rfc854 (thnx, David Knight)
-
-Aug 01:
-	the main window now word wraps instead of character wrap
-	
-Aug 02:
-	built in the framework for the config dialog. Looks pretty good :)
-	config has panes for color and font so far, but can't save or default
-	Planning on rebuilding how colors are saved
-	colors are now stored as a 2d array instead of 16 variables
-	color is now broken. Password blocking input, too. Among other things.
-
-	root@fenris /home/bmud/src# cat *.[ch] |wc -l
-	   1813
-
-Aug 08:
-	Got a replacement net.c today, it looks good so I re-indented it and
-		dropped it into my working version
-	put a roadmap email to the mailing list
-	did some implementing on color config *joy*
-
-Aug 21:
-	color config crap is pissing me off.
-	made the unimplemented stuff greyed out
-Aug 23:
-	1st day of school, very little time for bmud now :/
-	received telnet pipe patch from magick, contemplating inclusion
-
-Aug 24:
-	(2am) ok, i'm a moron. I figured out my color dialog problem :/
-	hooked up all the callbacks for the buttons, wrote their functions
-	gcc 2.95.1 takes a LONG time to compile... I need a faster box
-	need to capture changes immediatly... looking for how on fonts
-	(sleep;school)
-	Color config seems to be mostly working :)
-
-Aug 27:
-	converted some color stuff to use a single table for color names
-	bughunting on color conversion.
-	Lots of lines of code removed :)
-
-Sep 04:
-	got bummed about my ineptness, so my fiance dug up webpages about bmud,
-		and I found out I'd won a best of linux award in mid august. I
-		thought they informed winners?? goddamn I love my Angel so much
-	added defaults for the MESSAGE and ERROR colors
-	more work in config.c
-
-Sep 28:
-	clipped a bunch of dead code
-Oct 10:
-	scrapped up a webpage
-	got the gtk+ side caught up to the gnome side.
-	updated the HACKING file.
-	Added Rob Hansen to the AUTHORS file.
-Oct something:
-	got drunk, got most of the prefs thing working. D'no what I did tho...
-Nov 24:
-	merged in Dan Tenners alias code
-	added statsize capability
-	kludged around an alias bug
-	added a function called every time there is a client exit...
-Nov 26:
-	internationalized it (I think). GNU gettext and all the joyful stuff
-Dec 14:
-	happy bday to me
-Dec 15:
-	last finals were today.
-	fixed color part of config dialog, started on that aug 2...
-		4.5 FUCKING MONTHS!
-	root@fenris /home/bmud# cat `find -name *.[ch]` | wc -l
-	   2219
-
-2000 AD (gregorian calendar)
-
-Jan 1:
-	fixed the connection wizard to load from configdir
-	a mud in germany was reported to generate errors. I looked into it and
-		the thing was sending (esc)0K. So I hacked up support :/
-Jan 2:
-	started changing connection wizard to use buttons.
-Jan 3:
-	got connection wizard using buttons :) neato.
-	added a "how to make a serverlist" to the docs
-	hacked a better hack to the hack two days ago that hacked support for
-		the esc0K hack.
-	cleaned up some debugging stuff.
-	threw up a new poll (sql based, neato)
-Jan 4:
-	got 'history' prefs working.
-	got the statsize pref thing working.
-	state is carried between pref panels now. (need to add a commit layer)
-
-Feb 5:
-	been busy on other stuff :/
-	copied to a tmp dir, cleaned it up, updated some docs, tar'd it up
+20000205:
+	* been busy on other stuff :/
+	* copied to a tmp dir, cleaned it up, updated some docs, tar'd it up
 	*** RELEASE 0.5 ***
 
-Feb 6:
-	woke up and sed (my betta) was dead :(
-	David Knight sent me a patch for the backbuffer
+20000104:
+	* got 'history' prefs working.
+	* got the statsize pref thing working.
+	* state is carried between pref panels now (need to add a commit layer)
 
-Sep 17:
-	Since last time, I've been working on a lot of other stuff. I got
-		another betta (perl), and he died, too. :/ frustrating. At some
-		point I had modified the source so each has its own header 
-		instead of one big bmud.h
-	Fixed up automake/autoconf stuff.
-	Got dist and rpm targets working all good
-	Threw in scripting stubs, added guile support to it.
+20000103:
+	* got connection wizard using buttons :) neato.
+	* added a "how to make a serverlist" to the docs
+	* hacked a better hack to the hack two days ago that hacked support for
+	  the esc0K hack.
+	* cleaned up some debugging stuff.
+	* threw up a new poll (sql based, neato)
 
+20000102:
+	* started changing connection wizard to use buttons.
+
+20000101:
+	* fixed the connection wizard to load from configdir
+	* a mud in germany was reported to generate errors. I looked into it and
+	  the thing was sending (esc)0K. So I hacked up support :/
+
+19991215:
+	* last finals were today.
+	* fixed color part of config dialog, started on that aug 2...  4.5
+	  FUCKING MONTHS!
+	* erik@fenris /home/bmud# cat `find -name *.[ch]` | wc -l
+		2219
+
+19991214:
+	* happy bday to me
+
+19991126:
+	* internationalized it (I think). GNU gettext and all the joyful stuff
+
+19991124:
+	* merged in Dan Tenners alias code
+	* added statsize capability
+	* kludged around an alias bug
+	* added a function called every time there is a client exit...
+
+19991010:
+	* scrapped up a webpage
+	* got the gtk+ side caught up to the gnome side.
+	* updated the HACKING file.
+	* Added Rob Hansen to the AUTHORS file.
+
+1999100?:
+	* got drunk, got most of the prefs thing working. D'no what I did tho...
+
+19990928:
+	* clipped a bunch of dead code
+
+19990904:
+	* got bummed about my ineptness, so my fiance dug up webpages about
+	  bmud, and I found out I'd won a best of linux award in mid august. I
+	  thought they informed winners?? goddamn I love my Angel so much
+	* added defaults for the MESSAGE and ERROR colors
+	* more work in config.c
+
+19990827:
+	* converted some color stuff to use a single table for color names
+	* bughunting on color conversion.
+	* Lots of lines of code removed :)
+
+19990824:
+	* ok, i'm a moron. I figured out my color dialog problem :/
+	* hooked up all the callbacks for the buttons, wrote their functions
+	* gcc 2.95.1 takes a LONG time to compile... I need a faster box
+	* need to capture changes immediatly... looking for how on fonts
+	  (sleep;school)
+	* Color config seems to be mostly working :)
+
+19990823:
+	* 1st day of school, very little time for bmud now :/
+	* received telnet pipe patch from magick, contemplating inclusion
+
+19990821:
+	* color config crap is pissing me off.
+	* made the unimplemented stuff greyed out
+
+19990808:
+	* Got a replacement net.c today, it looks good so I re-indented it and
+	  dropped it into my working version
+	* put a roadmap email to the mailing list
+	* did some implementing on color config *joy*
+
+19990802:
+	* built in the framework for the config dialog. Looks pretty good :)
+	* config has panes for color and font so far, but can't save or default
+	* Planning on rebuilding how colors are saved
+	* colors are now stored as a 2d array instead of 16 variables
+	* color is now broken. Password blocking input, too. Among other things.
+	* erik@fenris /home/bmud/src# cat *.[ch] |wc -l
+		1813
+
+19990801:
+	* the main window now word wraps instead of character wrap
+
+19990729:
+	* added \r to outputted newlines, as per rfc854 (thnx, David Knight)
+
+19990727:
+	* Got an email response from Erik Mouw, suggesting using efence or
+	  dmalloc
+	* downloaded, installed, and used efence. slow as sh**, but it works
+	* the mystery bug was me forgetting to malloc mud->hist->list before
+	  setting it to NULL's. I'd had minor quirks in hist before... :/
+	* went thru the source doing cleanup and a little bit of commenting
+	* cleaned out all the printf stuff I was using for debugging
+	* Neil is working on the equipment list, that I'm too scared to attempt
+	* Went thru and added textfield_add's for all the error messages
+	* refix0red some lame display stuff involving the \r/13/^M thingie
+	*** RELEASE 0.4 ***
+	* erik@fenris /home/bmud/src# cat *.[ch] | wc -l
+		1631
+
+19990726:
+	* Talked to Neil sorta, he's interested in coding (cool)
+	* Downloaded and checked out the latest amcl, Robins been working hard
+	  :/ A lot of the things I've done, he's also done, which is weird cuz I
+	  haven't been following his code or releasing mine...
+	* Been working on getting the mailing list working :)
+	* accidently deleted 800 lines of demo code for a linux game developer
+	  site i'm working on :( and my mc doesn't have undelfs. And I don't got
+	  libext2 installed and I don't see a 2.1 deb for it.
+	* emailed a gtk list for help
+
+19990725:
+	* Rebuilt bmud.h so it's a LOT more logical.
+	* g_get_home_dir() sometimes fails, so I put in a redundancy check
+	* managed to break session loading in the process :/
+	* weirdassed problems all over :/ emailing gnome list for help
+	* moved connect wizard to its own file
+	* fixed session loading
+	* erik@fenris /home/bmud/src# cat *.[ch] | wc -l
+		1669
+
+19990723:
+	* Broke the help stuff, but re-fixed it :) now installs nicely
+	* It now checks to see if ~/.bmud/ exists and creates it if it doesn't
+	* sent a nice long long long email to gnome-devel-list@gnome.org :)
+	* A little more automake fixing
+	* Trimmed out most of color.c and have been rewriting
+	* Color saving now works ok. Loads colors on start, too
+	* Several problems in the history have sprung up. :(
+	* Got a gentleman who wants to make debian packages :)
+	* terminated nasty history bug. Can't assume it'll be 0'd for ya :)
+	* now copies license (GPL) to the info dir (burp)
+
+19990722:
+	* Got a new webpage up.
+	* Wrote a cgi to poll for what language scripting should be in.
+	* merged ansi.c into color.c, ansi.c now does not exist.
+	* Filled in a lot on prefs.c, now has basic preferences working :)
+	* re-disabled the buffer culling.
+	* fixed a silly bug in the history
+	* added /help to aliasing
+	* changed /connect so you can do give /connect parms :)
+	* fixed connect wizard so it looks in ~/.bmud/mudservers
+	* updated tmp.h some
+	* added some help stuff
+	* fixed some automake stuff
+	* erik@fenris /home/bmud/src# cat *.[ch] |wc -l
+		1689
+
+19990703:
+	* ummmm, hi :)
+	* color_load causes... unusual problems if called before gtk_main().
+	* fixed bug in net.c with a gdk assert if disconnecting when not
+	  connected
+	* fixed gtk_rc_parse in main.c, now ya don't gotta be root
+	* must do all the config shit like gnome control-center.
+	* erik@fenris /home/bmud/src# cat *.[ch] |wc -l
+		1600
+
+19990620 (1999):
+	* got an email with a connect wizard a few days ago. People use this ???
+	* Stole the aclocal/automake/autoconf stuff from netferret, minor tweaks
+	* Restructured the directory tree a bit (mostly for GNUtools)
+	* Added the .desktop thingie for gnome, ah need a pic now.
+	* Killed the old .30 gnome_init().
+	* Did a little updating to tmp.h and TODO
+
+19990101 (a few days after new years):
+	* got a job. 'Dynamic Solutions, Inc.'
+
+19981123 to Dec 13:
+	* haven't been doing much, been in school... finals this week, too...
+	* seperate makefiles, with Makefile being a toplevel deal
+	* added a backbuffer, *BUT* it's broken now
+	* doing a 'half release' so ppl can d/l, play, and help me write it :)
+
+19981122:
+	* made makefiles for both gtk and gnome, gotta figure out configure...	
+
+19981121:
+	* fixed the keybindings for the gnome menu and for text box
+	* gtk+ backport works!!!!!!
+	* added padding to the black windows, so words aren't against the edge
+	* moved a lot of files around, trimmed 200 lines and a few files out
+
+19981114:
+	* Added the beginnings of the color selector. Not gonna be fully
+	  implemented this release.
+	* Can't figure out menu bindings :/
+	* Added the keybindings page_up and page_down for scrolling window
+	* Updating the webpage.
+	*** RELEASE 0.3
+
+19981112:
+	* Font selector added (this may be problematic with older version of
+	  gtk+)
+	* erik@fenris:/home/mud/bmud# cat *.c *.h |wc -l
+		1046
+
+19981108-11:
+	* didn't do bmud stuff, was busy installing themes and doing hw...
+	* lots of homework
+
+19981107:
+	* Started on key bindings for menu items. ho ho ho.
+
+19981012:
+	*** release 0.2
+	* Lots of school stuff ate up my time.
+	* Got a monster3d voodoo card. That ate my free time :D
+	* Killed the linked list approach to command history.
+	* Implemented history with circular queue. Much sexier.
+	* Started working on a gtk+ only backport.
+
+19981010:
+	* started implementing a command history (linked lists), almost done...
+
+19981009:
+	* put in /clear, need to make a real aliasing scheme...
+	* fixed the \x0d problem, stupidassed m$ imbeciles... :)
+	* started adding a generic clear() function so handle continous del
+	* now hides passwd entry...
+
+19981003:
+	* Got the ansi working CORRECTLY and quite quickly :)
+	* Stream ansi parsing, would prefer blocking, but this'll do for now
+
+19981002:
+	* bleh, pulled it out of mothballs, hehehe
+
+19980921:
+	* throwing away my blocking ansi parser for now *sigh*
+
+19980909:
+	* um, ok, back, I guess :) school takes a much higher priority than bmud
+
+19980820:
+	* put it back to gtk_text from gtk_tty
+	* stripped out the color stuff
+	* replaced the scrolling stuff, now scrolls faster and only if needed it
+	  won't autoscroll if you scrolled up. :)
+	* started the paperwork on a new color method, should be configurable,
+	  faster, and MUCH more accurate
+
+19980812-19:
+	* tried gtktty, as per an email. didn't work, couple days wasted.
+	* reinstalled/upgraded the os
+	* been d/l'ing and tweaking and getting gnome back working
+	* now using gtk+-1.1 and gnome-0.27
+	* spent a couple days running here and there getting parts to upgrade a
+	  REALLY old computer (386) for someone
+	* tried to force the config scripts and makefile to work again
+
+19980811:
+	* did all that autoconf/automake/aclocal/configure crap.
+	* fixed up the map/eq/wiz plugs with 'not implemented' boxes.
+
+19980809:
+	* cleaned up the connect dialog
+	* built "service not available" dialogs for map and eq
+	* plugged map/eq into the menu, now all the work will be in their files
+	* erik@fenris /mud/bmud# cat *.c *.h | wc -l
+		906
+
+19980808:
+	* changed the stat from GtkEntry to GtkText
+	* got the stat thing doing colors
+	* made the stat bar stripped in net.c better
+	* put menu plugs for 'options' and 'tools' in
+	* did the readme, lsm, copied the GPL
+	* some very very crude hardcoded aliasing. just to have SOMETHING
+	* erik@fenris /mud/bmud# cat *.c *.h |wc -l
+		866
+
+19980807:
+	* dicked with this and that, didn't do much of use. :)
+
+19980806:
+	* got the background color to go black (WOOHOO, 1up on amcl)
+	* got the init_color func working smoothly
+	* enabled 'disconnect'
+	* made 'connect' gui
+	* got connect working
+	* got ansi color scheming mostly working, there's a bug tho, which is
+	  ALSO in amcl
+	* made entry thing work right (deletes after hitting enter, nifty)
+	* moved toplevel struct to global, lots of converting
+	* fixed menu crash
+	* the bezerk colors chunk is fucked up :( gonna have to fix that...
+	* started the 'status' shift, but it's got weird ansiness to it
+	* erik@fenris /mud/bmud# cat *.c *.h |wc -l
+		813
+
+19980805:
+	* started project, wrote proposal, had it checked
+	* talked to a couple people about the pros and cons of another mud cl
+	* wrote gnome-ic UI from scratch, looking good so far
+	* ripped ansi and net code, 330 lines after fixing....
+	* erik@fenris /mud/bmud# cat *.c *.h |wc -l
+		442
