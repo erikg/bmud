@@ -21,12 +21,14 @@
  *****************************************************************************/
 
 /*
- * $Id: script.c,v 1.7 2005/10/04 20:57:00 erik Exp $
+ * $Id: script.c,v 1.8 2005/12/09 18:58:40 erik Exp $
  */
 
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 

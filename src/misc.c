@@ -21,14 +21,15 @@
  *****************************************************************************/
 
 /*
- * $Id: misc.c,v 1.8 2005/10/04 20:57:00 erik Exp $
+ * $Id: misc.c,v 1.9 2005/12/09 18:59:21 erik Exp $
  */
 
 /* stuff that doesn't go elsewhere. conf dir handling and history */
 
 #include <stdio.h>
-#include <sys/stat.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <dirent.h>
 
