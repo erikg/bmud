@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: prefs.c,v 1.8 2005/10/04 20:57:00 erik Exp $
+ * $Id: prefs.c,v 1.9 2005/12/09 18:59:05 erik Exp $
  */
 
 /* handles ~/.bmud/prefs */
@@ -73,7 +73,7 @@ session_scan ()
     else if (!strncmp (flag, "height", 6))
 	mud->height = atoi (value);
     else
-	printf ("Unknown flag: %d\n", flag);
+	printf ("Unknown flag: %s\n", flag);
     return;
 }
 
