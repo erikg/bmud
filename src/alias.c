@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: alias.c,v 1.8 2005/10/04 20:57:00 erik Exp $
+ * $Id: alias.c,v 1.9 2005/12/09 19:02:11 erik Exp $
  */
 
 /* this is where the ircII style aliasing goes I thnk */
@@ -50,11 +50,11 @@ beginning of the entry line... */
 #include "prefs.h"
 
 #define fake_help "\
-There is no real help yet. This is a quicky list of aliases\n\
+This is a quicky list of aliases\n\
 /connect [hostname <port>]\tConnect to a server\n\
 /disconnect\t\tDisconnect from the current server\n\n\
 /quit\t\texit this program\n\
-/exit\t\texit the program\n\n\
+/exit\t\texit\n\n\
 /aload\t\tload the alias file\n\
 /asave\t\tsave the aliases to the alias file\n\
 /afree\t\tflush all the aliases\n\
@@ -65,9 +65,7 @@ There is no real help yet. This is a quicky list of aliases\n\
 /sload\t\tload session info\n\
 /ssave\t\tsave session info\n\
 /sdef\t\tuse default session stuff\n\
-/help\t\tthis help thingy\n\n\
-All the command /'s can be replaced with # if you want, either works.\n"
-
+/help\t\tthis help thingy\n"
 
 static GHashTable *alias_table;
 
