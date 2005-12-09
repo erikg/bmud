@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.19 2005/10/04 21:22:32 erik Exp $
+ * $Id: main.c,v 1.20 2005/12/09 18:59:50 erik Exp $
  */
 
 /* houses the main function. */
@@ -69,11 +69,13 @@ bmud_exit ()
 int
 main (int argc, char **argv)
 {
+    /*
     GtkStyle *style;
     GtkThemeEngine *eng;
 
     bindtextdomain (PACKAGE, LOCALEDIR);
     textdomain (PACKAGE);
+    */
 
     mud = g_malloc (sizeof (bmud_t));
     memset (mud, 0, sizeof (bmud_t));
