@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.33 2005/10/04 21:22:32 erik Exp $
+ * $Id: gui.c,v 1.34 2005/12/09 19:02:24 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -44,6 +44,7 @@
 #include "main.h"
 #include "misc.h"
 #include "net.h"
+#include "prefs.h"
 
 GtkWidget *win;
 
@@ -273,7 +274,7 @@ textfield_add_ansi (GtkTextBuffer * buffer, char *text, GtkTextIter * iter,
 void
 textfield_add (gchar * message, int colortype)
 {
-    GtkTextIter iter, end;
+    GtkTextIter iter; /* , end; */
     GtkTextMark *mark;
     GtkTextBuffer *buffer;
     GdkRectangle rect;
@@ -311,7 +312,7 @@ textfield_add (gchar * message, int colortype)
 	 * TODO make this red 
 	 */
 	gtk_text_buffer_insert (buffer, &iter, message, -1);
-	//gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL, message, -1);
+	/* gtk_text_insert (GTK_TEXT_VIEW (mud->text), mud->disp_font, &color[1][0], NULL, message, -1); */
 	break;
     case MESSAGE_ANSI:
 	{
@@ -324,7 +325,9 @@ textfield_add (gchar * message, int colortype)
 	     */
 	    if (mud->statsize != 0 && message[numbytes - 2] == '>')
 	    {
+		/*
 		GtkTextIter statiter;
+		*/
 
 		clear (0, mud->stat);
 		while (message[x] != '\n')

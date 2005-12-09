@@ -21,12 +21,14 @@
  *****************************************************************************/
 
 /*
- * $Id: conf.c,v 1.4 2005/10/04 20:57:00 erik Exp $
+ * $Id: conf.c,v 1.5 2005/12/09 19:02:24 erik Exp $
  */
 
 /* this is the gui for the config box */
 
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifdef USE_GNOME
 #ifndef GNOME_H
@@ -164,7 +166,9 @@ void
 confcolor (GtkWidget * placeholder, GdkColor * confcol)
 {
     gdouble c[3] = { 0, 0, 0 };
+    /*
     gint x;
+    */
 
     placeholder = gtk_vbox_new (FALSE, 2);
 
@@ -328,12 +332,12 @@ confmisc ()
 void
 show_config ()
 {
+#if 0
     int x, y;
     GtkWidget *ok, *apply, *cancel, *defaults, *help;
     GtkWidget *vbox, *hbox2;
     GtkWidget *tree, *treeitem, *subtree, *scrollbox;
 
-#if 0
     confinit ();
 
     config_win = gtk_dialog_new ();
