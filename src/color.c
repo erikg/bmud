@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.19 2005/10/04 20:57:00 erik Exp $
+ * $Id: color.c,v 1.20 2005/12/09 19:00:57 erik Exp $
  */
 
 #include <stdio.h>
@@ -209,7 +209,7 @@ getcol (char *tmp, int bleh)
 color_tag_t *
 disp_ansi (char *dst, char *src)
 {
-    //GdkColor col = color[7][0];
+    /* GdkColor col = color[7][0]; */
     int n = 0, x = 0, j = 0, size;
 
     size = strlen (src);
