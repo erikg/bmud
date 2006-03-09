@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: conf.c,v 1.5 2005/12/09 19:02:24 erik Exp $
+ * $Id: conf.c,v 1.6 2006/03/09 15:15:17 erik Exp $
  */
 
 /* this is the gui for the config box */
@@ -332,7 +332,6 @@ confmisc ()
 void
 show_config ()
 {
-#if 0
     int x, y;
     GtkWidget *ok, *apply, *cancel, *defaults, *help;
     GtkWidget *vbox, *hbox2;
@@ -371,7 +370,7 @@ show_config ()
 	GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_widget_set_usize (scrollbox, 150, 200);
     gtk_widget_show (scrollbox);
-
+/*
     tree = gtk_tree_new ();
     subtree = gtk_tree_new ();
 
@@ -380,8 +379,7 @@ show_config ()
 	{
 	    treeitem = gtk_tree_item_new_with_label (cn[x][y]);
 	    gtk_tree_append (GTK_TREE_VIEW (subtree), treeitem);
-	    gtk_signal_connect (GTK_OBJECT (treeitem), "select",
-		GTK_SIGNAL_FUNC (confcolor), &ccol[x][y]);
+	    gtk_signal_connect (GTK_OBJECT (treeitem), "select", GTK_SIGNAL_FUNC (confcolor), &ccol[x][y]);
 	    gtk_widget_show (treeitem);
 	}
 
@@ -393,26 +391,22 @@ show_config ()
 
     treeitem = gtk_tree_item_new_with_label ("Font");
     gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
-    gtk_signal_connect (GTK_OBJECT (treeitem), "select",
-	GTK_SIGNAL_FUNC (conffont), NULL);
+    gtk_signal_connect (GTK_OBJECT (treeitem), "select", GTK_SIGNAL_FUNC (conffont), NULL);
     gtk_widget_show (treeitem);
 
     treeitem = gtk_tree_item_new_with_label ("History");
     gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
-    gtk_signal_connect (GTK_OBJECT (treeitem), "select",
-	GTK_SIGNAL_FUNC (confhist), NULL);
+    gtk_signal_connect (GTK_OBJECT (treeitem), "select", GTK_SIGNAL_FUNC (confhist), NULL);
     gtk_widget_show (treeitem);
 
     treeitem = gtk_tree_item_new_with_label ("Misc");
     gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
-    gtk_signal_connect (GTK_OBJECT (treeitem), "select",
-	GTK_SIGNAL_FUNC (confmisc), NULL);
+    gtk_signal_connect (GTK_OBJECT (treeitem), "select", GTK_SIGNAL_FUNC (confmisc), NULL);
     gtk_widget_show (treeitem);
-
+*/
     gtk_widget_show (blah);
 
-    gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (scrollbox),
-	tree);
+    gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (scrollbox), tree);
 
     gtk_box_pack_start (GTK_BOX (hbox), scrollbox, FALSE, TRUE, 2);
     gtk_box_pack_start (GTK_BOX (hbox), blah, FALSE, FALSE, 2);
@@ -432,7 +426,9 @@ show_config ()
     gtk_widget_show (cancel);
     gtk_widget_show (help);
 
+/*
     gtk_widget_show (tree);
+*/
 
     gtk_widget_show (hbox);
     gtk_widget_show (hbox2);
@@ -441,7 +437,7 @@ show_config ()
     gtk_container_add (GTK_CONTAINER (config_win), vbox);
 
     gtk_widget_show (config_win);
-#endif
+
     this_panel_cb = NULL;
     return;
 }
