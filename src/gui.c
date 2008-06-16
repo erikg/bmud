@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gui.c,v 1.34 2005/12/09 19:02:24 erik Exp $
+ * $Id: gui.c,v 1.35 2008/06/16 10:05:08 erik Exp $
  */
 
 /* this should handle the basic ui stuff that isn't handled by gnome? */
@@ -248,7 +248,7 @@ clear_backbuffer ()
 
 void
 textfield_add_ansi (GtkTextBuffer * buffer, char *text, GtkTextIter * iter,
-    color_tag_t * tags)
+    struct color_tag_s * tags)
 {
     GtkTextIter start, end;
     int offset = gtk_text_iter_get_offset (iter);
@@ -256,7 +256,7 @@ textfield_add_ansi (GtkTextBuffer * buffer, char *text, GtkTextIter * iter,
     gtk_text_buffer_insert (buffer, iter, text, -1);
     while (tags)
     {
-	color_tag_t *tmp;
+	struct color_tag_s *tmp;
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &start,
 	    tags->start + offset);
@@ -318,7 +318,7 @@ textfield_add (gchar * message, int colortype)
 	{
 	    int x = 0, numbytes = strlen (message);
 	    char *text = malloc (numbytes);
-	    color_tag_t *tags;
+	    struct color_tag_s *tags;
 
 	    /*
 	     * break the ansi into 2 parts, and do 'em 

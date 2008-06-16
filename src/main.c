@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: main.c,v 1.20 2005/12/09 18:59:50 erik Exp $
+ * $Id: main.c,v 1.21 2008/06/16 10:05:08 erik Exp $
  */
 
 /* houses the main function. */
@@ -53,7 +53,7 @@
 #include "prefs.h"
 #include "script.h"
 
-bmud_t *mud;			/* icky global */
+struct bmud_s *mud;			/* icky global */
 
 
 #include <locale.h>
@@ -77,8 +77,8 @@ main (int argc, char **argv)
     textdomain (PACKAGE);
     */
 
-    mud = g_malloc (sizeof (bmud_t));
-    memset (mud, 0, sizeof (bmud_t));
+    mud = g_malloc (sizeof (struct bmud_s));
+    memset (mud, 0, sizeof (struct bmud_s));
     mud->hist = g_malloc (sizeof (struct bmud_history));
     memset (mud->hist, 0, sizeof (struct bmud_history));
     mud->hist->max = 20;
