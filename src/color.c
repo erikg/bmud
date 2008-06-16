@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: color.c,v 1.20 2005/12/09 19:00:57 erik Exp $
+ * $Id: color.c,v 1.21 2008/06/16 10:02:13 erik Exp $
  */
 
 #include <stdio.h>
@@ -45,7 +45,7 @@
 #include "misc.h"
 
 GtkWidget *cs, *cm;
-FILE *fp;
+static FILE *fp;
 
 GtkWidget *text_field;
 GtkWidget *text_entry;

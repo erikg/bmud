@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: prefs.c,v 1.9 2005/12/09 18:59:05 erik Exp $
+ * $Id: prefs.c,v 1.10 2008/06/16 10:02:13 erik Exp $
  */
 
 /* handles ~/.bmud/prefs */
@@ -46,7 +46,7 @@
 #include "prefs.h"
 
 
-FILE *fp;
+static FILE *fp;
 
 void
 session_scan ()
