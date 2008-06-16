@@ -2,7 +2,7 @@
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
- *     Copyright (C) 1998-2005 Erik Greenwald <erik@smluc.org>               *
+ *     Copyright (C) 1998-2008 Erik Greenwald <erik@smluc.org>               *
  *                                                                           *
  *     This program is free software; you can redistribute it and/or modify  *
  *     it under the terms of the GNU General Public License as published by  *
@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gnome-compat.c,v 1.1 2005/10/04 21:22:32 erik Exp $
+ * $Id: gnome-compat.c,v 1.2 2008/06/16 10:16:06 erik Exp $
  */
 
 /* all the gnome specific stuff should go in here. */
@@ -58,7 +58,7 @@ do_about ()
     };
 
     gtk_widget_show (gnome_about_new ("BMUD", VERSION,
-	    "Copyright (c) 1998-2005 Erik Greenwald", _("Br0kEs mud client"),
+	    "Copyright (c) 1998-2008 Erik Greenwald", _("Br0kEs mud client"),
 	    authors, NULL, NULL, NULL));
 }
 

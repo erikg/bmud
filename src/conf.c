@@ -2,7 +2,7 @@
 /*****************************************************************************
  *    BMUD - Br0kEs MUD Client                                               *
  *                                                                           *
- *     Copyright (C) 1998-2005 Erik Greenwald <erik@smluc.org>               *
+ *     Copyright (C) 1998-2008 Erik Greenwald <erik@smluc.org>               *
  *                                                                           *
  *     This program is free software; you can redistribute it and/or modify  *
  *     it under the terms of the GNU General Public License as published by  *
@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: conf.c,v 1.6 2006/03/09 15:15:17 erik Exp $
+ * $Id: conf.c,v 1.7 2008/06/16 10:16:06 erik Exp $
  */
 
 /* this is the gui for the config box */
