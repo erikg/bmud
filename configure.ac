@@ -1,4 +1,4 @@
-# $Id: configure.ac,v 1.4 2005/10/04 21:04:44 erik Exp $
+# $Id: configure.ac,v 1.5 2009/08/15 00:04:35 erik Exp $
 
 AC_INIT(src/main.c)
 AM_INIT_AUTOMAKE(bmud, 0.6)
@@ -42,17 +42,21 @@ if test x$python = xyes; then
 	AC_MSG_RESULT(yes)
 fi
 
-AC_ARG_ENABLE(perl,
-[  --enable-perl           Use PERL for scripting [default=yes]],
-	, perl=yes)
-if test x$perl = xyes; then
-	AC_MSG_CHECKING(for PERL)
-	AC_DEFINE(USE_PERL,,[perl for scripting])
-	PERL_CFLAGS=`perl -MExtUtils::Embed -e ccopts`
-	PERL_LIBS=`perl -MExtUtils::Embed -e ldopts`
-	AC_SUBST(PERL_CFLAGS)
-	AC_SUBST(PERL_LIBS)
-	AC_MSG_RESULT(yes)
-fi
+###AC_ARG_ENABLE(perl,
+###[  --enable-perl           Use PERL for scripting [default=yes]],
+###	, perl=yes)
+###if test x$perl = xyes; then
+###	AC_MSG_CHECKING(for PERL)
+###	AC_DEFINE(USE_PERL,,[perl for scripting])
+###	PERL_CFLAGS=`perl -MExtUtils::Embed -e ccopts`
+###	PERL_LIBS=`perl -MExtUtils::Embed -e ldopts`
+###	AC_SUBST(PERL_CFLAGS)
+###	AC_SUBST(PERL_LIBS)
+###	AC_MSG_RESULT(yes)
+###fi
+PERL_CFLAGS=
+PERL_LIBS=
+AC_SUBST(PERL_CFLAGS)
+AC_SUBST(PERL_LIBS)
 
 AC_OUTPUT(Makefile data/Makefile doc/Makefile src/Makefile bmud.spec bmud.lsm doc/doxygen.conf)
