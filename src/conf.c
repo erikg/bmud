@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: conf.c,v 1.7 2008/06/16 10:16:06 erik Exp $
+ * $Id: conf.c,v 1.8 2009/08/15 00:04:55 erik Exp $
  */
 
 /* this is the gui for the config box */
@@ -370,7 +370,7 @@ show_config ()
 	GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_widget_set_usize (scrollbox, 150, 200);
     gtk_widget_show (scrollbox);
-/*
+
     tree = gtk_tree_new ();
     subtree = gtk_tree_new ();
 
@@ -386,7 +386,9 @@ show_config ()
     treeitem = gtk_tree_item_new_with_label ("Colors");
     gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
 
+    /*
     gtk_tree_item_set_subtree (GTK_TREE_ITEM (treeitem), subtree);
+    */
     gtk_widget_show (treeitem);
 
     treeitem = gtk_tree_item_new_with_label ("Font");
@@ -403,7 +405,7 @@ show_config ()
     gtk_tree_append (GTK_TREE_VIEW (tree), treeitem);
     gtk_signal_connect (GTK_OBJECT (treeitem), "select", GTK_SIGNAL_FUNC (confmisc), NULL);
     gtk_widget_show (treeitem);
-*/
+
     gtk_widget_show (blah);
 
     gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (scrollbox), tree);
@@ -426,9 +428,7 @@ show_config ()
     gtk_widget_show (cancel);
     gtk_widget_show (help);
 
-/*
     gtk_widget_show (tree);
-*/
 
     gtk_widget_show (hbox);
     gtk_widget_show (hbox2);

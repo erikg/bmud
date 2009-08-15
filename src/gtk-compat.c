@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gtk-compat.c,v 1.2 2008/06/16 10:16:06 erik Exp $
+ * $Id: gtk-compat.c,v 1.3 2009/08/15 00:04:55 erik Exp $
  */
 
 /* this is for the stuff that gnome would handle if we were using gnome. */
@@ -75,11 +75,13 @@ do_menu (GtkWidget * vbox)
     gtk_widget_show (mi);
     gtk_menu_append (GTK_MENU (smenu), mi);
 
+    /*
     mi = gtk_menu_item_new_with_label (_("Preferences..."));
     gtk_signal_connect (GTK_OBJECT (mi), "activate",
 	GTK_SIGNAL_FUNC (show_config), NULL);
     gtk_widget_show (mi);
     gtk_menu_append (GTK_MENU (smenu), mi);
+    */
 
     mi = gtk_menu_item_new ();
     gtk_widget_show (mi);

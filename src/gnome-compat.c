@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 /*
- * $Id: gnome-compat.c,v 1.2 2008/06/16 10:16:06 erik Exp $
+ * $Id: gnome-compat.c,v 1.3 2009/08/15 00:04:55 erik Exp $
  */
 
 /* all the gnome specific stuff should go in here. */
@@ -33,7 +33,9 @@
 #include <gnome.h>
 
 #include "bmud.h"
+/*
 #include "conf.h"
+*/
 #include "g-compat.h"
 #include "gui.h"
 #include "main.h"
@@ -102,6 +104,7 @@ do_menu (GtkWidget * garbage)
 		0,
 		0,
 	    NULL},
+	/*
 	GNOMEUIINFO_SEPARATOR,
 	{
 		GNOME_APP_UI_ITEM,
@@ -115,6 +118,7 @@ do_menu (GtkWidget * garbage)
 		0,
 		0,
 	    NULL},
+	*/
 	GNOMEUIINFO_SEPARATOR,
 	{
 		GNOME_APP_UI_ITEM,
